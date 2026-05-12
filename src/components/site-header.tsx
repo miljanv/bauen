@@ -49,7 +49,6 @@ function NavLink({
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   /** Empty until mount so SSR and first client paint match; then synced with `window.location.hash`. */
   const [locationHash, setLocationHash] = useState("");
 
@@ -59,13 +58,6 @@ export function SiteHeader() {
     window.addEventListener("hashchange", syncHash);
     return () => window.removeEventListener("hashchange", syncHash);
   }, [pathname]);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     if (open) {
@@ -78,18 +70,12 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  const isHome = pathname === "/";
-  const transparentHero = isHome && !scrolled && !open;
-
   return (
     <>
       <header
         className={cn(
-          "fixed left-0 right-0 top-0 z-50 h-20 transition-colors duration-300",
+          "fixed left-0 right-0 top-0 z-50 h-20 border-transparent bg-transparent transition-colors duration-300",
           open ? "z-[70]" : "z-50",
-          transparentHero
-            ? "border-transparent bg-transparent"
-            : "border-b border-white/10 bg-background/95 backdrop-blur-md",
         )}
       >
         <div className="mx-auto h-full max-w-7xl px-4 sm:px-6 lg:px-8">

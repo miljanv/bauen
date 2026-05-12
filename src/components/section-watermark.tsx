@@ -40,7 +40,7 @@ export function SectionWatermark({
   const spanTypography = cn(
     "whitespace-nowrap font-heading font-normal leading-none text-transparent text-shadow-none",
     uppercase && "uppercase",
-    layout === "inline" || placement === "bottom-right"
+    placement === "bottom-right"
       ? "max-w-[min(95vw,56rem)] text-[clamp(3rem,10vw,6.5rem)] lg:text-[clamp(3.75rem,9vw,7.5rem)]"
       : "text-[clamp(3.5rem,14vw,11rem)] sm:text-[clamp(4rem,16vw,12rem)]",
     placement === "bottom-right" && "text-right",

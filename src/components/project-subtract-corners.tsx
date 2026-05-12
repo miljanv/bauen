@@ -67,7 +67,7 @@ export function ProjectSubtractCorners({
         <span
           className={cn(
             GLASS_CORNER_BR,
-            "bottom-0 right-0 translate-x-2 translate-y-2 sm:translate-x-2.5 sm:translate-y-2.5",
+            "bottom-0 right-0 translate-x-2 translate-y-2 sm:translate-x-3.5 sm:translate-y-3.5",
             className,
           )}
           aria-hidden

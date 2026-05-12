@@ -5,6 +5,10 @@ import { ChevronRight } from "lucide-react";
 import { AboutMilestones } from "@/components/about-milestones";
 import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
+import {
+  SECTION_WATERMARK_STROKE_INLINE_LG,
+  SECTION_WATERMARK_STROKE_INLINE_SM,
+} from "@/components/section-watermark";
 import { SiteContainer } from "@/components/site-container";
 import { figmaAbout } from "@/lib/figma-about-assets";
 import { createPageMetadata } from "@/lib/seo";
@@ -138,32 +142,12 @@ export default function AboutPage() {
 
       <AboutMilestones milestones={milestones} />
 
-      <section className="relative overflow-hidden bg-background py-24 md:py-32">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
-        >
-          <div className="absolute bottom-8 right-4 flex select-none items-end gap-3 md:bottom-12 md:right-8 md:gap-5 lg:bottom-16 lg:right-12 lg:gap-6">
-            <span
-              className="font-heading text-[clamp(4rem,16vw,11rem)] font-normal uppercase leading-none text-transparent opacity-[0.22]"
-              style={{ WebkitTextStroke: "1px rgba(240,89,42,0.36)" }}
-            >
-              A
-            </span>
-            <span
-              className="font-heading text-[clamp(2.25rem,9vw,6.5rem)] font-normal leading-none text-transparent opacity-[0.22]"
-              style={{ WebkitTextStroke: "1px rgba(240,89,42,0.36)" }}
-            >
-              +
-            </span>
-          </div>
-        </div>
-
-        <SiteContainer className="relative z-[1]">
+      <section className="relative  bg-background py-24 md:py-32">
+        <SiteContainer className="relative">
           <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
             Priznanja i nagrade
           </h2>
-          <div className="mt-6 flex max-w-5xl flex-col gap-6 font-sans text-lg font-medium leading-[1.25] text-neutral-50 md:text-xl lg:text-2xl lg:leading-[1.2]">
+          <div className="relative z-10 mt-6 flex w-full max-w-none flex-col gap-6 font-sans text-lg font-medium leading-[1.25] text-neutral-50 md:text-xl lg:text-2xl lg:leading-[1.2]">
             <p>
               Zahvaljujući predanom radu i vrhunskoj stručnosti svog kadra ali i
               čestim društveno odgovornim aktivnostima, Bauen je dobitnik
@@ -172,10 +156,10 @@ export default function AboutPage() {
               preduzeća sa najboljom bonitetnom ocenom u Srbiji.
             </p>
             <p>
-              Bauen je se može pohvaliti i učestovanjem u dobrotvornim akcijama
-              i sponzorisanjem svih događaja humanitarnog karaktera na
-              teritoriji svog poslovanja jer smatramo da je to moralna obaveza
-              svakoga ko je u mogućnosti da to uradi.
+              Bauen se može pohvaliti i učestovanjem u dobrotvornim akcijama i
+              sponzorisanjem svih događaja humanitarnog karaktera na teritoriji
+              svog poslovanja jer smatramo da je to moralna obaveza svakoga ko
+              je u mogućnosti da to uradi.
             </p>
             <p>
               Ponosni smo na činjenicu da je naš rad prepoznat od strane
@@ -183,6 +167,27 @@ export default function AboutPage() {
               da radimo naporno i gradimo kvalitetno kako bi opravdali i
               negovali stečeno poverenje naših klijenata i javnosti.
             </p>
+          </div>
+          <div
+            aria-hidden
+            className="pointer-events-none mt-12 flex w-full shrink-0 justify-center md:mt-16 lg:mt-20"
+          >
+            <span
+              className="font-heading whitespace-nowrap text-center text-transparent text-shadow-none text-[clamp(100px,22vw,300px)] font-normal leading-[110%] tracking-[clamp(20px,8vw,100px)] opacity-35 lg:hidden"
+              style={{
+                WebkitTextStroke: SECTION_WATERMARK_STROKE_INLINE_SM,
+              }}
+            >
+              A+
+            </span>
+            <span
+              className="absolute top-70 right-0 hidden font-heading whitespace-nowrap text-center text-transparent text-shadow-none text-[clamp(100px,22vw,300px)] font-normal leading-[110%] tracking-[100px] opacity-35 lg:inline"
+              style={{
+                WebkitTextStroke: SECTION_WATERMARK_STROKE_INLINE_LG,
+              }}
+            >
+              A+
+            </span>
           </div>
         </SiteContainer>
       </section>

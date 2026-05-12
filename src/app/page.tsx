@@ -6,7 +6,11 @@ import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { HomePromoVideo } from "@/components/home-promo-video";
 import { HomeServices } from "@/components/home-services";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
-import { SectionWatermark, SECTION_WATERMARK_STROKE_INLINE_LG, SECTION_WATERMARK_STROKE_INLINE_SM } from "@/components/section-watermark";
+import {
+  SectionWatermark,
+  SECTION_WATERMARK_STROKE_INLINE_LG,
+  SECTION_WATERMARK_STROKE_INLINE_SM,
+} from "@/components/section-watermark";
 import { SiteContainer } from "@/components/site-container";
 import { figmaHome } from "@/lib/figma-home-assets";
 import { createPageMetadata } from "@/lib/seo";
@@ -69,19 +73,21 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,17,32,0)] from-[20%] via-background/20 to-background" />
         <SiteContainer className="relative z-[1] flex min-h-screen flex-col items-center px-4 pb-16 pt-28 text-center md:px-6 md:pb-12 md:pt-32">
-          <div className="max-w-[973px] text-balance">
-            <h1 className="font-heading text-[clamp(2rem,6vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[62px]">
-              Gradimo pouzdane temelje
-            </h1>
-            <p className="mt-0 font-sans text-[clamp(2rem,6vw,3.875rem)] font-semibold leading-[1.1] text-primary lg:text-[62px]">
-              za vaše ambicije
-            </p>
-          </div>
-          <div className="mt-24 flex justify-center md:mt-32 lg:mt-[556px]">
-            <BauenCtaLink href="/o-nama">
-              O NAMA
-              <ChevronRight className="size-4 shrink-0" aria-hidden />
-            </BauenCtaLink>
+          <div className="mt-[10vh] flex w-full flex-col items-center">
+            <div className="max-w-[973px] text-balance">
+              <h1 className="font-heading text-[clamp(2rem,6vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[62px]">
+                Gradimo pouzdane temelje
+              </h1>
+              <p className="mt-0 font-sans text-[clamp(2rem,6vw,3.875rem)] font-semibold leading-[1.1] text-primary lg:text-[62px]">
+                za vaše ambicije
+              </p>
+            </div>
+            <div className="mt-24 flex justify-center md:mt-32 lg:mt-[50vh]">
+              <BauenCtaLink href="/o-nama">
+                O NAMA
+                <ChevronRight className="size-4 shrink-0" aria-hidden />
+              </BauenCtaLink>
+            </div>
           </div>
         </SiteContainer>
       </section>
@@ -156,7 +162,9 @@ export default function HomePage() {
                       className="object-cover"
                       sizes="(max-width:1024px) 100vw, 705px"
                     />
-                    <ProjectSubtractCorners variant={p.reverse ? "image-right" : "image-left"} />
+                    <ProjectSubtractCorners
+                      variant={p.reverse ? "image-right" : "image-left"}
+                    />
                   </div>
                   <div
                     className={cn(
