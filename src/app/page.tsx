@@ -1,65 +1,200 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
-export default function Home() {
+import { BauenCtaLink } from "@/components/bauen-cta-button";
+import { HomePromoVideo } from "@/components/home-promo-video";
+import { HomeServices } from "@/components/home-services";
+import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
+import { SectionWatermark, SECTION_WATERMARK_STROKE_INLINE_LG, SECTION_WATERMARK_STROKE_INLINE_SM } from "@/components/section-watermark";
+import { SiteContainer } from "@/components/site-container";
+import { figmaHome } from "@/lib/figma-home-assets";
+import { createPageMetadata } from "@/lib/seo";
+import { cn } from "@/lib/utils";
+
+export const metadata = createPageMetadata({
+  title: "Početna",
+  description:
+    "Bauen — gradimo pouzdane temelje za vaše ambicije. Visokogradnja, niskogradnja, restauracija i specijalni projekti.",
+  path: "/",
+});
+
+const FIGMA_VIDEO_COPY =
+  "Pridružite nam se dok putujemo kroz vreme i proslavljamo 30 godina uspešnog poslovanja građevinske kompanije BAUEN! Ovaj uzbudljivi promo video predstavlja našu dugogodišnju posvećenost kvalitetu i izvrsnosti u građevinskoj industriji…";
+
+const PROJECT_BODY =
+  "Ovaj projekat je bio od presudnog značaja za našu firmu i sigurno možemo reći da je predstavljao prekretnicu u našem poslovanju i od nas načinio firmu koja smo danas. Bez ikakve sumnje to je bio naš najveći projekat do tada i zbog važnosti objekta koji smo sagradili svakako predstavlja naše nasleđe. Kao porodični ljudi koji neguju tradiciju i porodične vrednosti, biti deo ovog projekta je za nas predstavljalo veliku čast ali i obavezu.. Ovaj hram će biti mesto okupljanja za hiljade vernika vekovima u budućnosti.";
+
+const projectCardGlassStyle = {
+  backgroundImage:
+    "radial-gradient(70.56% 70.56% at 69.32% 29.44%, rgba(82, 115, 164, 0.30) 0%, rgba(152, 174, 216, 0.03) 100%)",
+  boxShadow: "inset 0 205px 82px 1px rgba(125, 109, 162, 0.01)",
+} as const;
+
+const homeProjects = [
+  {
+    title: "Asfaltna baza za Extra Auto",
+    description: PROJECT_BODY,
+    image: figmaHome.project1,
+    alt: "Asfaltna baza",
+    reverse: false,
+  },
+  {
+    title: "Asfaltna baza za Extra Auto",
+    description: PROJECT_BODY,
+    image: figmaHome.project2,
+    alt: "Asfaltna baza",
+    reverse: true,
+  },
+  {
+    title: "Sportski centar „Zmajevo“",
+    description: PROJECT_BODY,
+    image: figmaHome.project3,
+    alt: "Sportski centar",
+    reverse: false,
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <>
+      <section className="relative min-h-screen">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/illustrations/home_hero.png"
+          alt="Ilustracija gradilišta u stilu tehničkog nacrta"
+          fill
           priority
+          className="object-center"
+          sizes="100vw"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,17,32,0)] from-[20%] via-background/20 to-background" />
+        <SiteContainer className="relative z-[1] flex min-h-screen flex-col items-center px-4 pb-16 pt-28 text-center md:px-6 md:pb-12 md:pt-32">
+          <div className="max-w-[973px] text-balance">
+            <h1 className="font-heading text-[clamp(2rem,6vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[62px]">
+              Gradimo pouzdane temelje
+            </h1>
+            <p className="mt-0 font-sans text-[clamp(2rem,6vw,3.875rem)] font-semibold leading-[1.1] text-primary lg:text-[62px]">
+              za vaše ambicije
+            </p>
+          </div>
+          <div className="mt-24 flex justify-center md:mt-32 lg:mt-[556px]">
+            <BauenCtaLink href="/o-nama">
+              O NAMA
+              <ChevronRight className="size-4 shrink-0" aria-hidden />
+            </BauenCtaLink>
+          </div>
+        </SiteContainer>
+      </section>
+
+      <section
+        id="godine"
+        className="relative scroll-mt-24 overflow-hidden bg-background py-24 text-left md:py-32"
+      >
+        <SiteContainer className="relative z-[1]">
+          <h2 className="font-heading text-[clamp(2rem,6vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
+            30 uspešnih godina
+          </h2>
+          <div className="relative mt-6 flex w-full flex-col">
+            <p className="w-full self-stretch font-sans text-2xl font-medium leading-[1.2] text-neutral-600">
+              {FIGMA_VIDEO_COPY}
+            </p>
+            <SectionWatermark
+              text="Since 1993"
+              uppercase={false}
+              layout="inline"
+              placement="bottom-right"
+              className="relative z-1 mt-3 md:mt-4 -mb-6 md:-mb-10"
+              textStroke={SECTION_WATERMARK_STROKE_INLINE_SM}
+              textStrokeLg={SECTION_WATERMARK_STROKE_INLINE_LG}
+              textClassName="opacity-35"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          </div>
+
+          <div className="relative z-0 mx-auto mt-8 max-w-[1312px] md:mt-10">
+            <HomePromoVideo
+              posterSrc={figmaHome.videoSection}
+              posterSizes="(max-width:1024px) 100vw, 1312px"
+            />
+          </div>
+        </SiteContainer>
+      </section>
+
+      <HomeServices />
+
+      <section
+        id="projekti-pocetna"
+        className="relative scroll-mt-24 overflow-x-hidden bg-background py-24 md:py-32"
+      >
+        <SiteContainer className="relative z-[1]">
+          <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
+            Naši Projekti
+          </h2>
+          <p className="mt-6 max-w-4xl font-sans text-xl font-medium leading-[1.2] text-muted-foreground md:text-2xl">
+            Spisak projekata koje smo uradili je sve veći, a mi smo izdvojili
+            samo neke od njih o kojima možete pročitati više informacija
+          </p>
+
+          <div className="mt-20 flex flex-col gap-32 md:gap-48">
+            {homeProjects.map((p, index) => (
+              <article
+                key={index}
+                className="relative mx-auto w-full max-w-[1280px] pb-36 lg:pb-44"
+              >
+                <div
+                  className={cn(
+                    "relative min-h-0 lg:min-h-[529px]",
+                    p.reverse
+                      ? "flex flex-col items-stretch gap-0 lg:flex-row-reverse lg:items-center"
+                      : "flex flex-col items-stretch gap-0 lg:flex-row lg:items-center",
+                  )}
+                >
+                  <div className="relative aspect-705/529 w-full overflow-visible lg:max-w-[705px]">
+                    <Image
+                      src={p.image}
+                      alt={p.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width:1024px) 100vw, 705px"
+                    />
+                    <ProjectSubtractCorners variant={p.reverse ? "image-right" : "image-left"} />
+                  </div>
+                  <div
+                    className={cn(
+                      "relative z-10 flex w-full max-w-[518px] flex-col items-start gap-4 rounded-[3px] border border-white/12 px-8 pb-6 pt-9 backdrop-blur-[10.45px] max-lg:-mt-6",
+                      "max-lg:mx-auto max-lg:max-w-[518px]",
+                      p.reverse
+                        ? "lg:absolute lg:bottom-[-155px] lg:left-[269px] lg:right-auto lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none"
+                        : "lg:absolute lg:bottom-[-155px] lg:right-[269px] lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none",
+                    )}
+                    style={projectCardGlassStyle}
+                  >
+                    <h3 className="font-heading text-xl font-normal leading-[1.2] text-primary md:text-2xl">
+                      {p.title}
+                    </h3>
+                    <p className="font-sans text-base leading-[22px] text-neutral-200">
+                      {p.description}
+                    </p>
+                    <BauenCtaLink href="/projekti" className="w-fit px-4">
+                      DETALJNIJE
+                      <ChevronRight className="size-4 shrink-0" aria-hidden />
+                    </BauenCtaLink>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-24 flex justify-center md:mt-32">
+            <Link
+              href="/projekti"
+              className="font-nav inline-flex h-[60px] items-center gap-2 border border-primary px-4 text-base font-medium text-neutral-50 transition-colors hover:bg-primary/10"
+            >
+              POGLEDAJTE SVE NAŠE PROJEKTE
+              <ChevronRight className="size-4 shrink-0" aria-hidden />
+            </Link>
+          </div>
+        </SiteContainer>
+      </section>
+    </>
   );
 }
