@@ -12,7 +12,7 @@ type ServiceStyleShowcaseProps = {
 };
 
 /**
- * Isti vizuelni blok kao sekcija „Naše usluge“ na početnoj (#usluge):
+ * Isti vizuelni blok kao sekcija „Naše usluge“ na početnoj.
  * uokvirena slika + preklopljeni glass panel sa ivicama u `--svc-l` sistemu.
  */
 export function ServiceStyleShowcase({

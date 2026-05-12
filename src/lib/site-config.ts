@@ -25,7 +25,6 @@ export const siteConfig = {
 export const navPrimary = [
   { href: "/", label: "NASLOVNA" },
   { href: "/o-nama", label: "O NAMA" },
-  { href: "/#usluge", label: "USLUGE" },
 ] as const;
 
 /** Druga grupa */

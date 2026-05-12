@@ -94,7 +94,6 @@ export function HomeServices() {
 
   return (
     <section
-      id="usluge"
       className="relative scroll-mt-24 overflow-hidden bg-background py-24 md:py-32"
     >
       <SiteContainer className="relative z-1">
