@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { LCornerFrame } from "@/components/l-corner-frame";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
@@ -124,7 +130,9 @@ function MilestoneRailMarker({
         height={36}
         className={cn(
           "relative z-10 h-10 w-10 object-contain transition-[filter,transform] duration-500 ease-out motion-reduce:transition-none",
-          !isFirst && a >= 0.998 && "motion-safe:scale-[1.03] motion-reduce:scale-100",
+          !isFirst &&
+            a >= 0.998 &&
+            "motion-safe:scale-[1.03] motion-reduce:scale-100",
         )}
         style={squareFilter ? { filter: squareFilter } : undefined}
       />
@@ -228,7 +236,10 @@ export function AboutMilestones({
         <div ref={rowRef} className="flex gap-6 lg:gap-10">
           <div className="relative hidden w-[54px] shrink-0 flex-col items-center self-stretch pb-2 pt-1 lg:flex">
             {/* Širi wrapper: čvorovi šire od w-1; uska traka sa overflow-hidden samo za narandžastu popunu */}
-            <div ref={railInnerRef} className="relative mx-auto min-h-[160px] w-[54px] flex-1">
+            <div
+              ref={railInnerRef}
+              className="relative mx-auto min-h-[160px] w-[54px] flex-1"
+            >
               <div
                 className="pointer-events-none absolute left-1/2 top-0 bottom-0 z-0 w-1 -translate-x-1/2 overflow-hidden bg-neutral-700"
                 aria-hidden
@@ -261,19 +272,23 @@ export function AboutMilestones({
           <ol className="flex flex-1 flex-col gap-20 lg:gap-28">
             {milestones.map((m, i) => (
               <li key={m.year} className="relative">
-                <div className="relative grid grid-cols-1 gap-0 lg:min-h-[579px] lg:grid-cols-12 lg:items-center">
+                <div className="relative grid grid-cols-1 gap-0 ml-10 lg:min-h-[579px] lg:grid-cols-12 lg:items-center">
                   <div className="relative aspect-[868/579] w-full overflow-visible lg:col-span-9 lg:col-start-4 lg:row-start-1 lg:h-[579px] lg:aspect-auto">
-                    <Image
-                      src={m.image}
-                      alt={m.alt}
-                      fill
-                      className="object-cover grayscale"
-                      sizes="(max-width:1024px) 100vw, 868px"
-                    />
-                    <LCornerFrame
-                      corners="br"
-                      bottomRightAccentClassName="bottom-[-4px] right-[-4px] h-28 w-36 border-b-[6px] border-r-[6px] sm:bottom-[-6px] sm:right-[-6px] sm:h-[90%] sm:w-[60%] sm:border-b-[8px] sm:border-r-[8px]"
-                    />
+                    <div className="absolute inset-x-0 top-30 bottom-0">
+                      <div className="relative h-full w-full">
+                        <Image
+                          src={m.image}
+                          alt={m.alt}
+                          fill
+                          className="object-cover grayscale"
+                          sizes="(max-width:1024px) 100vw, 868px"
+                        />
+                        <LCornerFrame
+                          corners="br"
+                          bottomRightAccentClassName="bottom-[-4px] right-[-4px] h-28 w-36 border-b-[6px] border-r-[6px] sm:bottom-[-6px] sm:right-[-6px] sm:h-[90%] sm:w-[60%] sm:border-b-[8px] sm:border-r-[8px]"
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div
                     ref={(el) => {

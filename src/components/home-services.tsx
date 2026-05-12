@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 
 import { BauenCtaLink } from "@/components/bauen-cta-button";
+import { ServiceStyleShowcase } from "@/components/service-style-showcase";
 import { SiteContainer } from "@/components/site-container";
 import {
   SECTION_WATERMARK_STROKE_INLINE_LG,
@@ -161,76 +161,44 @@ export function HomeServices() {
         </div>
 
         <div className="mt-14">
-          {/* Jedan okvir: leva ivica = levo slike, desna = desno panela; slika + panel preklopljeni, centrirani po Y */}
-          <div className="relative w-full overflow-hidden lg:mx-auto lg:w-fit lg:max-w-full">
-            <div className="flex w-full flex-col lg:flex-row lg:items-center">
-              <div className="relative aspect-1074/706 w-full min-h-[260px] shrink-0 overflow-hidden bg-background [--svc-l:clamp(12px,2.2vw,18px)] lg:aspect-auto lg:h-[min(706px,78vh)] lg:w-[min(705px,48vw)] lg:max-w-[705px]">
-                <div
-                  className="pointer-events-none absolute left-0 top-0 z-0 h-(--svc-l) w-[60%] bg-primary"
-                  aria-hidden
-                />
-                <div
-                  className="pointer-events-none absolute left-0 top-0 z-0 h-[60%] w-(--svc-l) bg-primary"
-                  aria-hidden
-                />
-                <div className="absolute top-(--svc-l) left-(--svc-l) right-0 bottom-0 z-10 min-h-0">
-                  <Image
-                    src={current.image}
-                    alt={current.imageAlt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width:1024px) 100vw, 705px"
-                    key={current.id}
+          <ServiceStyleShowcase
+            image={current.image}
+            imageAlt={current.imageAlt}
+            imageKey={current.id}
+          >
+            <p className="font-heading text-xl font-normal leading-[1.2] text-primary lg:text-2xl">
+              {current.title}
+            </p>
+            <ul className="flex flex-col gap-4">
+              {current.bullets.map((item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <span
+                    className="size-1.5 shrink-0 rounded-[1px] bg-primary"
+                    aria-hidden
                   />
-                </div>
-              </div>
-
-              <div className="relative z-10 w-full shrink-0 overflow-hidden border-t border-white/10 [--svc-l:clamp(12px,2.2vw,18px)] max-lg:bg-[rgba(20,11,42,0.65)] max-lg:backdrop-blur-[10px] lg:-ml-[min(200px,18vw)] lg:min-h-[min(560px,72vh)] lg:w-[min(518px,42vw)] lg:max-w-[518px] lg:border-t-0">
-                <div
-                  className="pointer-events-none absolute bottom-0 right-0 z-0 hidden h-(--svc-l) w-[40%] bg-primary lg:block"
-                  aria-hidden
-                />
-                <div
-                  className="pointer-events-none absolute bottom-0 right-0 z-0 hidden h-[40%] w-(--svc-l) bg-primary lg:block"
-                  aria-hidden
-                />
-                <div className="relative z-10 flex flex-col gap-4 p-6 sm:p-8 lg:absolute lg:inset-0 lg:right-(--svc-l) lg:bottom-(--svc-l) lg:overflow-y-auto lg:border lg:border-white/12 lg:bg-[rgba(20,11,42,0.65)] lg:backdrop-blur-[10px]">
-                  <p className="font-heading text-xl font-normal leading-[1.2] text-primary lg:text-2xl">
-                    {current.title}
-                  </p>
-                  <ul className="flex flex-col gap-4">
-                    {current.bullets.map((item) => (
-                      <li key={item} className="flex items-center gap-2">
-                        <span
-                          className="size-1.5 shrink-0 rounded-[1px] bg-primary"
-                          aria-hidden
-                        />
-                        <span className="font-sans text-base leading-[22px] text-neutral-200">
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex flex-col gap-4">
-                    {current.paragraphs.map((p, i) => (
-                      <p
-                        key={i}
-                        className="font-sans text-base leading-[22px] text-neutral-200"
-                      >
-                        {p}
-                      </p>
-                    ))}
-                  </div>
-                  <div className="pt-2">
-                    <BauenCtaLink href="/projekti" className="px-4">
-                      PROJEKTI
-                      <ChevronRight className="size-4 shrink-0" aria-hidden />
-                    </BauenCtaLink>
-                  </div>
-                </div>
-              </div>
+                  <span className="font-sans text-base leading-[22px] text-neutral-200">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-col gap-4">
+              {current.paragraphs.map((p, i) => (
+                <p
+                  key={i}
+                  className="font-sans text-base leading-[22px] text-neutral-200"
+                >
+                  {p}
+                </p>
+              ))}
             </div>
-          </div>
+            <div className="pt-2">
+              <BauenCtaLink href="/projekti" className="px-4">
+                PROJEKTI
+                <ChevronRight className="size-4 shrink-0" aria-hidden />
+              </BauenCtaLink>
+            </div>
+          </ServiceStyleShowcase>
         </div>
       </SiteContainer>
     </section>

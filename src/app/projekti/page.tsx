@@ -7,7 +7,7 @@ import { figmaProjekti } from "@/lib/figma-projekti-assets";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Projekti",
+  title: "Reference",
   description:
     "Pregled realizovanih i aktivnih projekata Bauen firme — stambeni kompleksi, poslovni objekti i rekonstrukcije širom Srbije.",
   path: "/projekti",
@@ -32,7 +32,7 @@ export default function ProjectsPage() {
         <SiteContainer className="relative z-1 flex min-h-[min(100vh,1024px)] flex-col items-center px-4 pb-16 pt-28 text-center md:px-6 md:pb-20 md:pt-32">
           <div className="w-full max-w-4xl text-left">
             <h1 className="font-heading text-[clamp(2.25rem,6vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
-              Usluge
+              Reference
             </h1>
             <p className="mt-4 max-w-[591px] font-sans text-lg font-medium leading-[1.2] text-white md:text-xl">
               Kompletna rešenja u oblasti visokogradnje, niskogradnje i specijalizovanih građevinskih radova.

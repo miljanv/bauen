@@ -5,7 +5,7 @@ import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 import { BauenCtaLink } from "@/components/bauen-cta-button";
-import { LCornerFrame } from "@/components/l-corner-frame";
+import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
 import { SiteContainer } from "@/components/site-container";
 import { figmaProjekti } from "@/lib/figma-projekti-assets";
 import { cn } from "@/lib/utils";
@@ -34,6 +34,12 @@ const CATEGORY_COPY = {
 } as const;
 
 type CategoryId = keyof typeof CATEGORY_COPY;
+
+const projectCardGlassStyle = {
+  backgroundImage:
+    "radial-gradient(70.56% 70.56% at 69.32% 29.44%, rgba(82, 115, 164, 0.30) 0%, rgba(152, 174, 216, 0.03) 100%)",
+  boxShadow: "inset 0 205px 82px 1px rgba(125, 109, 162, 0.01)",
+} as const;
 
 const PROJECT_BODY =
   "Ovaj projekat je bio od presudnog značaja za našu firmu i sigurno možemo reći da je predstavljao prekretnicu u našem poslovanju i od nas načinio firmu koja smo danas. Bez ikakve sumnje to je bio naš najveći projekat do tada i zbog važnosti objekta koji smo sagradili svakako predstavlja naše nasleđe. Kao porodični ljudi koji neguju tradiciju i porodične vrednosti, biti deo ovog projekta je za nas predstavljalo veliku čast ali i obavezu.. Ovaj hram će biti mesto okupljanja za hiljade vernika vekovima u budućnosti.";
@@ -65,7 +71,10 @@ const showcaseProjects = [
 export function ProjektiPortfolio() {
   const [active, setActive] = useState<CategoryId>("visokogradnja");
   const activeCopy = CATEGORY_COPY[active];
-  const categories = Object.entries(CATEGORY_COPY) as [CategoryId, (typeof CATEGORY_COPY)[CategoryId]][];
+  const categories = Object.entries(CATEGORY_COPY) as [
+    CategoryId,
+    (typeof CATEGORY_COPY)[CategoryId],
+  ][];
 
   return (
     <section className="border-b border-white/10 bg-background py-20 md:py-28">
@@ -107,14 +116,17 @@ export function ProjektiPortfolio() {
           id={`projekti-panel-${active}`}
           role="tabpanel"
           aria-labelledby={`projekti-tab-${active}`}
-          className="font-nav mt-6 max-w-5xl text-xl font-medium leading-[1.2] text-neutral-700 md:mt-8 md:text-2xl"
+          className="font-nav mt-6 text-xl font-medium leading-[1.2] text-neutral-700 md:mt-8 md:text-2xl"
         >
           {activeCopy.description}
         </p>
 
-        <div className="mt-16 flex flex-col gap-24 md:mt-24 md:gap-48">
+        <div className="mt-16 flex flex-col gap-32 md:mt-24 md:gap-48">
           {showcaseProjects.map((p, index) => (
-            <article key={`${p.title}-${index}`} className="relative mx-auto w-full max-w-[1280px]">
+            <article
+              key={`${p.title}-${index}`}
+              className="relative mx-auto w-full max-w-[1280px] pb-36 lg:pb-44"
+            >
               <div
                 className={cn(
                   "relative min-h-0 lg:min-h-[529px]",
@@ -123,7 +135,7 @@ export function ProjektiPortfolio() {
                     : "flex flex-col items-stretch gap-0 lg:flex-row lg:items-center",
                 )}
               >
-                <div className="relative aspect-705/529 w-full lg:max-w-[705px]">
+                <div className="relative aspect-705/529 w-full overflow-visible lg:max-w-[705px]">
                   <Image
                     src={p.image}
                     alt={p.alt}
@@ -131,19 +143,26 @@ export function ProjektiPortfolio() {
                     className="object-cover"
                     sizes="(max-width:1024px) 100vw, 705px"
                   />
-                  <LCornerFrame />
+                  <ProjectSubtractCorners
+                    variant={p.reverse ? "image-right" : "image-left"}
+                  />
                 </div>
                 <div
-                  className={
+                  className={cn(
+                    "relative z-10 flex w-full max-w-[518px] flex-col items-start gap-4 rounded-[3px] border border-white/12 px-8 pb-6 pt-9 backdrop-blur-[10.45px] max-lg:-mt-6",
+                    "max-lg:mx-auto max-lg:max-w-[518px]",
                     p.reverse
-                      ? "relative z-10 -mt-6 flex w-full max-w-[518px] flex-col gap-4 border border-white/12 bg-[rgba(20,11,42,0.55)] p-8 pb-6 pt-9 backdrop-blur-[10px] lg:absolute lg:left-8 lg:top-[58%] lg:-translate-y-1/2 lg:mt-0"
-                      : "relative z-10 -mt-6 flex w-full max-w-[518px] flex-col gap-4 border border-white/12 bg-[rgba(20,11,42,0.55)] p-8 pb-6 pt-9 backdrop-blur-[10px] lg:absolute lg:right-8 lg:top-[58%] lg:-translate-y-1/2 lg:mt-0"
-                  }
+                      ? "lg:absolute lg:bottom-[-155px] lg:left-[269px] lg:right-auto lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none"
+                      : "lg:absolute lg:bottom-[-155px] lg:right-[269px] lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none",
+                  )}
+                  style={projectCardGlassStyle}
                 >
-                  <h3 className="font-heading text-xl font-normal leading-[1.1] text-primary md:text-2xl">
+                  <h3 className="font-heading text-xl font-normal leading-[1.2] text-primary md:text-2xl">
                     {p.title}
                   </h3>
-                  <p className="font-sans text-base leading-[1.1] text-neutral-200">{p.description}</p>
+                  <p className="font-sans text-base leading-[22px] text-neutral-200">
+                    {p.description}
+                  </p>
                   <BauenCtaLink href="/kontakt" className="w-fit px-4">
                     DETALJNIJE
                     <ChevronRight className="size-4 shrink-0" aria-hidden />
