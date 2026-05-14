@@ -197,9 +197,10 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+  /**
+   * Bez globalnog `border-border` / `outline-*` na `*` — inače tanka svetla ivica / outline
+   * oko blokova (npr. kontakt). Komponente eksplicitno biraju ivicu po potrebi.
+   */
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
