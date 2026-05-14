@@ -68,7 +68,7 @@ export default function HomePage() {
           alt="Ilustracija gradilišta u stilu tehničkog nacrta"
           fill
           priority
-          className="object-center"
+          className="object-cover object-center"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,17,32,0)] from-[20%] via-background/20 to-background" />
