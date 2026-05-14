@@ -1,13 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { BauenLogo } from "@/components/bauen-logo";
 import { SocialIcons } from "@/components/social-icons";
 import { SiteContainer } from "@/components/site-container";
-import { figmaHome } from "@/lib/figma-home-assets";
 import { navItemsAll, siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -22,14 +20,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
     <footer className="relative text-white">
-      <section className="relative min-h-[280px] overflow-hidden py-16 md:min-h-[320px] md:py-20">
-        <Image
-          src={figmaHome.footerBg}
-          alt=""
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-        />
+      <section className="relative min-h-[280px] overflow-hidden bg-background py-16 md:min-h-[320px] md:py-20">
         <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background/95" />
         <SiteContainer className="relative z-[1] flex flex-col items-center gap-10 text-center">
           <div className="max-w-[806px] font-nav text-balance">

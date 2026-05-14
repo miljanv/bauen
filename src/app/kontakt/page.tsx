@@ -99,18 +99,6 @@ export default function ContactPage() {
 
       <SiteContainer className="relative z-1 flex min-h-dvh flex-col justify-center py-24 md:py-28">
         <div className="relative mx-auto w-full max-w-[1186px] px-5">
-          <div className="pointer-events-none absolute left-[clamp(0px,5vw,87px)] top-[clamp(280px,38vw,427px)] z-0 hidden w-[min(55vw,444px)] max-w-[90vw] lg:block">
-            <div className="relative aspect-[444.7/215] w-full rotate-90">
-              <Image
-                src={figmaKontakt.subtractDecoration}
-                alt=""
-                fill
-                className="object-contain"
-                sizes="(max-width:1024px) 0px, 50vw"
-              />
-            </div>
-          </div>
-
           <div className="relative z-1 mt-3">
             <div className="relative z-2 p-4 sm:p-5">
               <div className="relative lg:grid lg:grid-cols-[minmax(260px,491px)_minmax(0,998px)] lg:items-start lg:gap-0">

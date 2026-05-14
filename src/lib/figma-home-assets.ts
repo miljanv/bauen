@@ -5,5 +5,4 @@ export const figmaHome = {
   project1: "https://www.figma.com/api/mcp/asset/79f0e719-c40d-403e-9e87-10e925698b1e",
   project2: "https://www.figma.com/api/mcp/asset/02b7fe04-7c51-42ed-a5de-517d0de99dc3",
   project3: "https://www.figma.com/api/mcp/asset/6ad031cc-48af-4764-acc0-c9351f4283c6",
-  footerBg: "https://www.figma.com/api/mcp/asset/04e9400a-1282-4c0e-a9f8-0210eca5bda6",
 } as const;

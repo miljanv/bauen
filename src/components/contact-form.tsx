@@ -23,9 +23,12 @@ export function ContactForm() {
   if (sent) {
     return (
       <div className="border border-white/10 bg-card/80 p-8 text-center">
-        <p className="font-heading text-lg font-semibold text-white">Hvala vam na poruci.</p>
+        <p className="font-heading text-lg font-semibold text-white">
+          Hvala vam na poruci.
+        </p>
         <p className="mt-2 text-sm text-neutral-600">
-          Naš tim će vas kontaktirati u najkraćem roku sa predlogom sledećih koraka.
+          Naš tim će vas kontaktirati u najkraćem roku sa predlogom sledećih
+          koraka.
         </p>
       </div>
     );
