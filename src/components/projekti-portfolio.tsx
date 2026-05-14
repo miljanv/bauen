@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
+import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 import { figmaProjekti } from "@/lib/figma-projekti-assets";
 import { cn } from "@/lib/utils";
@@ -135,7 +136,11 @@ export function ProjektiPortfolio() {
                     : "flex flex-col items-stretch gap-0 lg:flex-row lg:items-center",
                 )}
               >
-                <div className="relative aspect-705/529 w-full overflow-visible lg:max-w-[705px]">
+                <Reveal
+                  variant={p.reverse ? "fade-left" : "fade-right"}
+                  duration={900}
+                  className="relative aspect-705/529 w-full overflow-visible lg:max-w-[705px]"
+                >
                   <Image
                     src={p.image}
                     alt={p.alt}
@@ -146,8 +151,12 @@ export function ProjektiPortfolio() {
                   <ProjectSubtractCorners
                     variant={p.reverse ? "image-right" : "image-left"}
                   />
-                </div>
-                <div
+                </Reveal>
+                <Reveal
+                  variant="fade-up"
+                  delay={200}
+                  duration={800}
+                  style={projectCardGlassStyle}
                   className={cn(
                     "relative z-10 flex w-full max-w-[518px] flex-col items-start gap-4 rounded-[3px] border border-white/12 px-8 pb-6 pt-9 backdrop-blur-[10.45px] max-lg:-mt-6",
                     "max-lg:mx-auto max-lg:max-w-[518px]",
@@ -155,7 +164,6 @@ export function ProjektiPortfolio() {
                       ? "lg:absolute lg:bottom-[-155px] lg:left-[269px] lg:right-auto lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none"
                       : "lg:absolute lg:bottom-[-155px] lg:right-[269px] lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none",
                   )}
-                  style={projectCardGlassStyle}
                 >
                   <h3 className="font-heading text-xl font-normal leading-[1.2] text-primary md:text-2xl">
                     {p.title}
@@ -167,7 +175,7 @@ export function ProjektiPortfolio() {
                     DETALJNIJE
                     <ChevronRight className="size-4 shrink-0" aria-hidden />
                   </BauenCtaLink>
-                </div>
+                </Reveal>
               </div>
             </article>
           ))}

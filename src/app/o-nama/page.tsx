@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react";
 import { AboutMilestones } from "@/components/about-milestones";
 import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
+import { Reveal } from "@/components/reveal";
 import {
   SECTION_WATERMARK_STROKE_INLINE_LG,
   SECTION_WATERMARK_STROKE_INLINE_SM,
@@ -68,7 +69,11 @@ export default function AboutPage() {
 
         <SiteContainer className="relative pb-20 pt-40 md:pt-52 lg:pb-32 lg:pt-60">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-10 xl:gap-x-12">
-            <div className="lg:col-span-12 lg:col-start-1 lg:row-start-1">
+            <Reveal
+              variant="fade-up"
+              duration={900}
+              className="lg:col-span-12 lg:col-start-1 lg:row-start-1"
+            >
               <h1 className="max-w-none font-normal leading-[110%] text-[#FFF] text-[clamp(1.75rem,5vw,2.5rem)] lg:text-[62px]">
                 <span className="block font-heading lg:whitespace-nowrap">
                   Više od 30 godina gradimo
@@ -84,9 +89,14 @@ export default function AboutPage() {
                 Od porodičnih početaka do savremene građevinske kompanije, naš
                 put obeležavaju posvećenost, stručnost i kontinuiran rast.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:self-start xl:col-span-5">
+            <Reveal
+              variant="fade-up"
+              delay={200}
+              duration={800}
+              className="flex flex-wrap items-center gap-4 sm:gap-6 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:self-start xl:col-span-5"
+            >
               <BauenCtaLink href="/projekti" className="px-4">
                 REFERENCE
               </BauenCtaLink>
@@ -97,9 +107,14 @@ export default function AboutPage() {
                 KONTAKTIRAJTE NAS
                 <ChevronRight className="size-4 shrink-0" aria-hidden />
               </Link>
-            </div>
+            </Reveal>
 
-            <div className="lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:-mt-8 lg:self-start xl:col-span-7 xl:col-start-6">
+            <Reveal
+              variant="fade-left"
+              delay={150}
+              duration={900}
+              className="lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:-mt-8 lg:self-start xl:col-span-7 xl:col-start-6"
+            >
               <div
                 className="relative overflow-visible rounded-[3px] border border-[rgba(255,255,255,0.12)] p-6 sm:p-8 md:p-10"
                 style={aboutHeroGlassStyle}
@@ -135,7 +150,7 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </SiteContainer>
       </section>
@@ -144,32 +159,42 @@ export default function AboutPage() {
 
       <section className="relative  bg-background py-24 md:py-32">
         <SiteContainer className="relative">
-          <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
-            Priznanja i nagrade
-          </h2>
+          <Reveal variant="fade-up" duration={800}>
+            <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
+              Priznanja i nagrade
+            </h2>
+          </Reveal>
           <div className="relative z-10 mt-6 flex w-full max-w-none flex-col gap-6 font-sans text-lg font-medium leading-[1.25] text-neutral-50 md:text-xl lg:text-2xl lg:leading-[1.2]">
-            <p>
-              Zahvaljujući predanom radu i vrhunskoj stručnosti svog kadra ali i
-              čestim društveno odgovornim aktivnostima, Bauen je dobitnik
-              velikog broja nagrada, priznanja i zahvalnica. Već nekoliko godina
-              za redom naša bonitetna ocena je A+, što nas svrstava u grupu
-              preduzeća sa najboljom bonitetnom ocenom u Srbiji.
-            </p>
-            <p>
-              Bauen se može pohvaliti i učestovanjem u dobrotvornim akcijama i
-              sponzorisanjem svih događaja humanitarnog karaktera na teritoriji
-              svog poslovanja jer smatramo da je to moralna obaveza svakoga ko
-              je u mogućnosti da to uradi.
-            </p>
-            <p>
-              Ponosni smo na činjenicu da je naš rad prepoznat od strane
-              renomiranih domaćih i stranih ustanova i sa tim na umu nastavljamo
-              da radimo naporno i gradimo kvalitetno kako bi opravdali i
-              negovali stečeno poverenje naših klijenata i javnosti.
-            </p>
+            <Reveal variant="fade-up" delay={100} duration={800}>
+              <p>
+                Zahvaljujući predanom radu i vrhunskoj stručnosti svog kadra ali i
+                čestim društveno odgovornim aktivnostima, Bauen je dobitnik
+                velikog broja nagrada, priznanja i zahvalnica. Već nekoliko godina
+                za redom naša bonitetna ocena je A+, što nas svrstava u grupu
+                preduzeća sa najboljom bonitetnom ocenom u Srbiji.
+              </p>
+            </Reveal>
+            <Reveal variant="fade-up" delay={200} duration={800}>
+              <p>
+                Bauen se može pohvaliti i učestovanjem u dobrotvornim akcijama i
+                sponzorisanjem svih događaja humanitarnog karaktera na teritoriji
+                svog poslovanja jer smatramo da je to moralna obaveza svakoga ko
+                je u mogućnosti da to uradi.
+              </p>
+            </Reveal>
+            <Reveal variant="fade-up" delay={300} duration={800}>
+              <p>
+                Ponosni smo na činjenicu da je naš rad prepoznat od strane
+                renomiranih domaćih i stranih ustanova i sa tim na umu nastavljamo
+                da radimo naporno i gradimo kvalitetno kako bi opravdali i
+                negovali stečeno poverenje naših klijenata i javnosti.
+              </p>
+            </Reveal>
           </div>
-          <div
-            aria-hidden
+          <Reveal
+            variant="zoom"
+            duration={1000}
+            delay={150}
             className="pointer-events-none mt-12 flex w-full shrink-0 justify-center md:mt-16 lg:mt-20"
           >
             <span
@@ -188,7 +213,7 @@ export default function AboutPage() {
             >
               A+
             </span>
-          </div>
+          </Reveal>
         </SiteContainer>
       </section>
     </>

@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { ProjektiPortfolio } from "@/components/projekti-portfolio";
+import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 import { figmaProjekti } from "@/lib/figma-projekti-assets";
 import { createPageMetadata } from "@/lib/seo";
@@ -31,17 +32,21 @@ export default function ProjectsPage() {
         />
         <SiteContainer className="relative z-1 flex min-h-[min(100vh,1024px)] flex-col items-center px-4 pb-16 pt-28 text-center md:px-6 md:pb-20 md:pt-32">
           <div className="w-full max-w-4xl text-left">
-            <h1 className="font-heading text-[clamp(2.25rem,6vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
-              Reference
-            </h1>
-            <p className="mt-4 max-w-[591px] font-sans text-lg font-medium leading-[1.2] text-white md:text-xl">
-              Kompletna rešenja u oblasti visokogradnje, niskogradnje i specijalizovanih građevinskih radova.
-            </p>
-            <div className="mt-10">
+            <Reveal variant="fade-up" duration={900}>
+              <h1 className="font-heading text-[clamp(2.25rem,6vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
+                Reference
+              </h1>
+            </Reveal>
+            <Reveal variant="fade-up" delay={150} duration={800}>
+              <p className="mt-4 max-w-[591px] font-sans text-lg font-medium leading-[1.2] text-white md:text-xl">
+                Kompletna rešenja u oblasti visokogradnje, niskogradnje i specijalizovanih građevinskih radova.
+              </p>
+            </Reveal>
+            <Reveal variant="fade-up" delay={300} duration={800} className="mt-10">
               <BauenCtaLink href="/kontakt" className="px-4">
                 KONTAKTIRAJTE NAS
               </BauenCtaLink>
-            </div>
+            </Reveal>
           </div>
         </SiteContainer>
       </section>

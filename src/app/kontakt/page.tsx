@@ -10,6 +10,7 @@ import {
   LCORNER_CONTACT_MOBILE_TR_OUTSIDE,
   LCORNER_TR_OUTSIDE_3X_VERTICAL,
 } from "@/components/l-corner-frame";
+import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 import { figmaKontakt } from "@/lib/figma-kontakt-assets";
 import { createPageMetadata } from "@/lib/seo";
@@ -111,7 +112,11 @@ export default function ContactPage() {
         <div className="relative mx-auto w-full max-w-[1186px] px-5">
           <div className="relative z-1 mt-3">
             <div className="relative z-2 p-0 lg:p-5">
-              <div className="relative flex flex-col overflow-hidden max-lg:overflow-visible lg:overflow-visible bg-background shadow-[0_0_60px_30px_rgba(0,0,0,0.03)] max-lg:mx-auto max-lg:max-w-[min(100%,393px)] lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-[minmax(260px,491px)_minmax(0,998px)] lg:items-start lg:gap-0 lg:bg-transparent lg:shadow-none">
+              <Reveal
+                variant="fade-up"
+                duration={900}
+                className="relative flex flex-col overflow-hidden max-lg:overflow-visible lg:overflow-visible bg-background shadow-[0_0_60px_30px_rgba(0,0,0,0.03)] max-lg:mx-auto max-lg:max-w-[min(100%,393px)] lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-[minmax(260px,491px)_minmax(0,998px)] lg:items-start lg:gap-0 lg:bg-transparent lg:shadow-none"
+              >
                 <aside className="relative z-20 order-1 flex w-full shrink-0 flex-col items-center gap-10 overflow-visible bg-[rgba(20,11,42,0.72)] px-5 pb-8 pt-8 text-center max-lg:pt-10 lg:order-1 lg:col-start-1 lg:row-start-1 lg:mt-[70px] lg:h-[647px] lg:w-[450px] lg:max-w-[491px] lg:items-start lg:gap-[148px] lg:self-start lg:bg-[rgba(20,11,42,0.6)] lg:p-10 lg:text-left">
                   <div
                     className={cn(
@@ -210,7 +215,7 @@ export default function ContactPage() {
                   />
                   <ContactForm />
                 </div>
-              </div>
+              </Reveal>
             </div>
           </div>
         </div>

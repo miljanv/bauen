@@ -6,6 +6,7 @@ import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { HomePromoVideo } from "@/components/home-promo-video";
 import { HomeServices } from "@/components/home-services";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
+import { Reveal } from "@/components/reveal";
 import {
   SectionWatermark,
   SECTION_WATERMARK_STROKE_INLINE_LG,
@@ -74,20 +75,25 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,17,32,0)] from-[20%] via-background/20 to-background" />
         <SiteContainer className="relative z-[1] flex min-h-screen flex-col items-center px-4 pb-16 pt-28 text-center md:px-6 md:pb-12 md:pt-32">
           <div className="mt-[10vh] flex w-full flex-col items-center">
-            <div className="max-w-[973px] text-balance">
+            <Reveal variant="fade-up" duration={900} className="max-w-[973px] text-balance">
               <h1 className="font-heading text-[clamp(2rem,6vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[62px]">
                 Gradimo pouzdane temelje
               </h1>
               <p className="mt-0 font-sans text-[clamp(2rem,6vw,3.875rem)] font-semibold leading-[1.1] text-primary lg:text-[62px]">
                 za vaše ambicije
               </p>
-            </div>
-            <div className="mt-24 flex justify-center md:mt-32 lg:mt-[50vh]">
+            </Reveal>
+            <Reveal
+              variant="fade-up"
+              delay={250}
+              duration={800}
+              className="mt-24 flex justify-center md:mt-32 lg:mt-[50vh]"
+            >
               <BauenCtaLink href="/o-nama">
                 O NAMA
                 <ChevronRight className="size-4 shrink-0" aria-hidden />
               </BauenCtaLink>
-            </div>
+            </Reveal>
           </div>
         </SiteContainer>
       </section>
@@ -97,10 +103,17 @@ export default function HomePage() {
         className="relative scroll-mt-24 overflow-hidden bg-background py-24 text-left md:py-32"
       >
         <SiteContainer className="relative z-[1]">
-          <h2 className="font-heading text-[clamp(2rem,6vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
-            30 uspešnih godina
-          </h2>
-          <div className="relative mt-6 flex w-full flex-col">
+          <Reveal variant="fade-up" duration={800}>
+            <h2 className="font-heading text-[clamp(2rem,6vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
+              30 uspešnih godina
+            </h2>
+          </Reveal>
+          <Reveal
+            variant="fade-up"
+            delay={120}
+            duration={800}
+            className="relative mt-6 flex w-full flex-col"
+          >
             <p className="w-full self-stretch font-sans text-2xl font-medium leading-[1.2] text-neutral-600">
               {FIGMA_VIDEO_COPY}
             </p>
@@ -114,14 +127,19 @@ export default function HomePage() {
               textStrokeLg={SECTION_WATERMARK_STROKE_INLINE_LG}
               textClassName="opacity-35"
             />
-          </div>
+          </Reveal>
 
-          <div className="relative z-0 mx-auto mt-8 max-w-[1312px] md:mt-10">
+          <Reveal
+            variant="zoom"
+            delay={200}
+            duration={900}
+            className="relative z-0 mx-auto mt-8 max-w-[1312px] md:mt-10"
+          >
             <HomePromoVideo
               posterSrc={figmaHome.videoSection}
               posterSizes="(max-width:1024px) 100vw, 1312px"
             />
-          </div>
+          </Reveal>
         </SiteContainer>
       </section>
 
@@ -132,13 +150,17 @@ export default function HomePage() {
         className="relative scroll-mt-24 overflow-x-hidden bg-background py-24 md:py-32"
       >
         <SiteContainer className="relative z-[1]">
-          <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
-            Naši Projekti
-          </h2>
-          <p className="mt-6 max-w-4xl font-sans text-xl font-medium leading-[1.2] text-muted-foreground md:text-2xl">
-            Spisak projekata koje smo uradili je sve veći, a mi smo izdvojili
-            samo neke od njih o kojima možete pročitati više informacija
-          </p>
+          <Reveal variant="fade-up" duration={800}>
+            <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
+              Naši Projekti
+            </h2>
+          </Reveal>
+          <Reveal variant="fade-up" delay={120} duration={800}>
+            <p className="mt-6 max-w-4xl font-sans text-xl font-medium leading-[1.2] text-muted-foreground md:text-2xl">
+              Spisak projekata koje smo uradili je sve veći, a mi smo izdvojili
+              samo neke od njih o kojima možete pročitati više informacija
+            </p>
+          </Reveal>
 
           <div className="mt-20 flex flex-col gap-32 md:gap-48">
             {homeProjects.map((p, index) => (
@@ -154,7 +176,11 @@ export default function HomePage() {
                       : "flex flex-col items-stretch gap-0 lg:flex-row lg:items-center",
                   )}
                 >
-                  <div className="relative aspect-705/529 w-full overflow-visible lg:max-w-[705px]">
+                  <Reveal
+                    variant={p.reverse ? "fade-left" : "fade-right"}
+                    duration={900}
+                    className="relative aspect-705/529 w-full overflow-visible lg:max-w-[705px]"
+                  >
                     <Image
                       src={p.image}
                       alt={p.alt}
@@ -165,8 +191,12 @@ export default function HomePage() {
                     <ProjectSubtractCorners
                       variant={p.reverse ? "image-right" : "image-left"}
                     />
-                  </div>
-                  <div
+                  </Reveal>
+                  <Reveal
+                    variant="fade-up"
+                    delay={200}
+                    duration={800}
+                    style={projectCardGlassStyle}
                     className={cn(
                       "relative z-10 flex w-full max-w-[518px] flex-col items-start gap-4 rounded-[3px] border border-white/12 px-8 pb-6 pt-9 backdrop-blur-[10.45px] max-lg:-mt-6",
                       "max-lg:mx-auto max-lg:max-w-[518px]",
@@ -174,7 +204,6 @@ export default function HomePage() {
                         ? "lg:absolute lg:bottom-[-155px] lg:left-[269px] lg:right-auto lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none"
                         : "lg:absolute lg:bottom-[-155px] lg:right-[269px] lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none",
                     )}
-                    style={projectCardGlassStyle}
                   >
                     <h3 className="font-heading text-xl font-normal leading-[1.2] text-primary md:text-2xl">
                       {p.title}
@@ -186,13 +215,17 @@ export default function HomePage() {
                       DETALJNIJE
                       <ChevronRight className="size-4 shrink-0" aria-hidden />
                     </BauenCtaLink>
-                  </div>
+                  </Reveal>
                 </div>
               </article>
             ))}
           </div>
 
-          <div className="mt-24 flex justify-center md:mt-32">
+          <Reveal
+            variant="fade-up"
+            duration={700}
+            className="mt-24 flex justify-center md:mt-32"
+          >
             <Link
               href="/projekti"
               className="font-nav inline-flex h-[60px] items-center gap-2 border border-primary px-4 text-base font-medium text-neutral-50 transition-colors hover:bg-primary/10"
@@ -200,7 +233,7 @@ export default function HomePage() {
               POGLEDAJTE SVE NAŠE PROJEKTE
               <ChevronRight className="size-4 shrink-0" aria-hidden />
             </Link>
-          </div>
+          </Reveal>
         </SiteContainer>
       </section>
     </>
