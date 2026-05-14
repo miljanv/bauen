@@ -37,8 +37,8 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <div className="mx-auto flex w-full max-w-[595px] flex-col gap-10 lg:ml-auto lg:gap-[47px]">
-        <div className="grid w-full grid-cols-1 gap-x-[39px] gap-y-10 lg:grid-cols-2 lg:gap-y-[47px]">
+      <div className="mx-auto flex w-full max-w-[450px] flex-col gap-10 lg:ml-auto lg:gap-[47px]">
+        <div className="grid w-full grid-cols-1 gap-x-[39px] gap-y-10 lg:ml-20 lg:grid-cols-2 lg:gap-y-[47px]">
           <div className="flex flex-col gap-6 lg:gap-[39px]">
             <label htmlFor="firstName" className={labelClass}>
               Ime
@@ -94,7 +94,7 @@ export function ContactForm() {
           </div>
         </div>
 
-        <div className="flex w-full flex-col gap-[10px]">
+        <div className="flex w-full flex-col gap-[10px] lg:ml-20">
           <label htmlFor="message" className={labelClass}>
             Poruka
           </label>
