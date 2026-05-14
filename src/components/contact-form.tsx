@@ -2,6 +2,7 @@
 
 import type { FormEvent } from "react";
 import { useState } from "react";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,9 +37,9 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <div className="ml-auto flex w-full max-w-[595px] flex-col gap-[47px]">
-        <div className="grid w-full grid-cols-1 gap-x-[39px] gap-y-[47px] sm:grid-cols-2">
-          <div className="flex flex-col gap-[39px]">
+      <div className="mx-auto flex w-full max-w-[595px] flex-col gap-10 lg:ml-auto lg:gap-[47px]">
+        <div className="grid w-full grid-cols-1 gap-x-[39px] gap-y-10 lg:grid-cols-2 lg:gap-y-[47px]">
+          <div className="flex flex-col gap-6 lg:gap-[39px]">
             <label htmlFor="firstName" className={labelClass}>
               Ime
             </label>
@@ -51,7 +52,7 @@ export function ContactForm() {
               className={fieldClass}
             />
           </div>
-          <div className="flex flex-col gap-[39px]">
+          <div className="flex flex-col gap-6 lg:gap-[39px]">
             <label htmlFor="lastName" className={labelClass}>
               Prezime
             </label>
@@ -64,7 +65,7 @@ export function ContactForm() {
               className={fieldClass}
             />
           </div>
-          <div className="flex flex-col gap-[39px]">
+          <div className="flex flex-col gap-6 lg:gap-[39px]">
             <label htmlFor="email" className={labelClass}>
               Email
             </label>
@@ -78,7 +79,7 @@ export function ContactForm() {
               className={fieldClass}
             />
           </div>
-          <div className="flex flex-col gap-[39px]">
+          <div className="flex flex-col gap-6 lg:gap-[39px]">
             <label htmlFor="phone" className={labelClass}>
               Broj telefona
             </label>
@@ -107,13 +108,24 @@ export function ContactForm() {
           />
         </div>
 
-        <div className="flex w-full justify-end">
-          <Button
-            type="submit"
-            className="font-sans h-[60px] max-h-[60px] rounded-none px-4 text-base font-medium uppercase tracking-normal"
-          >
-            POŠALJITE PORUKU
-          </Button>
+        <div className="relative w-full overflow-visible pb-12 max-lg:pb-14 lg:mt-0 lg:pb-0 lg:flex lg:justify-end">
+          <div className="relative w-full lg:inline-block lg:w-auto">
+            <Button
+              type="submit"
+              className="relative z-0 font-sans h-[60px] max-h-[60px] w-full rounded-none px-4 text-base font-medium uppercase tracking-normal lg:w-auto"
+            >
+              POŠALJITE PORUKU
+            </Button>
+            <Image
+              src="/illustrations/letter_send.png"
+              alt=""
+              width={132}
+              height={98}
+              sizes="132px"
+              className="pointer-events-none absolute bottom-[-4rem] left-[40%] z-[1] h-[98px] w-[132px] max-w-none -translate-x-1/2 translate-y-[10px] select-none lg:hidden"
+              aria-hidden
+            />
+          </div>
         </div>
       </div>
     </form>

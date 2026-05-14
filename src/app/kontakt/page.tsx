@@ -6,12 +6,15 @@ import { ContactForm } from "@/components/contact-form";
 import {
   LCornerFrame,
   LCORNER_BL_OUTSIDE_3X_VERTICAL,
+  LCORNER_CONTACT_MOBILE_BL_OUTSIDE,
+  LCORNER_CONTACT_MOBILE_TR_OUTSIDE,
   LCORNER_TR_OUTSIDE_3X_VERTICAL,
 } from "@/components/l-corner-frame";
 import { SiteContainer } from "@/components/site-container";
 import { figmaKontakt } from "@/lib/figma-kontakt-assets";
 import { createPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
+import { cn } from "@/lib/utils";
 
 export const metadata = createPageMetadata({
   title: "Kontakt",
@@ -46,13 +49,20 @@ function ContactRow({
   href,
   iconSrc,
   children,
+  className,
 }: {
   href: string;
   iconSrc: string;
   children: ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="flex items-start gap-[49px]">
+    <div
+      className={cn(
+        "flex flex-col items-center gap-3 text-center lg:flex-row lg:items-start lg:gap-[49px] lg:text-left",
+        className,
+      )}
+    >
       <ContactIcon src={iconSrc} />
       <Link
         href={href}
@@ -100,20 +110,15 @@ export default function ContactPage() {
       <SiteContainer className="relative z-1 flex min-h-dvh flex-col justify-center py-24 md:py-28">
         <div className="relative mx-auto w-full max-w-[1186px] px-5">
           <div className="relative z-1 mt-3">
-            <div className="relative z-2 p-4 sm:p-5">
-              <div className="relative lg:grid lg:grid-cols-[minmax(260px,491px)_minmax(0,998px)] lg:items-start lg:gap-0">
-                <div className="relative z-[10] order-1 bg-background px-8 py-10 md:px-12 md:py-14 lg:order-2 lg:col-start-2 lg:row-start-1 lg:-ml-[303px] lg:flex lg:min-h-[667px] lg:w-[calc(100%+303px)] lg:max-w-[998px] lg:flex-col lg:justify-center lg:px-10 lg:py-16">
-                  <LCornerFrame
-                    corners="tr"
-                    className="z-[5]"
-                    topRightAccentClassName={LCORNER_TR_OUTSIDE_3X_VERTICAL}
-                  />
-                  <ContactForm />
-                </div>
-
-                <aside className="relative z-20 order-2 flex w-full shrink-0 flex-col items-start gap-[148px] bg-[rgba(20,11,42,0.6)] p-10 lg:order-1 lg:col-start-1 lg:row-start-1 lg:mt-[70px] lg:h-[647px] lg:w-[450px] lg:max-w-[491px] lg:self-start">
+            <div className="relative z-2 p-0 lg:p-5">
+              <div className="relative flex flex-col overflow-hidden max-lg:overflow-visible lg:overflow-visible bg-background shadow-[0_0_60px_30px_rgba(0,0,0,0.03)] max-lg:mx-auto max-lg:max-w-[min(100%,393px)] lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-[minmax(260px,491px)_minmax(0,998px)] lg:items-start lg:gap-0 lg:bg-transparent lg:shadow-none">
+                <aside className="relative z-20 order-1 flex w-full shrink-0 flex-col items-center gap-10 overflow-visible bg-[rgba(20,11,42,0.72)] px-5 pb-8 pt-8 text-center max-lg:pt-10 lg:order-1 lg:col-start-1 lg:row-start-1 lg:mt-[70px] lg:h-[647px] lg:w-[450px] lg:max-w-[491px] lg:items-start lg:gap-[148px] lg:self-start lg:bg-[rgba(20,11,42,0.6)] lg:p-10 lg:text-left">
                   <div
-                    className="pointer-events-none absolute left-[239px] top-[344px] z-[1] hidden aspect-[253/259] w-[252px] max-w-[45%] lg:block"
+                    className={cn(
+                      "pointer-events-none z-[1] aspect-[253/259]",
+                      "max-lg:absolute max-lg:right-0 max-lg:bottom-4 max-lg:w-[min(200px,58vw)] max-lg:max-w-[65%]",
+                      "lg:absolute lg:left-[239px] lg:top-[344px] lg:w-[252px] lg:max-w-[45%]",
+                    )}
                     aria-hidden
                   >
                     <Image
@@ -127,21 +132,34 @@ export default function ContactPage() {
                   </div>
 
                   <LCornerFrame
+                    corners="tr"
+                    className="z-[5] lg:hidden"
+                    topRightAccentClassName={LCORNER_CONTACT_MOBILE_TR_OUTSIDE}
+                  />
+                  <LCornerFrame
                     corners="bl"
-                    bottomLeftAccentClassName={LCORNER_BL_OUTSIDE_3X_VERTICAL}
-                    className="z-[5]"
+                    className="z-[5] lg:hidden"
+                    bottomLeftAccentClassName={
+                      LCORNER_CONTACT_MOBILE_BL_OUTSIDE
+                    }
                   />
 
-                  <div className="relative z-10 space-y-4">
-                    <h1 className="font-heading text-[32px] font-normal leading-[1.1] text-primary md:text-[32px]">
+                  <LCornerFrame
+                    corners="bl"
+                    bottomLeftAccentClassName={LCORNER_BL_OUTSIDE_3X_VERTICAL}
+                    className="z-[5] hidden lg:block"
+                  />
+
+                  <div className="relative z-10 space-y-3 lg:space-y-4">
+                    <h1 className="font-heading text-2xl font-normal leading-[1.2] text-primary lg:text-[32px] lg:leading-[1.1]">
                       Kontakt informacije
                     </h1>
-                    <p className="font-sans text-base font-bold leading-[22px] text-[#c9c9c9]">
+                    <p className="font-sans text-xs font-bold leading-4 text-[#c9c9c9] lg:text-base lg:leading-[22px]">
                       Pišite nam ili nas pozovite!
                     </p>
                   </div>
 
-                  <div className="relative z-10 flex flex-col gap-6">
+                  <div className="relative z-10 flex w-full max-w-[280px] flex-col gap-6 lg:max-w-none">
                     <ContactRow
                       href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
                       iconSrc={icons.phone}
@@ -154,7 +172,7 @@ export default function ContactPage() {
                     >
                       {siteConfig.email}
                     </ContactRow>
-                    <div className="flex items-start gap-[49px]">
+                    <div className="flex flex-col items-center gap-3 text-center lg:flex-row lg:items-start lg:gap-[49px] lg:text-left">
                       <ContactIcon src={icons.location} />
                       <p className="font-sans text-base font-medium leading-6 text-white">
                         {addressLine}
@@ -162,7 +180,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="relative z-10 flex flex-wrap items-center gap-6">
+                  <div className="relative z-10 flex flex-wrap items-center justify-center gap-6 lg:justify-start">
                     {socialTriple.map((s) => (
                       <Link
                         key={s.label}
@@ -183,6 +201,15 @@ export default function ContactPage() {
                     ))}
                   </div>
                 </aside>
+
+                <div className="relative z-[10] order-2 bg-background px-5 py-8 max-lg:border-t max-lg:border-white/5 md:px-8 md:py-10 lg:order-2 lg:col-start-2 lg:row-start-1 lg:-ml-[303px] lg:flex lg:min-h-[667px] lg:w-[calc(100%+303px)] lg:max-w-[998px] lg:flex-col lg:justify-center lg:border-t-0 lg:px-10 lg:py-16">
+                  <LCornerFrame
+                    corners="tr"
+                    className="z-[5] hidden lg:block"
+                    topRightAccentClassName={LCORNER_TR_OUTSIDE_3X_VERTICAL}
+                  />
+                  <ContactForm />
+                </div>
               </div>
             </div>
           </div>

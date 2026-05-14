@@ -53,6 +53,18 @@ export const LCORNER_TR_OUTSIDE_3X_VERTICAL = cn(
   LCORNER_CONTACT_OUTSIDE_STROKE_TR_THICK,
 );
 
+/**
+ * Mobilni kontakt: TR / BL van panela, flush uz spoljašnji ugao (bez translate),
+ * debljina 6px / sm:8px kao ljubičasta kolona.
+ */
+export const LCORNER_CONTACT_MOBILE_TR_OUTSIDE = cn(
+  "top-[-4px] right-[-4px] h-16 w-16 border-t-[6px] border-r-[6px] border-solid sm:top-[-6px] sm:right-[-6px] sm:h-24 sm:w-24 sm:border-t-[8px] sm:border-r-[8px]",
+);
+
+export const LCORNER_CONTACT_MOBILE_BL_OUTSIDE = cn(
+  "bottom-[-4px] left-[-4px] h-16 w-16 border-b-[6px] border-l-[6px] border-solid sm:bottom-[-6px] sm:left-[-6px] sm:h-24 sm:w-24 sm:border-b-[8px] sm:border-l-[8px]",
+);
+
 const LCORNER_DEFAULT_TL =
   "left-0 top-0 h-12 w-12 border-l-2 border-t-2 sm:h-16 sm:w-16";
 
