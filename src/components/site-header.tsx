@@ -132,56 +132,75 @@ export function SiteHeader() {
         </div>
       </header>
 
-      {open ? (
-        <div
-          id="mobile-overlay-nav"
-          className="fixed inset-0 z-[60] sm:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Meni"
-        >
-          <button
-            type="button"
-            className="absolute inset-0 bg-transparent"
-            aria-label="Zatvori meni"
-            onClick={() => setOpen(false)}
-          />
+      <div
+        id="mobile-overlay-nav"
+        className={cn(
+          "fixed inset-0 z-[60] transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:hidden",
+          open ? "opacity-100" : "pointer-events-none opacity-0",
+        )}
+        role="dialog"
+        aria-modal={open}
+        aria-hidden={!open}
+        aria-label="Meni"
+      >
+        <button
+          type="button"
+          className="absolute inset-0 bg-transparent"
+          aria-label="Zatvori meni"
+          tabIndex={open ? 0 : -1}
+          onClick={() => setOpen(false)}
+        />
 
-          <div className="pointer-events-none absolute inset-x-0 top-6 flex justify-end px-4 sm:px-6">
-            <div className="pointer-events-auto relative mr-6 mt-4 w-[min(328px,calc(100%-16px))] aspect-square overflow-hidden">
-              <Image
-                src="/illustrations/menu-bg.png"
-                alt=""
-                fill
-                priority
-                sizes="(max-width: 640px) 90vw, 328px"
-                className="-z-10 object-cover"
-                aria-hidden
-              />
-              <nav
-                className="relative flex h-full flex-col justify-center gap-6 px-10"
-                aria-label="Mobilna navigacija"
-              >
-                {navItemsAll.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      "font-nav text-lg font-bold tracking-[0.12em] transition-colors",
-                      isActive(pathname, item.href, locationHash)
-                        ? "text-primary"
-                        : "text-white hover:text-primary",
-                    )}
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-            </div>
+        <div className="pointer-events-none absolute inset-x-0 top-6 flex justify-end px-4 sm:px-6">
+          <div
+            className={cn(
+              "pointer-events-auto relative mr-6 mt-4 aspect-square w-[min(328px,calc(100%-16px))] origin-top-right overflow-hidden transition-[transform,opacity,filter] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+              open
+                ? "translate-y-0 scale-100 opacity-100 blur-0"
+                : "-translate-y-1 scale-90 opacity-0 blur-sm",
+            )}
+          >
+            <Image
+              src="/illustrations/menu-bg.png"
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 640px) 90vw, 328px"
+              className="-z-10 object-cover"
+              aria-hidden
+            />
+            <nav
+              className="relative flex h-full flex-col justify-center gap-6 px-10"
+              aria-label="Mobilna navigacija"
+            >
+              {navItemsAll.map((item, index) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "font-nav text-lg font-bold tracking-[0.12em] transition-[transform,opacity,color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+                    isActive(pathname, item.href, locationHash)
+                      ? "text-primary"
+                      : "text-white hover:text-primary",
+                    open
+                      ? "translate-x-0 opacity-100"
+                      : "translate-x-3 opacity-0",
+                  )}
+                  style={{
+                    transitionDelay: open
+                      ? `${180 + index * 60}ms`
+                      : `${(navItemsAll.length - 1 - index) * 30}ms`,
+                  }}
+                  tabIndex={open ? 0 : -1}
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
           </div>
         </div>
-      ) : null}
+      </div>
     </>
   );
 }
