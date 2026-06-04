@@ -40,7 +40,7 @@ export function ProjectGalleryImage({
           src={src}
           alt={alt}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          className="object-cover cursor-pointer transition-transform duration-500 group-hover:scale-[1.02]"
           sizes={sizes}
           priority={priority}
         />

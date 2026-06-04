@@ -54,18 +54,18 @@ export function ProjectDetailHero({
           <button
             type="button"
             onClick={goPrev}
-            className="absolute left-6 top-1/2 z-20 flex size-12 -translate-y-1/2 items-center justify-center bg-black/30 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:left-12"
+            className="absolute bottom-[20%] cursor-pointer left-6 z-20 flex size-12 items-center justify-center bg-black/30 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:left-12"
             aria-label="Prethodna fotografija"
           >
-            <ChevronLeft className="size-6" aria-hidden />
+            <ChevronLeft className="size-6 text-primary" aria-hidden />
           </button>
           <button
             type="button"
             onClick={goNext}
-            className="absolute right-6 top-1/2 z-20 flex size-12 -translate-y-1/2 items-center justify-center bg-black/30 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:right-12"
+            className="absolute bottom-[20%] cursor-pointer right-6 z-20 flex size-12 items-center justify-center bg-black/30 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:right-12"
             aria-label="Sledeća fotografija"
           >
-            <ChevronRight className="size-6" aria-hidden />
+            <ChevronRight className="size-6  text-primary" aria-hidden />
           </button>
         </>
       ) : null}
