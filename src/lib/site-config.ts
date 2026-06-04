@@ -29,7 +29,7 @@ export const navPrimary = [
 
 /** Druga grupa */
 export const navSecondary = [
-  { href: "/projekti", label: "REFERENCE" },
+  { href: "/projekti", label: "PROJEKTI" },
   { href: "/kontakt", label: "KONTAKT" },
 ] as const;
 

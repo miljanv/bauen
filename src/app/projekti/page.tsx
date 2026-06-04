@@ -8,7 +8,7 @@ import { siteImages } from "@/lib/site-images";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Reference",
+  title: "Projekti",
   description:
     "Pregled realizovanih i aktivnih projekata Bauen firme — stambeni kompleksi, poslovni objekti i rekonstrukcije širom Srbije.",
   path: "/projekti",
@@ -34,7 +34,7 @@ export default function ProjectsPage() {
           <div className="w-full max-w-4xl text-left">
             <Reveal variant="fade-up" duration={900}>
               <h1 className="font-heading text-[clamp(2.25rem,6vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
-                Reference
+                Projekti
               </h1>
             </Reveal>
             <Reveal variant="fade-up" delay={150} duration={800}>

@@ -98,7 +98,7 @@ export default function AboutPage() {
               className="flex flex-wrap items-center gap-4 sm:gap-6 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:self-start xl:col-span-5"
             >
               <BauenCtaLink href="/projekti" className="px-4">
-                REFERENCE
+                PROJEKTI
               </BauenCtaLink>
               <Link
                 href="/kontakt"
