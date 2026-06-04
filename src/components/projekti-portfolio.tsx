@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 
-import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
 import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
-import { siteImages } from "@/lib/site-images";
+import { getProjectPath, projects } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
 const CATEGORY_COPY = {
@@ -42,32 +42,24 @@ const projectCardGlassStyle = {
   boxShadow: "inset 0 205px 82px 1px rgba(125, 109, 162, 0.01)",
 } as const;
 
-const PROJECT_BODY =
-  "Ovaj projekat je bio od presudnog značaja za našu firmu i sigurno možemo reći da je predstavljao prekretnicu u našem poslovanju i od nas načinio firmu koja smo danas. Bez ikakve sumnje to je bio naš najveći projekat do tada i zbog važnosti objekta koji smo sagradili svakako predstavlja naše nasleđe. Kao porodični ljudi koji neguju tradiciju i porodične vrednosti, biti deo ovog projekta je za nas predstavljalo veliku čast ali i obavezu.. Ovaj hram će biti mesto okupljanja za hiljade vernika vekovima u budućnosti.";
-
-const showcaseProjects = [
-  {
-    title: "Radovi na auto-putu „Miloš Veliki“",
-    description: PROJECT_BODY,
-    image: siteImages.projekti.projectMilos,
-    alt: "Radovi na auto-putu",
-    reverse: false,
-  },
-  {
-    title: "Asfaltna baza za Extra Auto",
-    description: PROJECT_BODY,
-    image: siteImages.projekti.projectExtraAuto,
-    alt: "Asfaltna baza",
-    reverse: true,
-  },
-  {
-    title: "Sportski centar „Zmajevo“",
-    description: PROJECT_BODY,
-    image: siteImages.projekti.projectZmajevo,
-    alt: "Sportski centar",
-    reverse: false,
-  },
+const showcaseSlugs = [
+  "gradjevinski-radovi-balkanski-tok",
+  "radovi-auto-put-milos-veliki",
+  "asfaltna-baza-extra-auto",
+  "sportski-centar-zmajevo",
 ] as const;
+
+const showcaseProjects = showcaseSlugs
+  .map((slug) => projects.find((p) => p.slug === slug))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p))
+  .map((p, index) => ({
+    slug: p.slug,
+    title: p.title,
+    description: p.summaryShort,
+    image: p.heroImage,
+    alt: p.heroImageAlt,
+    reverse: index % 2 === 1,
+  }));
 
 export function ProjektiPortfolio() {
   const [active, setActive] = useState<CategoryId>("visokogradnja");
@@ -123,9 +115,9 @@ export function ProjektiPortfolio() {
         </p>
 
         <div className="mt-16 flex flex-col gap-32 md:mt-24 md:gap-48">
-          {showcaseProjects.map((p, index) => (
+          {showcaseProjects.map((p) => (
             <article
-              key={`${p.title}-${index}`}
+              key={p.slug}
               className="relative mx-auto w-full max-w-[1280px] pb-36 lg:pb-44"
             >
               <div
@@ -141,16 +133,18 @@ export function ProjektiPortfolio() {
                   duration={900}
                   className="relative aspect-705/529 w-full overflow-visible lg:max-w-[705px]"
                 >
-                  <Image
-                    src={p.image}
-                    alt={p.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width:1024px) 100vw, 705px"
-                  />
-                  <ProjectSubtractCorners
-                    variant={p.reverse ? "image-right" : "image-left"}
-                  />
+                  <Link href={getProjectPath(p.slug)} className="relative block size-full">
+                    <Image
+                      src={p.image}
+                      alt={p.alt}
+                      fill
+                      className="object-cover transition-opacity hover:opacity-95"
+                      sizes="(max-width:1024px) 100vw, 705px"
+                    />
+                    <ProjectSubtractCorners
+                      variant={p.reverse ? "image-right" : "image-left"}
+                    />
+                  </Link>
                 </Reveal>
                 <Reveal
                   variant="fade-up"
@@ -166,15 +160,23 @@ export function ProjektiPortfolio() {
                   )}
                 >
                   <h3 className="font-heading text-xl font-normal leading-[1.2] text-primary md:text-2xl">
-                    {p.title}
+                    <Link
+                      href={getProjectPath(p.slug)}
+                      className="transition-colors hover:text-primary-300"
+                    >
+                      {p.title}
+                    </Link>
                   </h3>
-                  <p className="font-sans text-base leading-[22px] text-neutral-200">
+                  <p className="line-clamp-4 font-sans text-base leading-[22px] text-neutral-200">
                     {p.description}
                   </p>
-                  <BauenCtaLink href="/kontakt" className="w-fit px-4">
+                  <Link
+                    href={getProjectPath(p.slug)}
+                    className="inline-flex min-h-[60px] w-fit items-center justify-center gap-2 bg-primary px-4 py-2 text-base font-medium text-primary-foreground transition-colors hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
                     DETALJNIJE
                     <ChevronRight className="size-4 shrink-0" aria-hidden />
-                  </BauenCtaLink>
+                  </Link>
                 </Reveal>
               </div>
             </article>

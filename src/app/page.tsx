@@ -13,6 +13,7 @@ import {
   SECTION_WATERMARK_STROKE_INLINE_SM,
 } from "@/components/section-watermark";
 import { SiteContainer } from "@/components/site-container";
+import { getProjectPath } from "@/lib/projects";
 import { siteImages } from "@/lib/site-images";
 import { createPageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
@@ -38,13 +39,15 @@ const projectCardGlassStyle = {
 
 const homeProjects = [
   {
-    title: "Asfaltna baza za Extra Auto",
+    slug: "radovi-auto-put-milos-veliki",
+    title: "Radovi na auto-putu „Miloš Veliki“",
     description: PROJECT_BODY,
     image: siteImages.home.project1,
-    alt: "Asfaltna baza",
+    alt: "Radovi na auto-putu",
     reverse: false,
   },
   {
+    slug: "asfaltna-baza-extra-auto",
     title: "Asfaltna baza za Extra Auto",
     description: PROJECT_BODY,
     image: siteImages.home.project2,
@@ -52,6 +55,7 @@ const homeProjects = [
     reverse: true,
   },
   {
+    slug: "sportski-centar-zmajevo",
     title: "Sportski centar „Zmajevo“",
     description: PROJECT_BODY,
     image: siteImages.home.project3,
@@ -163,9 +167,9 @@ export default function HomePage() {
           </Reveal>
 
           <div className="mt-20 flex flex-col gap-32 md:gap-48">
-            {homeProjects.map((p, index) => (
+            {homeProjects.map((p) => (
               <article
-                key={index}
+                key={p.slug}
                 className="relative mx-auto w-full max-w-[1280px] pb-36 lg:pb-44"
               >
                 <div
@@ -211,7 +215,7 @@ export default function HomePage() {
                     <p className="font-sans text-base leading-[22px] text-neutral-200">
                       {p.description}
                     </p>
-                    <BauenCtaLink href="/projekti" className="w-fit px-4">
+                    <BauenCtaLink href={getProjectPath(p.slug)} className="w-fit px-4">
                       DETALJNIJE
                       <ChevronRight className="size-4 shrink-0" aria-hidden />
                     </BauenCtaLink>

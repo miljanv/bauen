@@ -21,6 +21,14 @@ export const siteImages = {
     projectMilos: "/images/projekti/project-milos.png",
     projectExtraAuto: "/images/projekti/project-extra-auto.png",
     projectZmajevo: "/images/projekti/project-zmajevo.png",
+    balkanskiTok: {
+      hero: "/images/projekti/balkanski-tok/hero.jpg",
+      gallery1: "/images/projekti/balkanski-tok/gallery-1.jpg",
+      gallery2: "/images/projekti/balkanski-tok/gallery-2.jpg",
+      gallery3: "/images/projekti/balkanski-tok/gallery-3.jpg",
+      gallery4: "/images/projekti/balkanski-tok/gallery-4.jpg",
+      gallery5: "/images/projekti/balkanski-tok/gallery-5.jpg",
+    },
   },
   kontakt: {
     hero: "/images/kontakt/hero.png",
