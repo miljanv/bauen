@@ -8,7 +8,7 @@ import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
 import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
-import { figmaProjekti } from "@/lib/figma-projekti-assets";
+import { siteImages } from "@/lib/site-images";
 import { cn } from "@/lib/utils";
 
 const CATEGORY_COPY = {
@@ -49,21 +49,21 @@ const showcaseProjects = [
   {
     title: "Radovi na auto-putu „Miloš Veliki“",
     description: PROJECT_BODY,
-    image: figmaProjekti.projectMilos,
+    image: siteImages.projekti.projectMilos,
     alt: "Radovi na auto-putu",
     reverse: false,
   },
   {
     title: "Asfaltna baza za Extra Auto",
     description: PROJECT_BODY,
-    image: figmaProjekti.projectExtraAuto,
+    image: siteImages.projekti.projectExtraAuto,
     alt: "Asfaltna baza",
     reverse: true,
   },
   {
     title: "Sportski centar „Zmajevo“",
     description: PROJECT_BODY,
-    image: figmaProjekti.projectZmajevo,
+    image: siteImages.projekti.projectZmajevo,
     alt: "Sportski centar",
     reverse: false,
   },

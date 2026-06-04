@@ -12,7 +12,7 @@ import {
 } from "@/components/l-corner-frame";
 import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
-import { figmaKontakt } from "@/lib/figma-kontakt-assets";
+import { siteImages } from "@/lib/site-images";
 import { createPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -96,7 +96,7 @@ export default function ContactPage() {
   return (
     <section className="relative min-h-dvh overflow-x-clip outline-none">
       <Image
-        src={figmaKontakt.hero}
+        src={siteImages.kontakt.hero}
         alt="Tehnički nacrt gradilišta u pozadini"
         fill
         priority

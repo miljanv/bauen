@@ -10,7 +10,7 @@ import {
   SECTION_WATERMARK_STROKE_INLINE_LG,
   SECTION_WATERMARK_STROKE_INLINE_SM,
 } from "@/components/section-watermark";
-import { figmaHome } from "@/lib/figma-home-assets";
+import { siteImages } from "@/lib/site-images";
 import { cn } from "@/lib/utils";
 
 const tabs = [
@@ -28,7 +28,7 @@ const tabs = [
       "Obavljamo sve poslove koji spadaju u domen visoke gradnje kao što su izgradnja stambenih zgrada, poslovnih prostora, kuća, magacina i zgrada drugih tipova i profila. Naš tim stručnjaka je spreman da u svakom trenutku pruži potrebnu ekspertizu bilo da se radi o sopstvenim ili poručenim projektima. Pružamo i komplet usluga od grubih gradjevinskih radova, pa do svih vrsta zanatskih radova.",
       "Naš sistem izgradnje ubrzava čitav proces tako da se svi projekti završavaju na vreme a da pritom ostajemo dosledni trajnom kvalitetu što za klijente ima dugoročne prednosti. Operativni troškovi i troškovi održavanja objekata su značajno niži jer je konstrukcija čvrsta i snažna i zadržava svoj prvobitni izgled dugi niz godina.",
     ],
-    image: figmaHome.serviceConstruction,
+    image: siteImages.home.serviceConstruction,
     imageAlt: "Visokogradnja — objekat u izgradnji",
   },
   {
@@ -45,8 +45,7 @@ const tabs = [
       "Povezujemo geotehničke analize sa izvođenjem kako bismo obezbedili stabilnost i dugovečnost objekta.",
       "Radove planiramo u fazama uz jasnu dokumentaciju i kontrolu kvaliteta na terenu.",
     ],
-    image:
-      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1200&q=80",
+    image: siteImages.home.serviceNiskogradnja,
     imageAlt: "Niskogradnja",
   },
   {
@@ -63,8 +62,7 @@ const tabs = [
       "Pristupamo osetljivim objektima uz minimalan prekid rada korisnika i jasan plan faza.",
       "Koristimo materijale koji se uklapaju u postojeću strukturu i propise o zaštiti objekata.",
     ],
-    image:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80",
+    image: siteImages.home.serviceRestauracija,
     imageAlt: "Restauracija",
   },
   {
@@ -81,8 +79,7 @@ const tabs = [
       "Tim inženjera prilagođava tehnologije uslovima terena i rokovima investitora.",
       "Koordinacija sa nadležnim institucijama i podizvođačima ide kroz jednu tačku kontakta.",
     ],
-    image:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80",
+    image: siteImages.home.serviceSpecijalni,
     imageAlt: "Specijalni projekti",
   },
 ] as const;

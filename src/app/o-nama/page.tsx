@@ -11,7 +11,7 @@ import {
   SECTION_WATERMARK_STROKE_INLINE_SM,
 } from "@/components/section-watermark";
 import { SiteContainer } from "@/components/site-container";
-import { figmaAbout } from "@/lib/figma-about-assets";
+import { siteImages } from "@/lib/site-images";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -25,19 +25,19 @@ const milestones = [
   {
     year: "1984.",
     text: "Naši počeci su vezani za 1984. godinu i Građevinsku zanatasku zadrugu „Bačka“ iz Vrbasa čiji smo član bili ali pod imenom Samostalna građevinska radnja. Istrajnošću, upornošću, predanim i posvećenim radom postali smo ono što je GTP Bauen danas.",
-    image: figmaAbout.construction1,
+    image: siteImages.about.construction1,
     alt: "Bauen tim na gradilištu osamdesetih godina",
   },
   {
     year: "1984. – 1993.",
     text: "Ovaj period tadašnje Jugoslavije odlikuju masovne gradnje infrastrukture pa otuda i velika tražnja za građevinskim uslugama. Naša firma je odgovorila i vrlo brzo se prilagodila zahtevima tržišta što je propraćeno ubrzanim rastom i proširenjem u vidu broja zaposlenih i sredstava za rad.",
-    image: figmaAbout.construction2,
+    image: siteImages.about.construction2,
     alt: "Izgradnja stambenih blokova devedesetih",
   },
   {
     year: "2023.",
     text: "Bauen je danas jedna od najvećih građevinskih kompanija u Srbiji. Sa dugom tradicijom i velikim iskustvom konstantno beleži rast, napredak i u najkraćem roku odgovara na zahteve tržišta. Ponosni smo na našu veliku porodicu saradnika i klijenata i radujemo se njenom povećanju.",
-    image: figmaAbout.construction3,
+    image: siteImages.about.construction3,
     alt: "Savremeno gradilište sa kranom",
   },
 ] as const;
@@ -56,7 +56,7 @@ export default function AboutPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <Image
-            src={figmaAbout.hero}
+            src={siteImages.about.hero}
             alt="Bauen radnici na gradilištu"
             fill
             priority

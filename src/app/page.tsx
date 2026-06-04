@@ -13,7 +13,7 @@ import {
   SECTION_WATERMARK_STROKE_INLINE_SM,
 } from "@/components/section-watermark";
 import { SiteContainer } from "@/components/site-container";
-import { figmaHome } from "@/lib/figma-home-assets";
+import { siteImages } from "@/lib/site-images";
 import { createPageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
@@ -40,21 +40,21 @@ const homeProjects = [
   {
     title: "Asfaltna baza za Extra Auto",
     description: PROJECT_BODY,
-    image: figmaHome.project1,
+    image: siteImages.home.project1,
     alt: "Asfaltna baza",
     reverse: false,
   },
   {
     title: "Asfaltna baza za Extra Auto",
     description: PROJECT_BODY,
-    image: figmaHome.project2,
+    image: siteImages.home.project2,
     alt: "Asfaltna baza",
     reverse: true,
   },
   {
     title: "Sportski centar „Zmajevo“",
     description: PROJECT_BODY,
-    image: figmaHome.project3,
+    image: siteImages.home.project3,
     alt: "Sportski centar",
     reverse: false,
   },
@@ -136,7 +136,7 @@ export default function HomePage() {
             className="relative z-0 mx-auto mt-8 max-w-[1312px] md:mt-10"
           >
             <HomePromoVideo
-              posterSrc={figmaHome.videoSection}
+              posterSrc={siteImages.home.videoSection}
               posterSizes="(max-width:1024px) 100vw, 1312px"
             />
           </Reveal>

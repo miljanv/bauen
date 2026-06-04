@@ -4,7 +4,7 @@ import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { ProjektiPortfolio } from "@/components/projekti-portfolio";
 import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
-import { figmaProjekti } from "@/lib/figma-projekti-assets";
+import { siteImages } from "@/lib/site-images";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -19,7 +19,7 @@ export default function ProjectsPage() {
     <>
       <section className="relative min-h-[min(100vh,1024px)]">
         <Image
-          src={figmaProjekti.hero}
+          src={siteImages.projekti.hero}
           alt=""
           fill
           priority
