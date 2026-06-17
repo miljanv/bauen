@@ -176,24 +176,22 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <div className="mt-20 flex flex-col gap-32 md:gap-48">
+          <div className="mt-20 flex flex-col gap-24 md:gap-48">
             {homeProjects.map((p) => (
               <article
                 key={p.slug}
-                className="relative mx-auto w-full max-w-[1280px] pb-36 lg:pb-44"
+                className="relative mx-auto w-full max-w-[1280px] max-lg:pb-0 lg:pb-44"
               >
                 <div
                   className={cn(
-                    "relative min-h-0 lg:min-h-[529px]",
-                    p.reverse
-                      ? "flex flex-col items-stretch gap-0 lg:flex-row-reverse lg:items-center"
-                      : "flex flex-col items-stretch gap-0 lg:flex-row lg:items-center",
+                    "relative flex flex-col gap-8 lg:min-h-[529px] lg:flex-row lg:items-center lg:gap-0",
+                    p.reverse ? "lg:flex-row-reverse" : "lg:flex-row",
                   )}
                 >
                   <Reveal
                     variant={p.reverse ? "fade-left" : "fade-right"}
                     duration={900}
-                    className="relative aspect-705/529 w-full overflow-visible lg:max-w-[705px]"
+                    className="relative w-full overflow-visible max-lg:h-[271px] lg:aspect-705/529 lg:max-w-[705px] lg:shrink-0"
                   >
                     <Image
                       src={p.image}
@@ -204,6 +202,7 @@ export default function HomePage() {
                     />
                     <ProjectSubtractCorners
                       variant={p.reverse ? "image-right" : "image-left"}
+                      className="max-lg:size-6"
                     />
                   </Reveal>
                   <Reveal
@@ -212,14 +211,15 @@ export default function HomePage() {
                     duration={800}
                     style={projectCardGlassStyle}
                     className={cn(
-                      "relative z-10 flex w-full max-w-[518px] flex-col items-start gap-4 rounded-[3px] border border-white/12 px-8 pb-6 pt-9 backdrop-blur-[10.45px] max-lg:-mt-6",
-                      "max-lg:mx-auto max-lg:max-w-[518px]",
+                      "relative z-10 flex w-full flex-col items-start gap-4 rounded-[3px] border border-white/12 backdrop-blur-[10.45px]",
+                      "max-lg:w-full max-lg:px-[33px] max-lg:pb-[25px] max-lg:pt-[37px]",
+                      "lg:absolute lg:max-w-[518px] lg:px-8 lg:pb-6 lg:pt-9",
                       p.reverse
-                        ? "lg:absolute lg:bottom-[-155px] lg:left-[269px] lg:right-auto lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none"
-                        : "lg:absolute lg:bottom-[-155px] lg:right-[269px] lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none",
+                        ? "lg:bottom-[-155px] lg:left-[269px] lg:right-auto lg:top-auto lg:mt-0 lg:w-[518px]"
+                        : "lg:bottom-[-155px] lg:right-[269px] lg:top-auto lg:mt-0 lg:w-[518px]",
                     )}
                   >
-                    <h3 className="font-heading text-xl font-normal leading-[1.2] text-primary md:text-2xl">
+                    <h3 className="font-heading text-2xl font-normal leading-[1.2] text-primary">
                       {p.title}
                     </h3>
                     <p className="font-sans text-base leading-[22px] text-neutral-200">
