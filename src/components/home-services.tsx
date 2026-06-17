@@ -6,10 +6,7 @@ import { ChevronRight } from "lucide-react";
 import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { ServiceStyleShowcase } from "@/components/service-style-showcase";
 import { SiteContainer } from "@/components/site-container";
-import {
-  SECTION_WATERMARK_STROKE_INLINE_LG,
-  SECTION_WATERMARK_STROKE_INLINE_SM,
-} from "@/components/section-watermark";
+import { SECTION_WATERMARK_STROKE_INLINE_LG } from "@/components/section-watermark";
 import { siteImages } from "@/lib/site-images";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +22,6 @@ const tabs = [
       "Kompletni građevinski i zanatski radovi",
     ],
     paragraphs: [
-      "Obavljamo sve poslove koji spadaju u domen visoke gradnje kao što su izgradnja stambenih zgrada, poslovnih prostora, kuća, magacina i zgrada drugih tipova i profila. Naš tim stručnjaka je spreman da u svakom trenutku pruži potrebnu ekspertizu bilo da se radi o sopstvenim ili poručenim projektima. Pružamo i komplet usluga od grubih gradjevinskih radova, pa do svih vrsta zanatskih radova.",
       "Naš sistem izgradnje ubrzava čitav proces tako da se svi projekti završavaju na vreme a da pritom ostajemo dosledni trajnom kvalitetu što za klijente ima dugoročne prednosti. Operativni troškovi i troškovi održavanja objekata su značajno niži jer je konstrukcija čvrsta i snažna i zadržava svoj prvobitni izgled dugi niz godina.",
     ],
     image: siteImages.home.serviceConstruction,
@@ -90,13 +86,11 @@ export function HomeServices() {
   const current = tabs.find((t) => t.id === active) ?? tabs[0];
 
   return (
-    <section
-      className="relative scroll-mt-24 overflow-hidden bg-background py-24 md:py-32"
-    >
+    <section className="relative scroll-mt-24 overflow-hidden bg-background py-24 md:py-32">
       <SiteContainer className="relative z-1">
-        <div className="relative mb-10 min-h-[min(12rem,42vw)] overflow-hidden md:mb-14 md:min-h-[min(14rem,36vw)]">
+        <div className="relative mb-10 overflow-hidden md:mb-14 md:min-h-[min(14rem,36vw)]">
           <div
-            className="pointer-events-none absolute inset-0 z-0 flex w-full select-none items-center overflow-hidden"
+            className="pointer-events-none absolute inset-0 z-0 hidden w-full select-none items-center overflow-hidden md:flex"
             aria-hidden
           >
             <div className="flex w-full translate-x-[-6%] items-center justify-between gap-1 px-0 font-heading text-[clamp(4.5rem,22vw,15rem)] font-normal uppercase leading-none sm:translate-x-0 sm:px-1">
@@ -106,14 +100,10 @@ export function HomeServices() {
                   className="relative grid min-w-0 flex-[1_1_0%] place-items-center"
                 >
                   <span
-                    className="col-start-1 row-start-1 text-transparent lg:invisible"
-                    style={{ WebkitTextStroke: SECTION_WATERMARK_STROKE_INLINE_SM }}
-                  >
-                    {ch}
-                  </span>
-                  <span
-                    className="col-start-1 row-start-1 invisible text-transparent lg:visible"
-                    style={{ WebkitTextStroke: SECTION_WATERMARK_STROKE_INLINE_LG }}
+                    className="col-start-1 row-start-1 text-transparent"
+                    style={{
+                      WebkitTextStroke: SECTION_WATERMARK_STROKE_INLINE_LG,
+                    }}
                   >
                     {ch}
                   </span>

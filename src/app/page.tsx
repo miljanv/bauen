@@ -7,11 +7,6 @@ import { HomePromoVideo } from "@/components/home-promo-video";
 import { HomeServices } from "@/components/home-services";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
 import { Reveal } from "@/components/reveal";
-import {
-  SectionWatermark,
-  SECTION_WATERMARK_STROKE_INLINE_LG,
-  SECTION_WATERMARK_STROKE_INLINE_SM,
-} from "@/components/section-watermark";
 import { SiteContainer } from "@/components/site-container";
 import { getProjectPath } from "@/lib/projects";
 import { siteImages } from "@/lib/site-images";
@@ -79,7 +74,11 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,17,32,0)] from-[20%] via-background/20 to-background" />
         <SiteContainer className="relative z-[1] flex min-h-screen flex-col items-center px-4 pb-16 pt-28 text-center md:px-6 md:pb-12 md:pt-32">
           <div className="mt-[10vh] flex w-full flex-col items-center">
-            <Reveal variant="fade-up" duration={900} className="max-w-[973px] text-balance">
+            <Reveal
+              variant="fade-up"
+              duration={900}
+              className="max-w-[973px] text-balance"
+            >
               <h1 className="font-heading text-[clamp(2rem,6vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[62px]">
                 Gradimo pouzdane temelje
               </h1>
@@ -121,16 +120,27 @@ export default function HomePage() {
             <p className="w-full self-stretch font-sans text-2xl font-medium leading-[1.2] text-neutral-600">
               {FIGMA_VIDEO_COPY}
             </p>
-            <SectionWatermark
-              text="Since 1993"
-              uppercase={false}
-              layout="inline"
-              placement="bottom-right"
-              className="relative z-1 mt-3 md:mt-4 -mb-6 md:-mb-10"
-              textStroke={SECTION_WATERMARK_STROKE_INLINE_SM}
-              textStrokeLg={SECTION_WATERMARK_STROKE_INLINE_LG}
-              textClassName="opacity-35"
-            />
+            <div
+              className="relative z-1 mt-3 -mb-6 w-full md:mt-4 md:-mb-10"
+              aria-hidden
+            >
+              <div
+                className={cn(
+                  "relative max-w-full max-md:mx-auto",
+                  "h-[clamp(41px,calc(75vw*132/845),132px)]",
+                  "w-[clamp(260px,75vw,845px)]",
+                  "md:[margin-left:max(0px,calc(100%-clamp(260px,75vw,845px)))]",
+                )}
+              >
+                <Image
+                  src="/illustrations/since1993.png"
+                  alt=""
+                  fill
+                  className="object-contain object-center md:object-right"
+                  sizes="(max-width: 1024px) 75vw, 845px"
+                />
+              </div>
+            </div>
           </Reveal>
 
           <Reveal
@@ -215,7 +225,10 @@ export default function HomePage() {
                     <p className="font-sans text-base leading-[22px] text-neutral-200">
                       {p.description}
                     </p>
-                    <BauenCtaLink href={getProjectPath(p.slug)} className="w-fit px-4">
+                    <BauenCtaLink
+                      href={getProjectPath(p.slug)}
+                      className="w-fit px-4"
+                    >
                       DETALJNIJE
                       <ChevronRight className="size-4 shrink-0" aria-hidden />
                     </BauenCtaLink>
