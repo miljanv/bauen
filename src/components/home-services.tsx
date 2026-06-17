@@ -123,7 +123,7 @@ export function HomeServices() {
         </div>
 
         <div
-          className="mt-10 flex flex-wrap gap-x-1 border-b border-white/10"
+          className="-mx-4 mt-10 flex flex-nowrap gap-0 overflow-x-auto border-b border-white/10 px-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:flex-wrap lg:gap-x-1 lg:overflow-visible lg:px-0"
           role="tablist"
           aria-label="Kategorije usluga"
         >
@@ -135,7 +135,7 @@ export function HomeServices() {
               aria-selected={active === tab.id}
               onClick={() => setActive(tab.id)}
               className={cn(
-                "relative border-b-2 border-transparent px-3 py-6 font-sans text-xl font-medium transition-colors md:px-5",
+                "relative shrink-0 whitespace-nowrap border-b-2 border-transparent px-3 py-6 font-sans text-xl font-medium transition-colors md:px-5",
                 active === tab.id
                   ? "text-primary after:absolute after:-inset-x-1 after:bottom-0 after:z-1 after:border-b-2 after:border-primary md:after:-inset-x-2"
                   : "text-neutral-600 hover:text-neutral-400",

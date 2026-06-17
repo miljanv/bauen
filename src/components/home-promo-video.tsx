@@ -32,7 +32,7 @@ export function HomePromoVideo({
       className={cn(
         "relative w-full overflow-hidden bg-background",
         "aspect-video lg:aspect-1312/908 lg:min-h-[400px]",
-        "[--promo-l:clamp(12px,0.3vw,20px)]",
+        "[--promo-l:6px] sm:[--promo-l:8px] md:[--promo-l:12px] lg:[--promo-l:clamp(12px,0.3vw,20px)]",
       )}
     >
       {/* L-accent: top bar ~60% width, left bar ~60% height (not full edge length) */}

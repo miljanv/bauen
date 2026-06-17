@@ -67,14 +67,14 @@ export default function AboutPage() {
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-background" />
         </div>
 
-        <SiteContainer className="relative pb-20 pt-40 md:pt-52 lg:pb-32 lg:pt-60">
-          <div className="grid gap-14 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-10 xl:gap-x-12">
+        <SiteContainer className="relative pb-16 pt-32 md:pb-20 md:pt-52 lg:pb-32 lg:pt-60">
+          <div className="grid gap-10 md:gap-14 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-10 xl:gap-x-12">
             <Reveal
               variant="fade-up"
               duration={900}
               className="lg:col-span-12 lg:col-start-1 lg:row-start-1"
             >
-              <h1 className="max-w-none font-normal leading-[110%] text-[#FFF] text-[clamp(1.75rem,5vw,2.5rem)] lg:text-[62px]">
+              <h1 className="max-w-none text-[clamp(1.75rem,5vw,2.5rem)] font-normal leading-[110%] text-[#FFF] lg:text-[62px]">
                 <span className="block font-heading lg:whitespace-nowrap">
                   Više od 30 godina gradimo
                 </span>
@@ -85,7 +85,7 @@ export default function AboutPage() {
                   </span>
                 </span>
               </h1>
-              <p className="font-nav mt-6 max-w-[591px] text-lg font-medium leading-relaxed text-white md:mt-8 md:text-xl lg:mt-10">
+              <p className="font-nav mt-4 max-w-[591px] text-base font-medium leading-relaxed text-white sm:mt-6 md:mt-8 md:text-xl lg:mt-10">
                 Od porodičnih početaka do savremene građevinske kompanije, naš
                 put obeležavaju posvećenost, stručnost i kontinuiran rast.
               </p>
@@ -95,7 +95,7 @@ export default function AboutPage() {
               variant="fade-up"
               delay={200}
               duration={800}
-              className="flex flex-wrap items-center gap-4 sm:gap-6 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:self-start xl:col-span-5"
+              className="flex flex-col flex-wrap items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 md:gap-6 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:self-start xl:col-span-5"
             >
               <BauenCtaLink href="/projekti" className="px-4">
                 PROJEKTI
@@ -116,11 +116,11 @@ export default function AboutPage() {
               className="lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:-mt-8 lg:self-start xl:col-span-7 xl:col-start-6"
             >
               <div
-                className="relative overflow-visible rounded-[3px] border border-[rgba(255,255,255,0.12)] p-6 sm:p-8 md:p-10"
+                className="relative overflow-visible rounded-[3px] border border-[rgba(255,255,255,0.12)] p-5 sm:p-8 md:p-10"
                 style={aboutHeroGlassStyle}
               >
                 <ProjectSubtractCorners variant="glass-tl-br" />
-                <div className="relative z-10 space-y-4 font-sans text-base font-medium leading-[1.25] text-neutral-50 md:text-lg lg:text-xl xl:text-2xl xl:leading-[1.2]">
+                <div className="relative z-10 space-y-3 font-sans text-base font-medium leading-[1.25] text-neutral-50 sm:space-y-4 md:text-lg lg:text-xl xl:text-2xl xl:leading-[1.2]">
                   <p>
                     Građevinsko preduzeće Bauen pod ovim imenom postoji od 1993.
                     godine ali njegova istorija počinje nekoliko godina ranije
@@ -157,14 +157,14 @@ export default function AboutPage() {
 
       <AboutMilestones milestones={milestones} />
 
-      <section className="relative  bg-background py-24 md:py-32">
+      <section className="relative bg-background py-16 md:py-24 lg:py-32">
         <SiteContainer className="relative">
           <Reveal variant="fade-up" duration={800}>
-            <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
+            <h2 className="font-heading text-[clamp(2rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
               Priznanja i nagrade
             </h2>
           </Reveal>
-          <div className="relative z-10 mt-6 flex w-full max-w-none flex-col gap-6 font-sans text-lg font-medium leading-[1.25] text-neutral-50 md:text-xl lg:text-2xl lg:leading-[1.2]">
+          <div className="relative z-10 mt-4 flex w-full max-w-none flex-col gap-4 font-sans text-base font-medium leading-[1.25] text-neutral-50 sm:mt-6 sm:gap-6 md:text-xl lg:text-2xl lg:leading-[1.2]">
             <Reveal variant="fade-up" delay={100} duration={800}>
               <p>
                 Zahvaljujući predanom radu i vrhunskoj stručnosti svog kadra ali i

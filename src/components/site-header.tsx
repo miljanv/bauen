@@ -46,8 +46,16 @@ function NavLink({
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   /** Empty until mount so SSR and first client paint match; then synced with `window.location.hash`. */
   const [locationHash, setLocationHash] = useState("");
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const syncHash = () => setLocationHash(window.location.hash);
@@ -71,7 +79,10 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          "fixed left-0 right-0 top-0 z-50 h-20 border-transparent bg-transparent transition-colors duration-300",
+          "fixed left-0 right-0 top-0 z-50 h-20 border-b transition-colors duration-300",
+          scrolled || open
+            ? "border-white/10 bg-background"
+            : "border-transparent bg-transparent",
           open ? "z-[70]" : "z-50",
         )}
       >

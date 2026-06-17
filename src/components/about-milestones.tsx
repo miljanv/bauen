@@ -84,7 +84,7 @@ function MilestoneRailMarker({
   const a = isFirst ? 1 : activation;
 
   const corner =
-    "pointer-events-none absolute z-20 flex h-7 w-7 origin-center items-center justify-center sm:h-8 sm:w-8";
+    "pointer-events-none absolute z-20 flex h-5 w-5 origin-center items-center justify-center sm:h-7 sm:w-7 lg:h-8 lg:w-8";
 
   const cornerMotion =
     "transition-[opacity,transform] duration-[420ms] ease-out motion-reduce:transition-none";
@@ -95,7 +95,7 @@ function MilestoneRailMarker({
       : `brightness(${0.45 + 0.55 * a}) contrast(${1.05 - 0.05 * a}) saturate(${a})`;
 
   return (
-    <div className="relative flex size-[52px] shrink-0 items-center justify-center sm:size-14">
+    <div className="relative flex size-10 shrink-0 items-center justify-center sm:size-12 lg:size-14">
       {RAIL_CORNERS.map((c) => {
         const cornerA = isFirst ? 1 : a;
         const cornerScale = 0.86 + 0.14 * cornerA;
@@ -118,7 +118,7 @@ function MilestoneRailMarker({
               alt=""
               width={24}
               height={24}
-              className={c.imgClass}
+              className={cn(c.imgClass, "max-lg:h-4 max-lg:w-4")}
             />
           </span>
         );
@@ -129,7 +129,7 @@ function MilestoneRailMarker({
         width={36}
         height={36}
         className={cn(
-          "relative z-10 h-10 w-10 object-contain transition-[filter,transform] duration-500 ease-out motion-reduce:transition-none",
+          "relative z-10 h-7 w-7 object-contain sm:h-9 sm:w-9 lg:h-10 lg:w-10 transition-[filter,transform] duration-500 ease-out motion-reduce:transition-none",
           !isFirst &&
             a >= 0.998 &&
             "motion-safe:scale-[1.03] motion-reduce:scale-100",
@@ -230,18 +230,17 @@ export function AboutMilestones({
     <section
       ref={sectionRef}
       id="istorija"
-      className="relative scroll-mt-24 overflow-x-hidden overflow-y-visible bg-background py-24 md:py-32"
+      className="relative scroll-mt-24 overflow-x-hidden overflow-y-visible bg-background py-16 md:py-24 lg:py-32"
     >
-      <SiteContainer className="relative z-[1]">
-        <div ref={rowRef} className="flex gap-6 lg:gap-10">
-          <div className="relative hidden w-[54px] shrink-0 flex-col items-center self-stretch pb-2 pt-1 lg:flex">
-            {/* Širi wrapper: čvorovi šire od w-1; uska traka sa overflow-hidden samo za narandžastu popunu */}
+      <SiteContainer className="relative z-1 max-lg:px-6 sm:max-lg:px-8">
+        <div ref={rowRef} className="flex gap-3 sm:gap-4 lg:gap-10">
+          <div className="relative flex w-10 shrink-0 flex-col items-center self-stretch pb-2 pt-1 sm:w-12 lg:w-[54px]">
             <div
               ref={railInnerRef}
-              className="relative mx-auto min-h-[160px] w-[54px] flex-1"
+              className="relative mx-auto min-h-[120px] w-full flex-1 sm:min-h-[160px]"
             >
               <div
-                className="pointer-events-none absolute left-1/2 top-0 bottom-0 z-0 w-1 -translate-x-1/2 overflow-hidden bg-neutral-700"
+                className="pointer-events-none absolute left-1/2 top-0 bottom-0 z-0 w-px -translate-x-1/2 overflow-hidden bg-neutral-700 sm:w-1"
                 aria-hidden
               >
                 <div
@@ -269,40 +268,42 @@ export function AboutMilestones({
             </div>
           </div>
 
-          <ol className="flex flex-1 flex-col gap-20 lg:gap-28">
+          <ol className="flex min-w-0 flex-1 flex-col gap-16 md:gap-20 lg:gap-28">
             {milestones.map((m, i) => (
               <li key={m.year} className="relative">
-                <div className="relative grid grid-cols-1 gap-0 ml-10 lg:min-h-[579px] lg:grid-cols-12 lg:items-center">
-                  <div className="relative aspect-[868/579] w-full overflow-visible lg:col-span-9 lg:col-start-4 lg:row-start-1 lg:h-[579px] lg:aspect-auto">
-                    <div className="absolute inset-x-0 top-30 bottom-0">
-                      <div className="relative h-full w-full">
-                        <Image
-                          src={m.image}
-                          alt={m.alt}
-                          fill
-                          className="object-cover grayscale"
-                          sizes="(max-width:1024px) 100vw, 868px"
-                        />
-                        <LCornerFrame
-                          corners="br"
-                          bottomRightAccentClassName="bottom-[-4px] right-[-4px] h-28 w-36 border-b-[6px] border-r-[6px] sm:bottom-[-6px] sm:right-[-6px] sm:h-[90%] sm:w-[60%] sm:border-b-[8px] sm:border-r-[8px]"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                <div className="relative flex flex-col lg:grid lg:min-h-[579px] lg:grid-cols-12 lg:items-center">
                   <div
                     ref={(el) => {
                       contentAnchorRefs.current[i] = el;
                     }}
-                    className="relative z-10 -mt-8 mx-4 flex w-full max-w-[518px] flex-col items-start gap-4 overflow-visible bg-[rgba(20,11,42,0.6)] pt-8 px-8 pb-6 sm:mx-8 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:mx-0 lg:mt-0 lg:w-[518px] lg:max-w-none lg:self-center"
+                    className="relative z-10 -mb-6 mx-auto flex w-[65%] max-w-[65%] flex-col items-start gap-3 overflow-visible bg-[rgba(20,11,42,0.6)] px-5 pb-5 pt-6 sm:gap-4 sm:px-6 sm:pb-6 sm:pt-7 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:mb-0 lg:mx-0 lg:w-[518px] lg:max-w-none lg:self-center lg:px-8 lg:pb-6 lg:pt-8"
                   >
-                    <ProjectSubtractCorners variant="milestone-overlay" />
-                    <h2 className="relative z-10 font-heading text-[clamp(2.5rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
+                    <ProjectSubtractCorners
+                      variant="milestone-overlay"
+                      className="max-lg:size-8"
+                    />
+                    <h2 className="relative z-10 font-heading text-[2.125rem] font-normal leading-[1.1] text-primary sm:text-[2.35rem] lg:text-[clamp(2.5rem,5vw,3.875rem)]">
                       {m.year}
                     </h2>
-                    <p className="relative z-10 font-sans text-base leading-[1.25] text-neutral-200">
+                    <p className="relative z-10 font-sans text-[0.9375rem] leading-[21px] text-neutral-200 sm:text-base sm:leading-[22px]">
                       {m.text}
                     </p>
+                  </div>
+
+                  <div className="relative h-[220px] w-full sm:h-[260px] lg:col-span-9 lg:col-start-4 lg:row-start-1 lg:aspect-auto lg:h-[579px]">
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={m.image}
+                        alt={m.alt}
+                        fill
+                        className="object-cover grayscale"
+                        sizes="(max-width:1024px) 100vw, 868px"
+                      />
+                      <LCornerFrame
+                        corners="br"
+                        bottomRightAccentClassName="bottom-[-4px] right-[-4px] h-14 w-14 border-b-[4px] border-r-[4px] sm:bottom-[-6px] sm:right-[-6px] sm:h-20 sm:w-20 sm:border-b-[6px] sm:border-r-[6px] lg:bottom-[-6px] lg:right-[-6px] lg:h-[90%] lg:w-[60%] lg:border-b-[8px] lg:border-r-[8px]"
+                      />
+                    </div>
                   </div>
                 </div>
               </li>

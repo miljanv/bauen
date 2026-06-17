@@ -77,7 +77,7 @@ export function ProjektiPortfolio() {
         </h2>
 
         <div
-          className="mt-6 flex flex-col gap-4 border-b border-white/10 md:mt-8 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-0"
+          className="-mx-4 mt-6 flex flex-nowrap gap-0 overflow-x-auto border-b border-white/10 px-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:mt-8 lg:flex-wrap lg:items-end lg:justify-between lg:overflow-visible lg:px-0"
           role="tablist"
           aria-label="Kategorije projekata"
         >
@@ -93,7 +93,7 @@ export function ProjektiPortfolio() {
                 aria-controls={`projekti-panel-${id}`}
                 onClick={() => setActive(id)}
                 className={cn(
-                  "shrink-0 border-b-2 px-4 py-6 text-left font-sans text-2xl font-medium leading-[1.1] transition-colors md:px-4 md:text-[32px]",
+                  "shrink-0 whitespace-nowrap border-b-2 px-4 py-6 text-left font-sans text-xl font-medium leading-[1.1] transition-colors lg:text-[32px]",
                   selected
                     ? "border-primary text-primary"
                     : "border-transparent text-neutral-700 hover:text-neutral-500",
@@ -114,24 +114,22 @@ export function ProjektiPortfolio() {
           {activeCopy.description}
         </p>
 
-        <div className="mt-16 flex flex-col gap-32 md:mt-24 md:gap-48">
+        <div className="mt-16 flex flex-col gap-24 md:mt-24 md:gap-48">
           {showcaseProjects.map((p) => (
             <article
               key={p.slug}
-              className="relative mx-auto w-full max-w-[1280px] pb-36 lg:pb-44"
+              className="relative mx-auto w-full max-w-[1280px] max-lg:pb-0 lg:pb-44"
             >
               <div
                 className={cn(
-                  "relative min-h-0 lg:min-h-[529px]",
-                  p.reverse
-                    ? "flex flex-col items-stretch gap-0 lg:flex-row-reverse lg:items-center"
-                    : "flex flex-col items-stretch gap-0 lg:flex-row lg:items-center",
+                  "relative flex flex-col gap-8 lg:min-h-[529px] lg:items-center lg:gap-0",
+                  p.reverse ? "lg:flex-row-reverse" : "lg:flex-row",
                 )}
               >
                 <Reveal
                   variant={p.reverse ? "fade-left" : "fade-right"}
                   duration={900}
-                  className="relative aspect-705/529 w-full overflow-visible lg:max-w-[705px]"
+                  className="relative w-full overflow-visible max-lg:h-[271px] lg:aspect-705/529 lg:max-w-[705px] lg:shrink-0"
                 >
                   <Link href={getProjectPath(p.slug)} className="relative block size-full">
                     <Image
@@ -143,6 +141,7 @@ export function ProjektiPortfolio() {
                     />
                     <ProjectSubtractCorners
                       variant={p.reverse ? "image-right" : "image-left"}
+                      className="max-lg:size-4"
                     />
                   </Link>
                 </Reveal>
@@ -152,14 +151,15 @@ export function ProjektiPortfolio() {
                   duration={800}
                   style={projectCardGlassStyle}
                   className={cn(
-                    "relative z-10 flex w-full max-w-[518px] flex-col items-start gap-4 rounded-[3px] border border-white/12 px-8 pb-6 pt-9 backdrop-blur-[10.45px] max-lg:-mt-6",
-                    "max-lg:mx-auto max-lg:max-w-[518px]",
+                    "relative z-10 flex w-full flex-col items-start gap-4 rounded-[3px] border border-white/12 backdrop-blur-[10.45px]",
+                    "max-lg:w-full max-lg:px-[33px] max-lg:pb-[25px] max-lg:pt-[37px]",
+                    "lg:absolute lg:max-w-[518px] lg:px-8 lg:pb-6 lg:pt-9",
                     p.reverse
-                      ? "lg:absolute lg:bottom-[-155px] lg:left-[269px] lg:right-auto lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none"
-                      : "lg:absolute lg:bottom-[-155px] lg:right-[269px] lg:top-auto lg:mt-0 lg:w-[518px] lg:max-w-none",
+                      ? "lg:bottom-[-155px] lg:left-[269px] lg:right-auto lg:top-auto lg:mt-0 lg:w-[518px]"
+                      : "lg:bottom-[-155px] lg:right-[269px] lg:top-auto lg:mt-0 lg:w-[518px]",
                   )}
                 >
-                  <h3 className="font-heading text-xl font-normal leading-[1.2] text-primary md:text-2xl">
+                  <h3 className="font-heading text-2xl font-normal leading-[1.2] text-primary">
                     <Link
                       href={getProjectPath(p.slug)}
                       className="transition-colors hover:text-primary-300"
@@ -167,7 +167,7 @@ export function ProjektiPortfolio() {
                       {p.title}
                     </Link>
                   </h3>
-                  <p className="line-clamp-4 font-sans text-base leading-[22px] text-neutral-200">
+                  <p className="font-sans text-base leading-[22px] text-neutral-200">
                     {p.description}
                   </p>
                   <Link

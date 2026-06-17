@@ -6,17 +6,17 @@ import { cn } from "@/lib/utils";
 const SUB = "/icons/subtract.png";
 
 /** Unutrašnji ugao — mali razmak od ivice slike (px). */
-const INSET = "bottom-3 left-3 sm:bottom-2 sm:left-2";
-const INSET_BR = "bottom-3 right-3 sm:bottom-2 sm:right-2";
+const INSET = "bottom-2 left-2 sm:bottom-2 sm:left-2 md:bottom-3 md:left-3";
+const INSET_BR = "bottom-2 right-2 sm:bottom-2 sm:right-2 md:bottom-3 md:right-3";
 
 /** Spoljašnji ugao — pomeraj od ivice slike u „tamnu“ pozadinu. */
 const OUT_TR =
-  "right-0 top-0 translate-x-2 -translate-y-2 sm:translate-x-3 sm:-translate-y-3";
+  "right-0 top-0 translate-x-1 -translate-y-1 sm:translate-x-2 sm:-translate-y-2 md:translate-x-3 md:-translate-y-3";
 const OUT_TL =
-  "left-0 top-0 -translate-x-2 -translate-y-2 sm:-translate-x-3 sm:-translate-y-3";
+  "left-0 top-0 -translate-x-1 -translate-y-1 sm:-translate-x-2 sm:-translate-y-2 md:-translate-x-3 md:-translate-y-3";
 
 const CORNER =
-  "pointer-events-none absolute z-20 flex size-[64px] items-end justify-start sm:size-[72px]";
+  "pointer-events-none absolute z-20 flex size-10 items-end justify-start sm:size-12 md:size-[64px] lg:size-[72px]";
 
 /** Glass panel: ugaonik malo veći da L bude čitljiviji na blur panelu. */
 const GLASS_CORNER =
@@ -84,7 +84,7 @@ export function ProjectSubtractCorners({
         <span
           className={cn(
             PANEL_CORNER_BASE,
-            "left-[-1rem] top-[-1rem] items-start justify-start",
+            "left-[-0.75rem] top-[-0.75rem] items-start justify-start sm:left-[-1rem] sm:top-[-1rem]",
             className,
           )}
           aria-hidden
@@ -104,7 +104,7 @@ export function ProjectSubtractCorners({
         <span
           className={cn(
             PANEL_CORNER_BASE,
-            "bottom-[-1rem] left-[-1rem] items-end justify-start",
+            "bottom-[-0.75rem] left-[-0.75rem] items-end justify-start sm:bottom-[-1rem] sm:left-[-1rem]",
             className,
           )}
           aria-hidden

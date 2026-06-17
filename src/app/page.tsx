@@ -202,7 +202,7 @@ export default function HomePage() {
                     />
                     <ProjectSubtractCorners
                       variant={p.reverse ? "image-right" : "image-left"}
-                      className="max-lg:size-6"
+                      className="max-lg:size-4"
                     />
                   </Reveal>
                   <Reveal
