@@ -20,7 +20,8 @@ export function ProjectDetailInfo({
   summaryParagraphs,
 }: ProjectDetailInfoProps) {
   const [expanded, setExpanded] = useState(false);
-  const visibleMeta = expanded && metaExpanded ? [...meta, ...metaExpanded] : meta;
+  const visibleMeta =
+    expanded && metaExpanded ? [...meta, ...metaExpanded] : meta;
   const hasMore =
     summaryParagraphs.length > 1 || summaryShort !== summaryParagraphs[0];
 

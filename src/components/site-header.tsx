@@ -80,7 +80,7 @@ export function SiteHeader() {
       <header
         className={cn(
           "fixed left-0 right-0 top-0 z-50 h-20 border-b transition-colors duration-300",
-          scrolled || open
+          scrolled
             ? "border-white/10 bg-background"
             : "border-transparent bg-transparent",
           open ? "z-[70]" : "z-50",
@@ -165,7 +165,7 @@ export function SiteHeader() {
         <div className="pointer-events-none absolute inset-x-0 top-6 flex justify-end px-4 sm:px-6">
           <div
             className={cn(
-              "pointer-events-auto relative mr-6 mt-4 aspect-square w-[min(328px,calc(100%-16px))] origin-top-right overflow-hidden transition-[transform,opacity,filter] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+              "pointer-events-auto relative mr-6 mt-4 aspect-square w-[min(295px,calc((100%-16px)*0.9))] origin-top-right overflow-hidden transition-[transform,opacity,filter] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
               open
                 ? "translate-y-0 scale-100 opacity-100 blur-0"
                 : "-translate-y-1 scale-90 opacity-0 blur-sm",
@@ -176,7 +176,7 @@ export function SiteHeader() {
               alt=""
               fill
               priority
-              sizes="(max-width: 640px) 90vw, 328px"
+              sizes="(max-width: 640px) 81vw, 295px"
               className="-z-10 object-cover"
               aria-hidden
             />
