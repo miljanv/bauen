@@ -128,7 +128,7 @@ export function HomeServices() {
         </div>
 
         <div
-          className="-mx-4 mt-10 flex flex-nowrap gap-0 overflow-x-auto border-b border-white/10 px-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:flex-wrap lg:gap-x-1 lg:overflow-visible lg:px-0"
+          className="-mx-4 mt-10 flex flex-nowrap gap-0 overflow-x-auto border-b border-white/10 px-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:w-full lg:justify-between lg:overflow-visible lg:px-0"
           role="tablist"
           aria-label="Kategorije usluga"
         >

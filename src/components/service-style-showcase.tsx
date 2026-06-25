@@ -24,7 +24,7 @@ export function ServiceStyleShowcase({
   return (
     <div className="relative w-full overflow-hidden lg:mx-auto lg:w-fit lg:max-w-full">
       <div className="flex w-full flex-col lg:flex-row lg:items-center">
-        <div className="relative aspect-1074/706 w-full min-h-[260px] shrink-0 overflow-hidden bg-background [--svc-l:6px] sm:[--svc-l:8px] md:[--svc-l:12px] lg:aspect-auto lg:h-[min(706px,78vh)] lg:w-[min(705px,48vw)] lg:max-w-[705px] lg:[--svc-l:clamp(12px,2.2vw,18px)]">
+        <div className="relative aspect-1074/706 w-full min-h-[260px] shrink-0 overflow-hidden bg-background [--svc-l:6px] sm:[--svc-l:8px] md:[--svc-l:12px] lg:aspect-auto lg:h-[min(706px,78vh)] lg:w-[min(705px,48vw)] lg:max-w-[705px] lg:[--svc-l:clamp(12px,0.3vw,20px)]">
           <div
             className="pointer-events-none absolute left-0 top-0 z-0 h-(--svc-l) w-[60%] bg-primary"
             aria-hidden
@@ -45,7 +45,7 @@ export function ServiceStyleShowcase({
           </div>
         </div>
 
-        <div className="relative z-10 w-full shrink-0 overflow-hidden border-t border-white/10 [--svc-l:6px] max-lg:bg-[rgba(20,11,42,0.65)] max-lg:backdrop-blur-[10px] sm:[--svc-l:8px] md:[--svc-l:12px] lg:-ml-[min(200px,18vw)] lg:min-h-[min(560px,72vh)] lg:w-[min(518px,42vw)] lg:max-w-[518px] lg:border-t-0 lg:[--svc-l:clamp(12px,2.2vw,18px)]">
+        <div className="relative z-10 w-full shrink-0 overflow-hidden border-t border-white/10 [--svc-l:6px] max-lg:bg-[rgba(20,11,42,0.65)] max-lg:backdrop-blur-[10px] sm:[--svc-l:8px] md:[--svc-l:12px] lg:-ml-[min(200px,18vw)] lg:min-h-[min(560px,72vh)] lg:w-[min(518px,42vw)] lg:max-w-[518px] lg:border-t-0 lg:[--svc-l:clamp(12px,0.3vw,20px)]">
           <div
             className="pointer-events-none absolute bottom-0 right-0 z-0 hidden h-(--svc-l) w-[40%] bg-primary lg:block"
             aria-hidden

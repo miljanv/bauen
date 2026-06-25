@@ -6,10 +6,6 @@ import { AboutHeroGlass } from "@/components/about-hero-glass";
 import { AboutMilestones } from "@/components/about-milestones";
 import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { Reveal } from "@/components/reveal";
-import {
-  SECTION_WATERMARK_STROKE_INLINE_LG,
-  SECTION_WATERMARK_STROKE_INLINE_SM,
-} from "@/components/section-watermark";
 import { SiteContainer } from "@/components/site-container";
 import { siteImages } from "@/lib/site-images";
 import { createPageMetadata } from "@/lib/seo";
@@ -87,7 +83,7 @@ export default function AboutPage() {
               variant="fade-up"
               delay={200}
               duration={800}
-              className="flex flex-col flex-wrap items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 md:gap-6 lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:self-start xl:col-span-5"
+              className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 md:gap-6 lg:col-span-5 lg:col-start-1 lg:row-start-2 lg:flex-col lg:items-stretch lg:self-start"
             >
               <BauenCtaLink href="/projekti" className="px-4">
                 PROJEKTI
@@ -115,7 +111,7 @@ export default function AboutPage() {
 
       <AboutMilestones milestones={milestones} />
 
-      <section className="relative bg-background  pb-8 md:pt-24 md:pb-12 lg:pt-32 lg:pb-16">
+      <section className="relative overflow-x-hidden bg-background pb-12 md:pt-24 md:pb-20 lg:pt-32 lg:pb-24">
         <SiteContainer className="relative">
           <Reveal variant="fade-up" duration={800}>
             <h2 className="font-heading text-[clamp(2rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
@@ -141,38 +137,25 @@ export default function AboutPage() {
               </p>
             </Reveal>
             <Reveal variant="fade-up" delay={300} duration={800}>
-              <p>
-                Ponosni smo na činjenicu da je naš rad prepoznat od strane
-                renomiranih domaćih i stranih ustanova i sa tim na umu
-                nastavljamo da radimo naporno i gradimo kvalitetno kako bi
-                opravdali i negovali stečeno poverenje naših klijenata i
-                javnosti.
-              </p>
+              <div className="relative pb-[72px] md:pb-[140px]">
+                <Image
+                  src="/illustrations/a-plus.png"
+                  alt=""
+                  width={449}
+                  height={201}
+                  className="pointer-events-none absolute right-20 top-[30%] z-0 h-[100px] w-[224px] select-none md:top-[32%] md:h-[201px] md:w-[449px]"
+                  aria-hidden
+                />
+                <p className="relative z-10">
+                  Ponosni smo na činjenicu da je naš rad prepoznat od strane
+                  renomiranih domaćih i stranih ustanova i sa tim na umu
+                  nastavljamo da radimo naporno i gradimo kvalitetno kako bi
+                  opravdali i negovali stečeno poverenje naših klijenata i
+                  javnosti.
+                </p>
+              </div>
             </Reveal>
           </div>
-          <Reveal
-            variant="zoom"
-            duration={1000}
-            delay={150}
-            className="pointer-events-none mt-12 flex w-full shrink-0 justify-center md:mt-16 lg:mt-20"
-          >
-            <span
-              className="font-heading whitespace-nowrap text-center text-transparent text-shadow-none text-[clamp(100px,22vw,300px)] font-normal leading-[110%] tracking-[clamp(20px,8vw,100px)] opacity-35 lg:hidden"
-              style={{
-                WebkitTextStroke: SECTION_WATERMARK_STROKE_INLINE_SM,
-              }}
-            >
-              A+
-            </span>
-            <span
-              className="absolute top-70 right-0 hidden font-heading whitespace-nowrap text-center text-transparent text-shadow-none text-[clamp(100px,22vw,300px)] font-normal leading-[110%] tracking-[100px] opacity-35 lg:inline"
-              style={{
-                WebkitTextStroke: SECTION_WATERMARK_STROKE_INLINE_LG,
-              }}
-            >
-              A+
-            </span>
-          </Reveal>
         </SiteContainer>
       </section>
     </>

@@ -56,7 +56,7 @@ export function ProjectDetailHero({
       />
       <div className="absolute inset-0 bg-black/30" aria-hidden />
 
-      <SiteContainer className="relative z-10 flex min-h-[min(100vh,954px)] flex-col justify-end px-4 pb-16 pt-28 md:px-8 md:pb-20 md:pt-32">
+      <SiteContainer className="relative z-10 flex flex-col justify-start px-4 pb-16 pt-28 md:px-8 md:pb-20 md:pt-40 lg:pt-48">
         <Link
           href="/projekti"
           className="mb-6 inline-flex min-h-[60px] w-fit items-center gap-2 bg-primary px-4 py-2 font-sans text-base font-medium text-primary-foreground transition-colors hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"

@@ -37,7 +37,10 @@ export function AboutHeroGlass() {
         {expanded ? (
           FULL_PARAGRAPHS.map((p, i) => <p key={i}>{p}</p>)
         ) : (
-          <p>{SHORT_TEXT}</p>
+          <>
+            <p>{SHORT_TEXT}</p>
+            <p className="hidden lg:block">{FULL_PARAGRAPHS[1]}</p>
+          </>
         )}
         {!expanded ? (
           <BauenCtaButton

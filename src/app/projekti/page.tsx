@@ -32,20 +32,26 @@ export default function ProjectsPage() {
             aria-hidden
           />
         </div>
-        <SiteContainer className="relative z-1 flex min-h-[min(100vh,1024px)] flex-col items-center justify-center pb-16 pt-28 max-md:-translate-y-8 md:translate-y-0 md:items-start md:justify-end md:pb-20 md:pt-32">
-          <div className="w-full max-w-4xl text-center md:text-left">
+        <SiteContainer className="relative z-1 flex min-h-[min(100vh,1024px)] flex-col justify-center pb-16 pt-28 max-md:-translate-y-8 md:items-start md:pb-20 md:pt-32">
+          <div className="w-full max-w-none text-center md:text-left">
             <Reveal variant="fade-up" duration={900}>
-              <h1 className="text-balance font-heading text-[clamp(2.25rem,6vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[62px]">
-                <span className="text-primary">Kompletna rešenja</span> u
-                oblasti visokogradnje, niskogradnje i specijalizovanih
-                građevinskih radova.
+              <h1 className="max-w-none font-heading text-[clamp(2.25rem,6vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[58px]">
+                <span className="block">
+                  <span className="text-primary">Kompletna rešenja</span> u
+                  oblasti visokogradnje,
+                </span>
+                <span className="block">
+                  <span className="text-primary">niskogradnje</span> i
+                  specijalizovanih građevinskih
+                </span>
+                <span className="block">radova.</span>
               </h1>
             </Reveal>
             <Reveal
               variant="fade-up"
               delay={200}
               duration={800}
-              className="mt-10 flex justify-center md:justify-start"
+              className="mt-8 flex justify-center md:mt-10 md:justify-start"
             >
               <BauenCtaLink href="/kontakt" className="px-4">
                 KONTAKTIRAJTE NAS
