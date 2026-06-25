@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 
 import { BauenCtaLink } from "@/components/bauen-cta-button";
+import { Reveal } from "@/components/reveal";
 import { ServiceStyleShowcase } from "@/components/service-style-showcase";
 import { SiteContainer } from "@/components/site-container";
 import { SECTION_WATERMARK_STROKE_INLINE_LG } from "@/components/section-watermark";
@@ -86,7 +87,7 @@ export function HomeServices() {
   const current = tabs.find((t) => t.id === active) ?? tabs[0];
 
   return (
-    <section className="relative scroll-mt-24 overflow-hidden bg-background py-24 md:py-32">
+    <section className="relative scroll-mt-24 overflow-hidden bg-background pt-12 pb-24 md:pt-16 md:pb-32">
       <SiteContainer className="relative z-1">
         <div className="relative mb-10 overflow-hidden md:mb-14 md:min-h-[min(14rem,36vw)]">
           <div
@@ -112,13 +113,17 @@ export function HomeServices() {
             </div>
           </div>
           <div className="relative z-10 text-left">
-            <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
-              Naše Usluge
-            </h2>
-            <p className="mt-4 w-full self-stretch font-sans text-xl font-medium leading-[1.2] text-neutral-600 md:text-2xl">
-              Kompletna rešenja u oblasti visokogradnje, niskogradnje i
-              specijalizovanih građevinskih radova.
-            </p>
+            <Reveal variant="fade-up" duration={800}>
+              <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
+                Naše Usluge
+              </h2>
+            </Reveal>
+            <Reveal variant="fade-up" delay={120} duration={800}>
+              <p className="mt-4 w-full self-stretch font-sans text-xl font-medium leading-[1.2] text-neutral-600 md:text-2xl">
+                Kompletna rešenja u oblasti visokogradnje, niskogradnje i
+                specijalizovanih građevinskih radova.
+              </p>
+            </Reveal>
           </div>
         </div>
 
@@ -146,7 +151,7 @@ export function HomeServices() {
           ))}
         </div>
 
-        <div className="mt-14">
+        <Reveal variant="fade-up" delay={200} duration={900} className="mt-14">
           <ServiceStyleShowcase
             image={current.image}
             imageAlt={current.imageAlt}
@@ -185,7 +190,7 @@ export function HomeServices() {
               </BauenCtaLink>
             </div>
           </ServiceStyleShowcase>
-        </div>
+        </Reveal>
       </SiteContainer>
     </section>
   );

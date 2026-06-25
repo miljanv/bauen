@@ -103,7 +103,7 @@ export default function HomePage() {
 
       <section
         id="godine"
-        className="relative scroll-mt-24 overflow-hidden bg-background py-24 text-left md:py-32"
+        className="relative scroll-mt-24 overflow-hidden bg-background pt-2 pb-4 text-left md:py-32"
       >
         <SiteContainer className="relative z-[1]">
           <Reveal variant="fade-up" duration={800}>
@@ -161,7 +161,7 @@ export default function HomePage() {
 
       <section
         id="projekti-pocetna"
-        className="relative scroll-mt-24 overflow-x-hidden bg-background py-24 md:py-32"
+        className="relative scroll-mt-24 overflow-x-hidden bg-background pb-24 md:pt-16 md:pb-32"
       >
         <SiteContainer className="relative z-[1]">
           <Reveal variant="fade-up" duration={800}>

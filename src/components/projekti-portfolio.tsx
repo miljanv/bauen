@@ -70,7 +70,7 @@ export function ProjektiPortfolio() {
   ][];
 
   return (
-    <section className="border-b border-white/10 bg-background py-20 md:py-28">
+    <section className="overflow-x-hidden border-b border-white/10 bg-background py-20 md:py-28">
       <SiteContainer>
         <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
           Projekti

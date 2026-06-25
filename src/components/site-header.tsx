@@ -90,7 +90,7 @@ export function SiteHeader() {
           <div className="flex h-full w-full items-center justify-between gap-5 sm:justify-center sm:gap-6">
             <Link
               href="/"
-              className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="flex h-11 shrink-0 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <BauenLogo variant="icon" />
             </Link>
@@ -156,7 +156,10 @@ export function SiteHeader() {
       >
         <button
           type="button"
-          className="absolute inset-0 bg-transparent"
+          className={cn(
+            "absolute inset-0 transition-[backdrop-filter,background-color] duration-500",
+            open ? "bg-background/50 backdrop-blur-md" : "bg-transparent",
+          )}
           aria-label="Zatvori meni"
           tabIndex={open ? 0 : -1}
           onClick={() => setOpen(false)}

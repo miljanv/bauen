@@ -13,7 +13,6 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
     { src: project.heroImage, alt: project.heroImageAlt },
     ...project.gallery
       .filter((item) => item.src !== project.heroImage)
-      .slice(0, 3)
       .map((item) => ({ src: item.src, alt: item.alt })),
   ];
 

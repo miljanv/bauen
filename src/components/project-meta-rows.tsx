@@ -10,12 +10,12 @@ export function ProjectMetaRows({ rows }: ProjectMetaRowsProps) {
       {rows.map((row) => (
         <div
           key={row.label}
-          className="flex items-center justify-between gap-4 border-b border-primary pb-6"
+          className="flex items-start justify-between gap-4 border-b border-primary pb-6"
         >
-          <dt className="font-heading text-xl font-normal leading-[1.2] text-primary md:text-2xl">
+          <dt className="shrink-0 font-heading text-xl font-normal leading-[1.2] text-primary md:text-2xl">
             {row.label}
           </dt>
-          <dd className="shrink-0 text-right font-sans text-base leading-[22px] text-neutral-200">
+          <dd className="max-w-[55%] text-right font-sans text-base leading-[22px] text-neutral-200 break-words">
             {row.value}
           </dd>
         </div>

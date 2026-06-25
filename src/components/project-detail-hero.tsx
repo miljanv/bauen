@@ -3,10 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { SiteContainer } from "@/components/site-container";
-import { cn } from "@/lib/utils";
+
+const AUTO_SLIDE_MS = 5000;
 
 type ProjectDetailHeroProps = {
   title: string;
@@ -33,6 +34,12 @@ export function ProjectDetailHero({
     setIndex((i) => (i === images.length - 1 ? 0 : i + 1));
   }, [images.length]);
 
+  useEffect(() => {
+    if (!hasMultiple) return;
+    const timer = window.setInterval(goNext, AUTO_SLIDE_MS);
+    return () => window.clearInterval(timer);
+  }, [hasMultiple, goNext]);
+
   if (!current) return null;
 
   return (
@@ -49,35 +56,10 @@ export function ProjectDetailHero({
       />
       <div className="absolute inset-0 bg-black/30" aria-hidden />
 
-      {hasMultiple ? (
-        <>
-          <button
-            type="button"
-            onClick={goPrev}
-            className="absolute bottom-[20%] cursor-pointer left-6 z-20 flex size-12 items-center justify-center bg-black/30 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:left-12"
-            aria-label="Prethodna fotografija"
-          >
-            <ChevronLeft className="size-6 text-primary" aria-hidden />
-          </button>
-          <button
-            type="button"
-            onClick={goNext}
-            className="absolute bottom-[20%] cursor-pointer right-6 z-20 flex size-12 items-center justify-center bg-black/30 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:right-12"
-            aria-label="Sledeća fotografija"
-          >
-            <ChevronRight className="size-6  text-primary" aria-hidden />
-          </button>
-        </>
-      ) : null}
-
       <SiteContainer className="relative z-10 flex min-h-[min(100vh,954px)] flex-col justify-end px-4 pb-16 pt-28 md:px-8 md:pb-20 md:pt-32">
         <Link
           href="/projekti"
-          className={cn(
-            "mb-6 inline-flex h-10 w-fit items-center gap-2 rounded-3xl bg-[#12141d] px-4 py-2",
-            "font-sans text-base font-medium text-primary transition-colors hover:text-primary-300",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-          )}
+          className="mb-6 inline-flex min-h-[60px] w-fit items-center gap-2 bg-primary px-4 py-2 font-sans text-base font-medium text-primary-foreground transition-colors hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <ArrowLeft className="size-4 shrink-0" aria-hidden />
           NAZAD
@@ -88,6 +70,27 @@ export function ProjectDetailHero({
         <p className="mt-4 max-w-[591px] font-sans text-lg font-medium leading-[1.2] text-white md:text-xl">
           {subtitle}
         </p>
+
+        {hasMultiple ? (
+          <div className="mt-8 flex items-center gap-4">
+            <button
+              type="button"
+              onClick={goPrev}
+              className="flex size-12 cursor-pointer items-center justify-center bg-black/30 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              aria-label="Prethodna fotografija"
+            >
+              <ChevronLeft className="size-6 text-primary" aria-hidden />
+            </button>
+            <button
+              type="button"
+              onClick={goNext}
+              className="flex size-12 cursor-pointer items-center justify-center bg-black/30 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              aria-label="Sledeća fotografija"
+            >
+              <ChevronRight className="size-6 text-primary" aria-hidden />
+            </button>
+          </div>
+        ) : null}
       </SiteContainer>
     </section>
   );

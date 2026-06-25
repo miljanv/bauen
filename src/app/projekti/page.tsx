@@ -16,33 +16,37 @@ export const metadata = createPageMetadata({
 
 export default function ProjectsPage() {
   return (
-    <>
-      <section className="relative min-h-[min(100vh,1024px)]">
-        <Image
-          src={siteImages.projekti.hero}
-          alt=""
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div
-          className="absolute inset-0 bg-linear-to-b from-transparent from-20% via-[rgba(9,10,15,0.5)] via-75% to-[#12141d]"
-          aria-hidden
-        />
-        <SiteContainer className="relative z-1 flex min-h-[min(100vh,1024px)] flex-col items-center px-4 pb-16 pt-28 text-center md:px-6 md:pb-20 md:pt-32">
-          <div className="w-full max-w-4xl text-left">
+    <div className="overflow-x-hidden">
+      <section className="relative min-h-[min(100vh,1024px)] w-full overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src={siteImages.projekti.hero}
+            alt=""
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          <div
+            className="absolute inset-0 bg-linear-to-b from-transparent from-20% via-[rgba(9,10,15,0.5)] via-75% to-[#12141d]"
+            aria-hidden
+          />
+        </div>
+        <SiteContainer className="relative z-1 flex min-h-[min(100vh,1024px)] flex-col items-center justify-center pb-16 pt-28 max-md:-translate-y-8 md:translate-y-0 md:items-start md:justify-end md:pb-20 md:pt-32">
+          <div className="w-full max-w-4xl text-center md:text-left">
             <Reveal variant="fade-up" duration={900}>
-              <h1 className="font-heading text-[clamp(2.25rem,6vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
-                Projekti
+              <h1 className="text-balance font-heading text-[clamp(2.25rem,6vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[62px]">
+                <span className="text-primary">Kompletna rešenja</span> u
+                oblasti visokogradnje, niskogradnje i specijalizovanih
+                građevinskih radova.
               </h1>
             </Reveal>
-            <Reveal variant="fade-up" delay={150} duration={800}>
-              <p className="mt-4 max-w-[591px] font-sans text-lg font-medium leading-[1.2] text-white md:text-xl">
-                Kompletna rešenja u oblasti visokogradnje, niskogradnje i specijalizovanih građevinskih radova.
-              </p>
-            </Reveal>
-            <Reveal variant="fade-up" delay={300} duration={800} className="mt-10">
+            <Reveal
+              variant="fade-up"
+              delay={200}
+              duration={800}
+              className="mt-10 flex justify-center md:justify-start"
+            >
               <BauenCtaLink href="/kontakt" className="px-4">
                 KONTAKTIRAJTE NAS
               </BauenCtaLink>
@@ -52,6 +56,6 @@ export default function ProjectsPage() {
       </section>
 
       <ProjektiPortfolio />
-    </>
+    </div>
   );
 }

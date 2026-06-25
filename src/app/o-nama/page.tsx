@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
+import { AboutHeroGlass } from "@/components/about-hero-glass";
 import { AboutMilestones } from "@/components/about-milestones";
 import { BauenCtaLink } from "@/components/bauen-cta-button";
-import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
 import { Reveal } from "@/components/reveal";
 import {
   SECTION_WATERMARK_STROKE_INLINE_LG,
@@ -41,14 +41,6 @@ const milestones = [
     alt: "Savremeno gradilište sa kranom",
   },
 ] as const;
-
-const aboutHeroGlassStyle = {
-  backgroundImage:
-    "radial-gradient(70.56% 70.56% at 69.32% 29.44%, rgba(82, 115, 164, 0.30) 0%, rgba(152, 174, 216, 0.03) 100%)",
-  boxShadow: "inset 0 205px 82px 1px rgba(125, 109, 162, 0.01)",
-  backdropFilter: "blur(10.449999809265137px)",
-  WebkitBackdropFilter: "blur(10.449999809265137px)",
-} as const;
 
 export default function AboutPage() {
   return (
@@ -102,7 +94,7 @@ export default function AboutPage() {
               </BauenCtaLink>
               <Link
                 href="/kontakt"
-                className="font-nav inline-flex h-[60px] items-center gap-2 border border-white/70 bg-white/15 px-4 text-base font-medium text-neutral-50 backdrop-blur-md transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="font-nav inline-flex h-[60px] items-center justify-center gap-2 border border-white/70 bg-white/15 px-4 text-center text-base font-medium text-neutral-50 backdrop-blur-md transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 KONTAKTIRAJTE NAS
                 <ChevronRight className="size-4 shrink-0" aria-hidden />
@@ -115,41 +107,7 @@ export default function AboutPage() {
               duration={900}
               className="lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:-mt-8 lg:self-start xl:col-span-7 xl:col-start-6"
             >
-              <div
-                className="relative overflow-visible rounded-[3px] border border-[rgba(255,255,255,0.12)] p-5 sm:p-8 md:p-10"
-                style={aboutHeroGlassStyle}
-              >
-                <ProjectSubtractCorners variant="glass-tl-br" />
-                <div className="relative z-10 space-y-3 font-sans text-base font-medium leading-[1.25] text-neutral-50 sm:space-y-4 md:text-lg lg:text-xl xl:text-2xl xl:leading-[1.2]">
-                  <p>
-                    Građevinsko preduzeće Bauen pod ovim imenom postoji od 1993.
-                    godine ali njegova istorija počinje nekoliko godina ranije
-                    kao deo Građevinske zanatske zadruge „Bačka“ iz Vrbasa.
-                  </p>
-                  <p>
-                    Počeli smo kao porodična firma u sastavu već pomenute
-                    zanatske zadruge da bismo se vremenom osamostalili i
-                    predanim radom i kvalitetnom uslugom prerasli u lidera
-                    industrije na ovim prostorima. Sve ovo je propraćeno i
-                    rastom broja zaposlenih koji danas, zajedno sa našim
-                    klijentima i partnerima, čine deo Bauen porodice.
-                  </p>
-                  <p>
-                    Bauen gradnja se kao firma razvila i odvojila od svojih
-                    konkurenata stvarajući jedinstveni spoj visoke tehnologije i
-                    građevinskog majstorstva usmerenog prvenstveno na želje
-                    klijenata. Zato i ne čudi podatak da iz godine u godinu
-                    beležimo konstantan rast i vanserijeske rezultate u oblasti
-                    građevinarstva.
-                  </p>
-                  <p>
-                    Želimo da ostvarimo trajne odnose sa našim klijentima i
-                    partnerima tako što ćemo premašiti sva njihova očekivanja i
-                    steći njihovo poverenje izuzetnim performansama svakog člana
-                    našeg tima.
-                  </p>
-                </div>
-              </div>
+              <AboutHeroGlass />
             </Reveal>
           </div>
         </SiteContainer>
@@ -157,7 +115,7 @@ export default function AboutPage() {
 
       <AboutMilestones milestones={milestones} />
 
-      <section className="relative bg-background py-16 md:py-24 lg:py-32">
+      <section className="relative bg-background  pb-8 md:pt-24 md:pb-12 lg:pt-32 lg:pb-16">
         <SiteContainer className="relative">
           <Reveal variant="fade-up" duration={800}>
             <h2 className="font-heading text-[clamp(2rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
@@ -167,27 +125,28 @@ export default function AboutPage() {
           <div className="relative z-10 mt-4 flex w-full max-w-none flex-col gap-4 font-sans text-base font-medium leading-[1.25] text-neutral-50 sm:mt-6 sm:gap-6 md:text-xl lg:text-2xl lg:leading-[1.2]">
             <Reveal variant="fade-up" delay={100} duration={800}>
               <p>
-                Zahvaljujući predanom radu i vrhunskoj stručnosti svog kadra ali i
-                čestim društveno odgovornim aktivnostima, Bauen je dobitnik
-                velikog broja nagrada, priznanja i zahvalnica. Već nekoliko godina
-                za redom naša bonitetna ocena je A+, što nas svrstava u grupu
-                preduzeća sa najboljom bonitetnom ocenom u Srbiji.
+                Zahvaljujući predanom radu i vrhunskoj stručnosti svog kadra ali
+                i čestim društveno odgovornim aktivnostima, Bauen je dobitnik
+                velikog broja nagrada, priznanja i zahvalnica. Već nekoliko
+                godina za redom naša bonitetna ocena je A+, što nas svrstava u
+                grupu preduzeća sa najboljom bonitetnom ocenom u Srbiji.
               </p>
             </Reveal>
             <Reveal variant="fade-up" delay={200} duration={800}>
               <p>
                 Bauen se može pohvaliti i učestovanjem u dobrotvornim akcijama i
-                sponzorisanjem svih događaja humanitarnog karaktera na teritoriji
-                svog poslovanja jer smatramo da je to moralna obaveza svakoga ko
-                je u mogućnosti da to uradi.
+                sponzorisanjem svih događaja humanitarnog karaktera na
+                teritoriji svog poslovanja jer smatramo da je to moralna obaveza
+                svakoga ko je u mogućnosti da to uradi.
               </p>
             </Reveal>
             <Reveal variant="fade-up" delay={300} duration={800}>
               <p>
                 Ponosni smo na činjenicu da je naš rad prepoznat od strane
-                renomiranih domaćih i stranih ustanova i sa tim na umu nastavljamo
-                da radimo naporno i gradimo kvalitetno kako bi opravdali i
-                negovali stečeno poverenje naših klijenata i javnosti.
+                renomiranih domaćih i stranih ustanova i sa tim na umu
+                nastavljamo da radimo naporno i gradimo kvalitetno kako bi
+                opravdali i negovali stečeno poverenje naših klijenata i
+                javnosti.
               </p>
             </Reveal>
           </div>

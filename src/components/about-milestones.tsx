@@ -129,7 +129,7 @@ function MilestoneRailMarker({
         width={36}
         height={36}
         className={cn(
-          "relative z-10 h-7 w-7 object-contain sm:h-9 sm:w-9 lg:h-10 lg:w-10 transition-[filter,transform] duration-500 ease-out motion-reduce:transition-none",
+          "relative z-10 h-[34px] w-[34px] object-contain sm:h-[42px] sm:w-[42px] lg:h-[46px] lg:w-[46px] transition-[filter,transform] duration-500 ease-out motion-reduce:transition-none",
           !isFirst &&
             a >= 0.998 &&
             "motion-safe:scale-[1.03] motion-reduce:scale-100",
@@ -240,7 +240,7 @@ export function AboutMilestones({
               className="relative mx-auto min-h-[120px] w-full flex-1 sm:min-h-[160px]"
             >
               <div
-                className="pointer-events-none absolute left-1/2 top-0 bottom-0 z-0 w-px -translate-x-1/2 overflow-hidden bg-neutral-700 sm:w-1"
+                className="pointer-events-none absolute left-1/2 top-5 bottom-0 z-0 w-px -translate-x-1/2 overflow-hidden bg-neutral-700 sm:top-6 sm:w-1 lg:top-7"
                 aria-hidden
               >
                 <div
@@ -268,7 +268,7 @@ export function AboutMilestones({
             </div>
           </div>
 
-          <ol className="flex min-w-0 flex-1 flex-col gap-16 md:gap-20 lg:gap-28">
+          <ol className="flex min-w-0 flex-1 flex-col gap-24 md:gap-32 lg:gap-44">
             {milestones.map((m, i) => (
               <li key={m.year} className="relative">
                 <div className="relative flex flex-col lg:grid lg:min-h-[579px] lg:grid-cols-12 lg:items-center">

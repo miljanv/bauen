@@ -1,6 +1,13 @@
+"use client";
+
+import { useCallback, useState } from "react";
+
 import type { ProjectGalleryItem } from "@/lib/projects";
 
-import { ProjectGalleryImage } from "@/components/project-gallery-image";
+import {
+  ProjectGalleryImageButton,
+  ProjectGalleryLightbox,
+} from "@/components/project-gallery-lightbox";
 import { SiteContainer } from "@/components/site-container";
 
 type ProjectGalleryProps = {
@@ -25,6 +32,25 @@ function groupGalleryRows(items: ProjectGalleryItem[]): ProjectGalleryItem[][] {
 
 export function ProjectGallery({ items }: ProjectGalleryProps) {
   const rows = groupGalleryRows(items);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const imageIndexMap = new Map<string, number>();
+  items.forEach((item, i) => {
+    imageIndexMap.set(item.src, i);
+  });
+
+  const openLightbox = useCallback((index: number) => {
+    setLightboxIndex(index);
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxIndex(null);
+  }, []);
+
+  const galleryImages = items.map((item) => ({
+    src: item.src,
+    alt: item.alt,
+  }));
 
   return (
     <section className="bg-background py-16 md:py-20" aria-label="Galerija projekta">
@@ -32,16 +58,19 @@ export function ProjectGallery({ items }: ProjectGalleryProps) {
         {rows.map((row, rowIndex) => {
           if (row.length === 1 && row[0].layout === "full") {
             const item = row[0];
+            const index = imageIndexMap.get(item.src) ?? 0;
             return (
               <div
                 key={`${item.src}-full-${rowIndex}`}
                 className="relative aspect-1440/954 w-full overflow-hidden"
               >
-                <ProjectGalleryImage
+                <ProjectGalleryImageButton
                   src={item.src}
                   alt={item.alt}
                   sizes="100vw"
                   priority={rowIndex === 0}
+                  index={index}
+                  onOpen={openLightbox}
                 />
               </div>
             );
@@ -52,22 +81,35 @@ export function ProjectGallery({ items }: ProjectGalleryProps) {
               key={`row-${rowIndex}`}
               className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8"
             >
-              {row.map((item) => (
-                <div
-                  key={`${item.src}-${rowIndex}`}
-                  className="relative aspect-673/897 w-full overflow-hidden"
-                >
-                  <ProjectGalleryImage
-                    src={item.src}
-                    alt={item.alt}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-              ))}
+              {row.map((item) => {
+                const index = imageIndexMap.get(item.src) ?? 0;
+                return (
+                  <div
+                    key={`${item.src}-${rowIndex}`}
+                    className="relative aspect-673/897 w-full overflow-hidden"
+                  >
+                    <ProjectGalleryImageButton
+                      src={item.src}
+                      alt={item.alt}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      index={index}
+                      onOpen={openLightbox}
+                    />
+                  </div>
+                );
+              })}
             </div>
           );
         })}
       </SiteContainer>
+
+      {lightboxIndex !== null ? (
+        <ProjectGalleryLightbox
+          images={galleryImages}
+          initialIndex={lightboxIndex}
+          onClose={closeLightbox}
+        />
+      ) : null}
     </section>
   );
 }

@@ -76,7 +76,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-background text-foreground antialiased">
         <OrganizationJsonLd />
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 overflow-x-hidden">{children}</main>
         <SiteFooter />
       </body>
     </html>
