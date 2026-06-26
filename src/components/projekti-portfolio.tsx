@@ -79,10 +79,10 @@ export function ProjektiPortfolio() {
                 aria-controls={`projekti-panel-${id}`}
                 onClick={() => setActive(id)}
                 className={cn(
-                  "shrink-0 whitespace-nowrap border-b-2 px-4 py-6 text-left font-sans text-xl font-medium leading-[1.1] transition-colors lg:text-[32px]",
+                  "relative shrink-0 whitespace-nowrap border-b-2 border-transparent px-3 py-6 font-sans text-xl font-medium transition-colors md:px-5",
                   selected
-                    ? "border-primary text-primary"
-                    : "border-transparent text-neutral-700 hover:text-neutral-500",
+                    ? "text-primary after:absolute after:-inset-x-1 after:bottom-0 after:z-1 after:border-b-2 after:border-primary md:after:-inset-x-2"
+                    : "text-neutral-600 hover:text-neutral-400",
                 )}
               >
                 {label}
@@ -95,7 +95,7 @@ export function ProjektiPortfolio() {
           id={`projekti-panel-${active}`}
           role="tabpanel"
           aria-labelledby={`projekti-tab-${active}`}
-          className="font-nav mt-6 text-xl font-medium leading-[1.2] text-neutral-700 md:mt-8 md:text-2xl"
+          className="font-nav mt-6 text-lg font-medium leading-[1.2] text-neutral-700 md:mt-8 md:text-xl"
         >
           {activeCopy.description}
         </p>

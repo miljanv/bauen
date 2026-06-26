@@ -32,7 +32,7 @@ export default function ProjectsPage() {
             aria-hidden
           />
         </div>
-        <SiteContainer className="relative z-1 flex min-h-[min(100vh,1024px)] flex-col justify-center pb-16 pt-28 max-md:-translate-y-8 md:items-start md:pb-20 md:pt-32">
+        <SiteContainer className="page-hero-offset relative z-1 flex min-h-[min(100vh,1024px)] flex-col pb-16 md:items-start md:pb-20">
           <div className="w-full max-w-none text-center md:text-left">
             <Reveal variant="fade-up" duration={900}>
               <h1 className="max-w-none font-heading text-[clamp(2.25rem,6vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[58px]">

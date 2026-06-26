@@ -244,4 +244,7 @@
   .bg-gradient-brand-soft {
     background-image: var(--gradient-brand-soft);
   }
+  .page-hero-offset {
+    @apply pt-32 md:pt-52 lg:pt-60;
+  }
 }

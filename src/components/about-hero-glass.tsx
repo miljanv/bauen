@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 
-import { BauenCtaButton } from "@/components/bauen-cta-button";
+import { BauenCtaButton, ctaMobileCompactClass } from "@/components/bauen-cta-button";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
+import { cn } from "@/lib/utils";
 
 const aboutHeroGlassStyle = {
   backgroundImage:
@@ -44,7 +45,7 @@ export function AboutHeroGlass() {
         )}
         {!expanded ? (
           <BauenCtaButton
-            className="mt-2 px-4"
+            className={cn("mt-2", ctaMobileCompactClass)}
             onClick={() => setExpanded(true)}
           >
             DETALJNIJE

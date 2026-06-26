@@ -66,8 +66,8 @@ export default function HomePage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,17,32,0)] from-[20%] via-background/20 to-background" />
-        <SiteContainer className="relative z-[1] flex min-h-screen flex-col items-center px-4 pb-16 pt-28 text-center md:px-6 md:pb-12 md:pt-32">
-          <div className="mt-[10vh] flex w-full flex-col items-center">
+        <SiteContainer className="page-hero-offset relative z-[1] flex min-h-screen flex-col items-center px-4 pb-16 text-center md:px-6 md:pb-12">
+          <div className="flex w-full flex-col items-center">
             <Reveal
               variant="fade-up"
               duration={900}

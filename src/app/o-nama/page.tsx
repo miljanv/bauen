@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 
 import { AboutHeroGlass } from "@/components/about-hero-glass";
 import { AboutMilestones } from "@/components/about-milestones";
-import { BauenCtaLink } from "@/components/bauen-cta-button";
+import { BauenCtaLink, ctaMobileCompactClass } from "@/components/bauen-cta-button";
 import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 import { siteImages } from "@/lib/site-images";
@@ -55,7 +55,7 @@ export default function AboutPage() {
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-background" />
         </div>
 
-        <SiteContainer className="relative pb-16 pt-32 md:pb-20 md:pt-52 lg:pb-32 lg:pt-60">
+        <SiteContainer className="page-hero-offset relative pb-16 md:pb-20 lg:pb-32">
           <div className="grid gap-10 md:gap-14 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-10 xl:gap-x-12">
             <Reveal
               variant="fade-up"
@@ -73,35 +73,37 @@ export default function AboutPage() {
                   </span>
                 </span>
               </h1>
-              <p className="font-nav mt-4 max-w-[591px] text-base font-medium leading-relaxed text-white sm:mt-6 md:mt-8 md:text-xl lg:mt-10">
-                Od porodičnih početaka do savremene građevinske kompanije, naš
-                put obeležavaju posvećenost, stručnost i kontinuiran rast.
-              </p>
             </Reveal>
 
             <Reveal
               variant="fade-up"
               delay={200}
               duration={800}
-              className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 md:gap-6 lg:col-span-5 lg:col-start-1 lg:row-start-2 lg:flex-col lg:items-stretch lg:self-start"
+              className="flex flex-col items-stretch gap-4 sm:gap-6 lg:col-span-5 lg:col-start-1 lg:row-start-2 lg:self-start xl:col-span-5"
             >
-              <BauenCtaLink href="/projekti" className="px-4">
-                PROJEKTI
-              </BauenCtaLink>
-              <Link
-                href="/kontakt"
-                className="font-nav inline-flex h-[60px] items-center justify-center gap-2 border border-white/70 bg-white/15 px-4 text-center text-base font-medium text-neutral-50 backdrop-blur-md transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                KONTAKTIRAJTE NAS
-                <ChevronRight className="size-4 shrink-0" aria-hidden />
-              </Link>
+              <p className="font-nav max-w-[591px] text-base font-medium leading-relaxed text-white md:text-xl">
+                Od porodičnih početaka do savremene građevinske kompanije, naš
+                put obeležavaju posvećenost, stručnost i kontinuiran rast.
+              </p>
+              <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 md:gap-6 lg:flex-col lg:items-stretch">
+                <BauenCtaLink href="/projekti" className={ctaMobileCompactClass}>
+                  PROJEKTI
+                </BauenCtaLink>
+                <Link
+                  href="/kontakt"
+                  className="font-nav inline-flex min-h-[44px] items-center justify-center gap-2 border border-white/70 bg-white/15 px-4 text-center text-sm font-medium text-neutral-50 backdrop-blur-md transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:h-[60px] md:text-base"
+                >
+                  KONTAKTIRAJTE NAS
+                  <ChevronRight className="size-4 shrink-0" aria-hidden />
+                </Link>
+              </div>
             </Reveal>
 
             <Reveal
               variant="fade-left"
               delay={150}
               duration={900}
-              className="lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:-mt-8 lg:self-start xl:col-span-7 xl:col-start-6"
+              className="lg:col-span-6 lg:col-start-7 lg:row-start-2 lg:self-start xl:col-span-7 xl:col-start-6"
             >
               <AboutHeroGlass />
             </Reveal>

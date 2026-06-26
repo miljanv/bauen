@@ -38,7 +38,7 @@ export function ProjectDetailInfo({
                   <button
                     type="button"
                     onClick={() => setExpanded(true)}
-                    className="inline text-primary transition-colors hover:text-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="inline cursor-pointer text-primary transition-colors hover:text-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
                     Vidi više &gt;
                   </button>
@@ -54,7 +54,7 @@ export function ProjectDetailInfo({
                     <button
                       type="button"
                       onClick={() => setExpanded(false)}
-                      className="text-primary transition-colors hover:text-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      className="cursor-pointer text-primary transition-colors hover:text-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     >
                       Vidi manje &gt;
                     </button>

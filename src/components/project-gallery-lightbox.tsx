@@ -64,7 +64,7 @@ export function ProjectGalleryLightbox({
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-4 top-4 z-10 flex size-12 items-center justify-center bg-primary text-primary-foreground transition-colors hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        className="absolute right-4 top-4 z-10 flex size-12 cursor-pointer items-center justify-center bg-primary text-primary-foreground transition-colors hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         aria-label="Zatvori"
       >
         <X className="size-6" aria-hidden />
@@ -78,7 +78,7 @@ export function ProjectGalleryLightbox({
               e.stopPropagation();
               goPrev();
             }}
-            className="absolute left-4 top-1/2 z-10 flex size-12 -translate-y-1/2 items-center justify-center bg-black/40 text-primary transition-colors hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:left-8"
+            className="absolute left-4 top-1/2 z-10 flex size-12 -translate-y-1/2 cursor-pointer items-center justify-center bg-black/40 text-primary transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:left-8"
             aria-label="Prethodna fotografija"
           >
             <ChevronLeft className="size-6" aria-hidden />
@@ -89,7 +89,7 @@ export function ProjectGalleryLightbox({
               e.stopPropagation();
               goNext();
             }}
-            className="absolute right-4 top-1/2 z-10 flex size-12 -translate-y-1/2 items-center justify-center bg-black/40 text-primary transition-colors hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:right-8"
+            className="absolute right-4 top-1/2 z-10 flex size-12 -translate-y-1/2 cursor-pointer items-center justify-center bg-black/40 text-primary transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:right-8"
             aria-label="Sledeća fotografija"
           >
             <ChevronRight className="size-6" aria-hidden />
@@ -141,7 +141,7 @@ export function ProjectGalleryImageButton({
       type="button"
       onClick={() => onOpen(index)}
       className={cn(
-        "group relative block size-full overflow-hidden bg-background text-left",
+        "group relative block size-full cursor-pointer overflow-hidden bg-background text-left",
         className,
       )}
       aria-label={`Uvećaj fotografiju: ${alt}`}

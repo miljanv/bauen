@@ -6,6 +6,10 @@ import { cn } from "@/lib/utils";
 const ctaClass =
   "inline-flex min-h-[60px] items-center justify-center gap-2 bg-primary px-8 py-2 text-center text-base font-medium text-primary-foreground transition-colors hover:bg-primary-700 active:bg-primary-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
+/** Smaller CTA sizing on viewports below `md`. */
+export const ctaMobileCompactClass =
+  "min-h-[44px] px-4 text-sm md:min-h-[60px] md:px-8 md:text-base";
+
 export function BauenCtaLink({
   className,
   href,
