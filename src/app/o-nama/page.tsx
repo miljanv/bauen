@@ -57,7 +57,7 @@ export default function AboutPage() {
         </div>
 
         <SiteContainer className="page-hero-offset relative pb-16 md:pb-20 lg:pb-32">
-          <div className="grid gap-10 md:gap-14 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-10 xl:gap-x-12">
+          <div className="grid gap-12 md:gap-16 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-16 xl:gap-x-12 xl:gap-y-20">
             <Reveal
               variant="fade-up"
               duration={900}
