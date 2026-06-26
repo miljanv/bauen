@@ -140,7 +140,7 @@ export function HomeServices() {
               aria-selected={active === tab.id}
               onClick={() => setActive(tab.id)}
               className={cn(
-                "relative shrink-0 whitespace-nowrap border-b-2 border-transparent px-3 py-6 font-sans text-xl font-medium transition-colors md:px-5",
+                "relative shrink-0 cursor-pointer whitespace-nowrap border-b-2 border-transparent px-3 py-6 font-sans text-xl font-medium transition-colors md:px-5",
                 active === tab.id
                   ? "text-primary after:absolute after:-inset-x-1 after:bottom-0 after:z-1 after:border-b-2 after:border-primary md:after:-inset-x-2"
                   : "text-neutral-600 hover:text-neutral-400",
