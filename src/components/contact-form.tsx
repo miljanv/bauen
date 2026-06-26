@@ -112,7 +112,7 @@ export function ContactForm() {
           <div className="relative w-full lg:inline-block lg:w-auto">
             <Button
               type="submit"
-              className="relative z-0 font-sans h-[60px] max-h-[60px] w-full rounded-none px-4 text-base font-medium uppercase tracking-normal lg:w-auto"
+              className="relative z-0 font-sans h-[44px] max-h-[44px] w-full rounded-none px-4 text-sm font-medium uppercase tracking-normal md:h-[60px] md:max-h-[60px] md:text-base lg:w-auto"
             >
               POŠALJITE PORUKU
             </Button>

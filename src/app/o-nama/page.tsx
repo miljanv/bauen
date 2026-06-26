@@ -4,11 +4,12 @@ import { ChevronRight } from "lucide-react";
 
 import { AboutHeroGlass } from "@/components/about-hero-glass";
 import { AboutMilestones } from "@/components/about-milestones";
-import { BauenCtaLink, ctaMobileCompactClass } from "@/components/bauen-cta-button";
+import { BauenCtaLink, outlineActionButtonClass } from "@/components/bauen-cta-button";
 import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 import { siteImages } from "@/lib/site-images";
 import { createPageMetadata } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 
 export const metadata = createPageMetadata({
   title: "O nama",
@@ -86,12 +87,13 @@ export default function AboutPage() {
                 put obeležavaju posvećenost, stručnost i kontinuiran rast.
               </p>
               <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 md:gap-6 lg:flex-col lg:items-stretch">
-                <BauenCtaLink href="/projekti" className={ctaMobileCompactClass}>
-                  PROJEKTI
-                </BauenCtaLink>
+                <BauenCtaLink href="/projekti">PROJEKTI</BauenCtaLink>
                 <Link
                   href="/kontakt"
-                  className="font-nav inline-flex min-h-[44px] items-center justify-center gap-2 border border-white/70 bg-white/15 px-4 text-center text-sm font-medium text-neutral-50 backdrop-blur-md transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:h-[60px] md:text-base"
+                  className={cn(
+                    outlineActionButtonClass,
+                    "border border-white/70 bg-white/15 text-neutral-50 backdrop-blur-md hover:bg-white/25",
+                  )}
                 >
                   KONTAKTIRAJTE NAS
                   <ChevronRight className="size-4 shrink-0" aria-hidden />

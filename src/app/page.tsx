@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
-import { BauenCtaLink } from "@/components/bauen-cta-button";
+import { BauenCtaLink, outlineActionButtonClass } from "@/components/bauen-cta-button";
 import { HomePromoVideo } from "@/components/home-promo-video";
 import { HomeServices } from "@/components/home-services";
 import { ProjectShowcaseCard } from "@/components/project-showcase-card";
@@ -191,7 +191,10 @@ export default function HomePage() {
           >
             <Link
               href="/projekti"
-              className="font-nav inline-flex h-[60px] items-center gap-2 border border-primary px-4 text-base font-medium text-neutral-50 transition-colors hover:bg-primary/10"
+              className={cn(
+                outlineActionButtonClass,
+                "border border-primary text-neutral-50 hover:bg-primary/10",
+              )}
             >
               POGLEDAJTE SVE NAŠE PROJEKTE
               <ChevronRight className="size-4 shrink-0" aria-hidden />

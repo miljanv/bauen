@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
+import { iconActionButtonClass } from "@/components/bauen-cta-button";
 import { cn } from "@/lib/utils";
 
 type GalleryImage = {
@@ -64,10 +65,13 @@ export function ProjectGalleryLightbox({
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-4 top-4 z-10 flex size-12 cursor-pointer items-center justify-center bg-primary text-primary-foreground transition-colors hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        className={cn(
+          iconActionButtonClass,
+          "absolute right-4 top-4 z-10 bg-primary text-primary-foreground hover:bg-primary-700",
+        )}
         aria-label="Zatvori"
       >
-        <X className="size-6" aria-hidden />
+        <X className="size-5 md:size-6" aria-hidden />
       </button>
 
       {hasMultiple ? (
@@ -78,10 +82,13 @@ export function ProjectGalleryLightbox({
               e.stopPropagation();
               goPrev();
             }}
-            className="absolute left-4 top-1/2 z-10 flex size-12 -translate-y-1/2 cursor-pointer items-center justify-center bg-black/40 text-primary transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:left-8"
+            className={cn(
+              iconActionButtonClass,
+              "absolute left-4 top-1/2 z-10 -translate-y-1/2 bg-black/40 text-primary hover:bg-white/25 md:left-8",
+            )}
             aria-label="Prethodna fotografija"
           >
-            <ChevronLeft className="size-6" aria-hidden />
+            <ChevronLeft className="size-5 md:size-6" aria-hidden />
           </button>
           <button
             type="button"
@@ -89,10 +96,13 @@ export function ProjectGalleryLightbox({
               e.stopPropagation();
               goNext();
             }}
-            className="absolute right-4 top-1/2 z-10 flex size-12 -translate-y-1/2 cursor-pointer items-center justify-center bg-black/40 text-primary transition-colors hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:right-8"
+            className={cn(
+              iconActionButtonClass,
+              "absolute right-4 top-1/2 z-10 -translate-y-1/2 bg-black/40 text-primary hover:bg-white/25 md:right-8",
+            )}
             aria-label="Sledeća fotografija"
           >
-            <ChevronRight className="size-6" aria-hidden />
+            <ChevronRight className="size-5 md:size-6" aria-hidden />
           </button>
         </>
       ) : null}

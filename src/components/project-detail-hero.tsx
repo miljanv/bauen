@@ -5,7 +5,9 @@ import Link from "next/link";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
+import { iconActionButtonClass } from "@/components/bauen-cta-button";
 import { SiteContainer } from "@/components/site-container";
+import { cn } from "@/lib/utils";
 
 const AUTO_SLIDE_MS = 5000;
 
@@ -76,18 +78,24 @@ export function ProjectDetailHero({
             <button
               type="button"
               onClick={goPrev}
-              className="flex size-12 cursor-pointer items-center justify-center bg-black/30 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className={cn(
+                iconActionButtonClass,
+                "bg-black/30 text-white hover:bg-black/50",
+              )}
               aria-label="Prethodna fotografija"
             >
-              <ChevronLeft className="size-6 text-primary" aria-hidden />
+              <ChevronLeft className="size-5 text-primary md:size-6" aria-hidden />
             </button>
             <button
               type="button"
               onClick={goNext}
-              className="flex size-12 cursor-pointer items-center justify-center bg-black/30 text-white transition-colors hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className={cn(
+                iconActionButtonClass,
+                "bg-black/30 text-white hover:bg-black/50",
+              )}
               aria-label="Sledeća fotografija"
             >
-              <ChevronRight className="size-6 text-primary" aria-hidden />
+              <ChevronRight className="size-5 text-primary md:size-6" aria-hidden />
             </button>
           </div>
         ) : null}
