@@ -39,6 +39,15 @@ type ProjectSubtractCornersProps = {
   hoverFx?: boolean;
 };
 
+function milestoneHoverClasses(
+  hoverFx: boolean,
+  origin: string,
+  delay?: string,
+) {
+  if (!hoverFx) return undefined;
+  return cn("corner-hover-fx", origin, delay);
+}
+
 function CornerZoomInner({
   hoverFx,
   origin,
@@ -93,7 +102,9 @@ export function ProjectSubtractCorners({
     return (
       <Fragment>
         <span className={cn(GLASS_CORNER, OUT_TL, className)} aria-hidden>
-          <SubtractAsset className="rotate-90" />
+          <CornerZoomInner hoverFx={hoverFx} origin="origin-top-left">
+            <SubtractAsset className="rotate-90" />
+          </CornerZoomInner>
         </span>
         <span
           className={cn(
@@ -103,7 +114,13 @@ export function ProjectSubtractCorners({
           )}
           aria-hidden
         >
-          <SubtractAsset className="-rotate-90" />
+          <CornerZoomInner
+            hoverFx={hoverFx}
+            origin="origin-bottom-right"
+            delay="corner-hover-fx--d1"
+          >
+            <SubtractAsset className="-rotate-90" />
+          </CornerZoomInner>
         </span>
       </Fragment>
     );
@@ -116,6 +133,7 @@ export function ProjectSubtractCorners({
           className={cn(
             PANEL_CORNER_BASE,
             "left-[-0.75rem] top-[-0.75rem] items-start justify-start sm:left-[-1rem] sm:top-[-1rem]",
+            milestoneHoverClasses(hoverFx, "origin-top-left"),
             className,
           )}
           aria-hidden
@@ -126,6 +144,11 @@ export function ProjectSubtractCorners({
           className={cn(
             PANEL_CORNER_BASE,
             "right-[-1rem] top-[-1rem] items-start justify-end",
+            milestoneHoverClasses(
+              hoverFx,
+              "origin-top-right",
+              "corner-hover-fx--d1",
+            ),
             className,
           )}
           aria-hidden
@@ -136,6 +159,11 @@ export function ProjectSubtractCorners({
           className={cn(
             PANEL_CORNER_BASE,
             "bottom-[-0.75rem] left-[-0.75rem] items-end justify-start sm:bottom-[-1rem] sm:left-[-1rem]",
+            milestoneHoverClasses(
+              hoverFx,
+              "origin-bottom-left",
+              "corner-hover-fx--d2",
+            ),
             className,
           )}
           aria-hidden
@@ -146,6 +174,11 @@ export function ProjectSubtractCorners({
           className={cn(
             PANEL_CORNER_BASE,
             "bottom-[-1rem] right-[-1rem] items-end justify-end",
+            milestoneHoverClasses(
+              hoverFx,
+              "origin-bottom-right",
+              "corner-hover-fx--d3",
+            ),
             className,
           )}
           aria-hidden

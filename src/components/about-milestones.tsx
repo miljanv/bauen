@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 
-import { LCornerFrame } from "@/components/l-corner-frame";
+import { MilestoneImageBrCorner } from "@/components/milestone-image-br-corner";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
 import { SiteContainer } from "@/components/site-container";
 import { cn } from "@/lib/utils";
@@ -271,7 +271,7 @@ export function AboutMilestones({
           <ol className="flex min-w-0 flex-1 flex-col gap-24 md:gap-32 lg:gap-44">
             {milestones.map((m, i) => (
               <li key={m.year} className="relative">
-                <div className="relative flex flex-col lg:grid lg:min-h-[579px] lg:grid-cols-12 lg:items-center">
+                <div className="corner-hover-row relative flex flex-col lg:grid lg:min-h-[579px] lg:grid-cols-12 lg:items-center">
                   <div
                     ref={(el) => {
                       contentAnchorRefs.current[i] = el;
@@ -281,6 +281,7 @@ export function AboutMilestones({
                     <ProjectSubtractCorners
                       variant="milestone-overlay"
                       className="max-lg:size-8"
+                      hoverFx
                     />
                     <h2 className="relative z-10 font-heading text-[2.125rem] font-normal leading-[1.1] text-primary sm:text-[2.35rem] lg:text-[clamp(2.5rem,5vw,3.875rem)]">
                       {m.year}
@@ -290,19 +291,18 @@ export function AboutMilestones({
                     </p>
                   </div>
 
-                  <div className="relative h-[220px] w-full sm:h-[260px] lg:col-span-9 lg:col-start-4 lg:row-start-1 lg:aspect-auto lg:h-[579px]">
+                  <div className="corner-hover-zone relative h-[220px] w-full sm:h-[260px] lg:col-span-9 lg:col-start-4 lg:row-start-1 lg:aspect-auto lg:h-[579px]">
                     <div className="relative h-full w-full">
-                      <Image
-                        src={m.image}
-                        alt={m.alt}
-                        fill
-                        className="object-cover grayscale"
-                        sizes="(max-width:1024px) 100vw, 868px"
-                      />
-                      <LCornerFrame
-                        corners="br"
-                        bottomRightAccentClassName="bottom-[-4px] right-[-4px] h-14 w-14 border-b-[4px] border-r-[4px] sm:bottom-[-6px] sm:right-[-6px] sm:h-20 sm:w-20 sm:border-b-[6px] sm:border-r-[6px] lg:bottom-[-6px] lg:right-[-6px] lg:h-[90%] lg:w-[60%] lg:border-b-[8px] lg:border-r-[8px]"
-                      />
+                      <div className="absolute inset-0 overflow-hidden">
+                        <Image
+                          src={m.image}
+                          alt={m.alt}
+                          fill
+                          className="corner-hover-zoom-target object-cover grayscale"
+                          sizes="(max-width:1024px) 100vw, 868px"
+                        />
+                      </div>
+                      <MilestoneImageBrCorner />
                     </div>
                   </div>
                 </div>
