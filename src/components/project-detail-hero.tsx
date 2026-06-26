@@ -46,16 +46,29 @@ export function ProjectDetailHero({
 
   return (
     <section className="relative min-h-[min(100vh,954px)] overflow-hidden">
-      <Image
-        key={current.src}
-        src={current.src}
-        alt={current.alt}
-        fill
-        priority
-        className="object-cover transition-opacity duration-500"
-        style={{ objectPosition: heroObjectPosition }}
-        sizes="100vw"
-      />
+      <div className="absolute inset-0">
+        {images.map((image, i) => {
+          const isActive = i === index;
+          return (
+            <Image
+              key={image.src}
+              src={image.src}
+              alt={isActive ? image.alt : ""}
+              aria-hidden={!isActive}
+              fill
+              priority={i === 0}
+              className={cn(
+                "object-cover transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none",
+                isActive
+                  ? "z-[2] scale-100 opacity-100"
+                  : "z-[1] scale-[1.03] opacity-0",
+              )}
+              style={{ objectPosition: heroObjectPosition }}
+              sizes="100vw"
+            />
+          );
+        })}
+      </div>
       <div className="absolute inset-0 bg-black/30" aria-hidden />
 
       <SiteContainer className="relative z-10 flex flex-col justify-start px-4 pb-16 pt-28 md:px-8 md:pb-20 md:pt-40 lg:pt-48">
