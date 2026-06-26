@@ -46,17 +46,20 @@ export function ProjectShowcaseCard({
           duration={900}
           className="relative w-full overflow-visible max-lg:h-[271px] lg:aspect-705/529 lg:w-[min(705px,48%)] lg:max-w-[705px] lg:shrink-0"
         >
-          <Link href={href} className="relative block size-full">
-            <Image
-              src={image}
-              alt={alt}
-              fill
-              className="object-cover transition-opacity hover:opacity-95"
-              sizes="(max-width:1024px) 100vw, 705px"
-            />
+          <Link href={href} className="corner-hover-zone relative block size-full">
+            <div className="absolute inset-0 overflow-hidden">
+              <Image
+                src={image}
+                alt={alt}
+                fill
+                className="corner-hover-zoom-target object-cover"
+                sizes="(max-width:1024px) 100vw, 705px"
+              />
+            </div>
             <ProjectSubtractCorners
               variant={reverse ? "image-right" : "image-left"}
               className="max-lg:size-4"
+              hoverFx
             />
           </Link>
         </Reveal>

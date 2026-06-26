@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -35,7 +35,37 @@ type ProjectSubtractCornersProps = {
    */
   variant: "image-left" | "image-right" | "glass-tl-br" | "milestone-overlay";
   className?: string;
+  /** Zoom na hover — parent `.corner-hover-zone`. */
+  hoverFx?: boolean;
 };
+
+function CornerZoomInner({
+  hoverFx,
+  origin,
+  delay,
+  children,
+}: {
+  hoverFx: boolean;
+  origin: string;
+  delay?: string;
+  children: ReactNode;
+}) {
+  if (!hoverFx) {
+    return <>{children}</>;
+  }
+
+  return (
+    <span
+      className={cn(
+        "corner-hover-fx inline-flex items-[inherit] justify-[inherit]",
+        origin,
+        delay,
+      )}
+    >
+      {children}
+    </span>
+  );
+}
 
 function SubtractAsset({ className }: { className?: string }) {
   return (
@@ -57,6 +87,7 @@ function SubtractAsset({ className }: { className?: string }) {
 export function ProjectSubtractCorners({
   variant,
   className,
+  hoverFx = false,
 }: ProjectSubtractCornersProps) {
   if (variant === "glass-tl-br") {
     return (
@@ -129,13 +160,21 @@ export function ProjectSubtractCorners({
     return (
       <Fragment>
         <span className={cn(CORNER, INSET, className)} aria-hidden>
-          <SubtractAsset />
+          <CornerZoomInner hoverFx={hoverFx} origin="origin-bottom-left">
+            <SubtractAsset />
+          </CornerZoomInner>
         </span>
         <span
           className={cn(CORNER, "items-start justify-end", OUT_TR, className)}
           aria-hidden
         >
-          <SubtractAsset className="rotate-180" />
+          <CornerZoomInner
+            hoverFx={hoverFx}
+            origin="origin-top-right"
+            delay="corner-hover-fx--d1"
+          >
+            <SubtractAsset className="rotate-180" />
+          </CornerZoomInner>
         </span>
       </Fragment>
     );
@@ -147,13 +186,21 @@ export function ProjectSubtractCorners({
         className={cn(CORNER, "items-start justify-start", OUT_TL, className)}
         aria-hidden
       >
-        <SubtractAsset className="rotate-90" />
+        <CornerZoomInner hoverFx={hoverFx} origin="origin-top-left">
+          <SubtractAsset className="rotate-90" />
+        </CornerZoomInner>
       </span>
       <span
         className={cn(CORNER, INSET_BR, "items-end justify-end", className)}
         aria-hidden
       >
-        <SubtractAsset className="-rotate-90" />
+        <CornerZoomInner
+          hoverFx={hoverFx}
+          origin="origin-bottom-right"
+          delay="corner-hover-fx--d1"
+        >
+          <SubtractAsset className="-rotate-90" />
+        </CornerZoomInner>
       </span>
     </Fragment>
   );
