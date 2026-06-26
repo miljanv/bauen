@@ -9,7 +9,7 @@ import { iconActionButtonClass } from "@/components/bauen-cta-button";
 import { SiteContainer } from "@/components/site-container";
 import { cn } from "@/lib/utils";
 
-const AUTO_SLIDE_MS = 5000;
+const AUTO_SLIDE_MS = 3000;
 
 type ProjectDetailHeroProps = {
   title: string;
