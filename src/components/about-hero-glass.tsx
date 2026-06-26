@@ -29,10 +29,10 @@ export function AboutHeroGlass() {
 
   return (
     <div
-      className="relative overflow-visible rounded-[3px] border border-[rgba(255,255,255,0.12)] p-5 sm:p-8 md:p-10"
+      className="corner-hover-zone relative overflow-visible rounded-[3px] border border-[rgba(255,255,255,0.12)] p-5 sm:p-8 md:p-10"
       style={aboutHeroGlassStyle}
     >
-      <ProjectSubtractCorners variant="glass-tl-br" />
+      <ProjectSubtractCorners variant="glass-tl-br" hoverFx />
       <div className="relative z-10 space-y-3 font-sans text-base font-medium leading-[1.25] text-neutral-50 sm:space-y-4 md:text-lg lg:text-xl xl:text-2xl xl:leading-[1.2]">
         {expanded ? (
           FULL_PARAGRAPHS.map((p, i) => <p key={i}>{p}</p>)

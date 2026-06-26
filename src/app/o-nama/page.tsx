@@ -42,14 +42,14 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
+      <section className="about-hero-section relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
           <Image
             src={siteImages.about.hero}
             alt="Bauen radnici na gradilištu"
             fill
             priority
-            className="object-cover object-center"
+            className="about-hero-bg-zoom object-cover object-center"
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/55" />

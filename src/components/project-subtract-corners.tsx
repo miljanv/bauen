@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -35,7 +35,46 @@ type ProjectSubtractCornersProps = {
    */
   variant: "image-left" | "image-right" | "glass-tl-br" | "milestone-overlay";
   className?: string;
+  /** Zoom na hover — parent `.corner-hover-zone`. */
+  hoverFx?: boolean;
 };
+
+function milestoneHoverClasses(
+  hoverFx: boolean,
+  origin: string,
+  delay?: string,
+) {
+  if (!hoverFx) return undefined;
+  return cn("corner-hover-fx", origin, delay);
+}
+
+function CornerZoomInner({
+  hoverFx,
+  origin,
+  delay,
+  children,
+}: {
+  hoverFx: boolean;
+  origin: string;
+  delay?: string;
+  children: ReactNode;
+}) {
+  if (!hoverFx) {
+    return <>{children}</>;
+  }
+
+  return (
+    <span
+      className={cn(
+        "corner-hover-fx inline-flex items-[inherit] justify-[inherit]",
+        origin,
+        delay,
+      )}
+    >
+      {children}
+    </span>
+  );
+}
 
 function SubtractAsset({ className }: { className?: string }) {
   return (
@@ -57,12 +96,15 @@ function SubtractAsset({ className }: { className?: string }) {
 export function ProjectSubtractCorners({
   variant,
   className,
+  hoverFx = false,
 }: ProjectSubtractCornersProps) {
   if (variant === "glass-tl-br") {
     return (
       <Fragment>
         <span className={cn(GLASS_CORNER, OUT_TL, className)} aria-hidden>
-          <SubtractAsset className="rotate-90" />
+          <CornerZoomInner hoverFx={hoverFx} origin="origin-top-left">
+            <SubtractAsset className="rotate-90" />
+          </CornerZoomInner>
         </span>
         <span
           className={cn(
@@ -72,7 +114,13 @@ export function ProjectSubtractCorners({
           )}
           aria-hidden
         >
-          <SubtractAsset className="-rotate-90" />
+          <CornerZoomInner
+            hoverFx={hoverFx}
+            origin="origin-bottom-right"
+            delay="corner-hover-fx--d1"
+          >
+            <SubtractAsset className="-rotate-90" />
+          </CornerZoomInner>
         </span>
       </Fragment>
     );
@@ -85,6 +133,7 @@ export function ProjectSubtractCorners({
           className={cn(
             PANEL_CORNER_BASE,
             "left-[-0.75rem] top-[-0.75rem] items-start justify-start sm:left-[-1rem] sm:top-[-1rem]",
+            milestoneHoverClasses(hoverFx, "origin-top-left"),
             className,
           )}
           aria-hidden
@@ -95,6 +144,11 @@ export function ProjectSubtractCorners({
           className={cn(
             PANEL_CORNER_BASE,
             "right-[-1rem] top-[-1rem] items-start justify-end",
+            milestoneHoverClasses(
+              hoverFx,
+              "origin-top-right",
+              "corner-hover-fx--d1",
+            ),
             className,
           )}
           aria-hidden
@@ -105,6 +159,11 @@ export function ProjectSubtractCorners({
           className={cn(
             PANEL_CORNER_BASE,
             "bottom-[-0.75rem] left-[-0.75rem] items-end justify-start sm:bottom-[-1rem] sm:left-[-1rem]",
+            milestoneHoverClasses(
+              hoverFx,
+              "origin-bottom-left",
+              "corner-hover-fx--d2",
+            ),
             className,
           )}
           aria-hidden
@@ -115,6 +174,11 @@ export function ProjectSubtractCorners({
           className={cn(
             PANEL_CORNER_BASE,
             "bottom-[-1rem] right-[-1rem] items-end justify-end",
+            milestoneHoverClasses(
+              hoverFx,
+              "origin-bottom-right",
+              "corner-hover-fx--d3",
+            ),
             className,
           )}
           aria-hidden
@@ -129,13 +193,21 @@ export function ProjectSubtractCorners({
     return (
       <Fragment>
         <span className={cn(CORNER, INSET, className)} aria-hidden>
-          <SubtractAsset />
+          <CornerZoomInner hoverFx={hoverFx} origin="origin-bottom-left">
+            <SubtractAsset />
+          </CornerZoomInner>
         </span>
         <span
           className={cn(CORNER, "items-start justify-end", OUT_TR, className)}
           aria-hidden
         >
-          <SubtractAsset className="rotate-180" />
+          <CornerZoomInner
+            hoverFx={hoverFx}
+            origin="origin-top-right"
+            delay="corner-hover-fx--d1"
+          >
+            <SubtractAsset className="rotate-180" />
+          </CornerZoomInner>
         </span>
       </Fragment>
     );
@@ -147,13 +219,21 @@ export function ProjectSubtractCorners({
         className={cn(CORNER, "items-start justify-start", OUT_TL, className)}
         aria-hidden
       >
-        <SubtractAsset className="rotate-90" />
+        <CornerZoomInner hoverFx={hoverFx} origin="origin-top-left">
+          <SubtractAsset className="rotate-90" />
+        </CornerZoomInner>
       </span>
       <span
         className={cn(CORNER, INSET_BR, "items-end justify-end", className)}
         aria-hidden
       >
-        <SubtractAsset className="-rotate-90" />
+        <CornerZoomInner
+          hoverFx={hoverFx}
+          origin="origin-bottom-right"
+          delay="corner-hover-fx--d1"
+        >
+          <SubtractAsset className="-rotate-90" />
+        </CornerZoomInner>
       </span>
     </Fragment>
   );

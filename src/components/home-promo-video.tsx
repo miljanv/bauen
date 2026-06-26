@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
+import { LCornerScrollFill } from "@/components/l-corner-scroll-fill";
+import { useInViewProgress } from "@/lib/use-in-view-progress";
 import { cn } from "@/lib/utils";
 
 const YOUTUBE_VIDEO_ID = "EQKvvItGsGI";
@@ -26,9 +28,12 @@ export function HomePromoVideo({
   posterSizes,
 }: HomePromoVideoProps) {
   const [playing, setPlaying] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const progress = useInViewProgress(sectionRef);
 
   return (
     <div
+      ref={sectionRef}
       className={cn(
         "relative w-full overflow-hidden bg-background",
         "aspect-video lg:aspect-1312/908 lg:min-h-[400px]",
@@ -36,13 +41,11 @@ export function HomePromoVideo({
       )}
     >
       {/* L-accent: top bar ~60% width, left bar ~60% height (not full edge length) */}
-      <div
-        className="pointer-events-none absolute left-0 top-0 z-0 h-(--promo-l) w-[60%] bg-primary"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-0 top-0 z-0 h-[60%] w-(--promo-l) bg-primary"
-        aria-hidden
+      <LCornerScrollFill
+        variant="tl"
+        progress={progress}
+        horizontalBarClassName="pointer-events-none absolute left-0 top-0 z-0 h-(--promo-l) w-[60%] bg-primary"
+        verticalBarClassName="pointer-events-none absolute left-0 top-0 z-0 h-[60%] w-(--promo-l) bg-primary"
       />
 
       {/* Inset so orange L shows above/left; full-bleed muted would hide z-0 accents */}
