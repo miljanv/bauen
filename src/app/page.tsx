@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 import { BauenCtaLink, outlineActionButtonClass } from "@/components/bauen-cta-button";
+import { HomeHeroCarousel } from "@/components/home-hero-carousel";
 import { HomePromoVideo } from "@/components/home-promo-video";
 import { HomeServices } from "@/components/home-services";
 import { ProjectShowcaseCard } from "@/components/project-showcase-card";
@@ -57,16 +58,9 @@ export default function HomePage() {
   return (
     <>
       <section className="relative min-h-screen">
-        <Image
-          src="/illustrations/home_hero.png"
-          alt="Ilustracija gradilišta u stilu tehničkog nacrta"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,17,32,0)] from-[20%] via-background/20 to-background" />
-        <SiteContainer className="page-hero-offset relative z-[1] flex min-h-screen flex-col items-center px-4 pb-16 text-center md:px-6 md:pb-12">
+        <HomeHeroCarousel />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[rgba(18,17,32,0)] from-[20%] via-background/20 to-background" />
+        <SiteContainer className="page-hero-offset relative z-[2] flex min-h-screen flex-col items-center px-4 pb-16 text-center md:px-6 md:pb-12">
           <div className="flex w-full flex-col items-center">
             <Reveal
               variant="fade-up"
@@ -196,7 +190,7 @@ export default function HomePage() {
                 "border border-primary text-neutral-50 hover:bg-primary/10",
               )}
             >
-              POGLEDAJTE SVE NAŠE PROJEKTE
+              SVI PROJEKTI
               <ChevronRight className="size-4 shrink-0" aria-hidden />
             </Link>
           </Reveal>

@@ -95,7 +95,7 @@ export function ProjektiPortfolio() {
           id={`projekti-panel-${active}`}
           role="tabpanel"
           aria-labelledby={`projekti-tab-${active}`}
-          className="font-nav mt-6 text-lg font-medium leading-[1.2] text-neutral-700 md:mt-8 md:text-xl"
+          className="font-nav mt-6 text-lg font-medium leading-[1.2]  md:mt-8 md:text-xl"
         >
           {activeCopy.description}
         </p>
