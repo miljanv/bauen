@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, Geist_Mono, Manrope, Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 
 import { OrganizationJsonLd } from "@/components/organization-json-ld";
 import { SiteFooter } from "@/components/site-footer";
@@ -9,29 +9,11 @@ import { getSiteUrl } from "@/lib/seo";
 
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-});
-
-const dmSerif = DM_Serif_Display({
-  variable: "--font-dm-serif",
-  subsets: ["latin", "latin-ext"],
-  weight: "400",
-  display: "swap",
-});
-
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin", "latin-ext"],
   display: "swap",
-  weight: ["600", "700"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -71,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang="sr"
-      className={`${manrope.variable} ${dmSerif.variable} ${plusJakarta.variable} ${geistMono.variable} h-full scroll-smooth`}
+      className={`${plusJakarta.variable} h-full scroll-smooth`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground antialiased">
         <OrganizationJsonLd />
