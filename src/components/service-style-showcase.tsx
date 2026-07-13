@@ -41,12 +41,12 @@ export function ServiceStyleShowcase({
             horizontalBarClassName="pointer-events-none absolute left-0 top-0 z-0 h-(--svc-l) w-[60%] bg-primary"
             verticalBarClassName="pointer-events-none absolute left-0 top-0 z-0 h-[60%] w-(--svc-l) bg-primary"
           />
-          <div className="absolute top-(--svc-l) left-(--svc-l) right-0 bottom-0 z-10 min-h-0">
+          <div className="corner-hover-zone absolute top-(--svc-l) left-(--svc-l) right-0 bottom-0 z-10 min-h-0 overflow-hidden">
             <Image
               src={image}
               alt={imageAlt}
               fill
-              className="object-cover"
+              className="corner-hover-zoom-target object-cover cursor-pointer"
               sizes="(max-width:1024px) 100vw, 705px"
               key={imageKey ?? imageAlt}
             />

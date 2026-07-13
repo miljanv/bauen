@@ -8,6 +8,7 @@ import {
   ProjectGalleryImageButton,
   ProjectGalleryLightbox,
 } from "@/components/project-gallery-lightbox";
+import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 
 type ProjectGalleryProps = {
@@ -60,45 +61,51 @@ export function ProjectGallery({ items }: ProjectGalleryProps) {
             const item = row[0];
             const index = imageIndexMap.get(item.src) ?? 0;
             return (
-              <div
+              <Reveal
                 key={`${item.src}-full-${rowIndex}`}
-                className="relative aspect-1440/954 w-full overflow-hidden"
+                variant="fade-up"
+                duration={1000}
               >
-                <ProjectGalleryImageButton
-                  src={item.src}
-                  alt={item.alt}
-                  sizes="100vw"
-                  priority={rowIndex === 0}
-                  index={index}
-                  onOpen={openLightbox}
-                />
-              </div>
+                <div className="relative aspect-1440/954 w-full overflow-hidden">
+                  <ProjectGalleryImageButton
+                    src={item.src}
+                    alt={item.alt}
+                    sizes="100vw"
+                    priority={rowIndex === 0}
+                    index={index}
+                    onOpen={openLightbox}
+                  />
+                </div>
+              </Reveal>
             );
           }
 
           return (
-            <div
+            <Reveal
               key={`row-${rowIndex}`}
-              className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8"
+              variant="fade-up"
+              duration={1000}
             >
-              {row.map((item) => {
-                const index = imageIndexMap.get(item.src) ?? 0;
-                return (
-                  <div
-                    key={`${item.src}-${rowIndex}`}
-                    className="relative aspect-673/897 w-full overflow-hidden"
-                  >
-                    <ProjectGalleryImageButton
-                      src={item.src}
-                      alt={item.alt}
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      index={index}
-                      onOpen={openLightbox}
-                    />
-                  </div>
-                );
-              })}
-            </div>
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8">
+                {row.map((item) => {
+                  const index = imageIndexMap.get(item.src) ?? 0;
+                  return (
+                    <div
+                      key={`${item.src}-${rowIndex}`}
+                      className="relative aspect-673/897 w-full overflow-hidden"
+                    >
+                      <ProjectGalleryImageButton
+                        src={item.src}
+                        alt={item.alt}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        index={index}
+                        onOpen={openLightbox}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </Reveal>
           );
         })}
       </SiteContainer>

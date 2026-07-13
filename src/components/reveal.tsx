@@ -16,51 +16,68 @@ export type RevealVariant =
   | "rotate"
   | "blur";
 
-const VARIANTS: Record<RevealVariant, { from: string; to: string }> = {
-  fade: { from: "opacity-0", to: "opacity-100" },
-  "fade-up": {
-    from: "opacity-0 translate-y-10",
-    to: "opacity-100 translate-y-0",
-  },
-  "fade-down": {
-    from: "opacity-0 -translate-y-10",
-    to: "opacity-100 translate-y-0",
-  },
-  "fade-left": {
-    from: "opacity-0 translate-x-12",
-    to: "opacity-100 translate-x-0",
-  },
-  "fade-right": {
-    from: "opacity-0 -translate-x-12",
-    to: "opacity-100 translate-x-0",
-  },
-  zoom: {
-    from: "opacity-0 scale-90",
-    to: "opacity-100 scale-100",
-  },
-  "zoom-out": {
-    from: "opacity-0 scale-110",
-    to: "opacity-100 scale-100",
-  },
-  rotate: {
-    from: "opacity-0 -rotate-3 scale-[0.97]",
-    to: "opacity-100 rotate-0 scale-100",
-  },
-  blur: {
-    from: "opacity-0 blur-md",
-    to: "opacity-100 blur-0",
-  },
-};
+/**
+ * Use inline transform (not Tailwind translate/scale utilities).
+ * Tailwind v4 maps translate-* to the CSS `translate` property, while our
+ * transition targeted `transform` — so fade worked but movement never animated.
+ */
+const VARIANTS: Record<RevealVariant, { from: CSSProperties; to: CSSProperties }> =
+  {
+    fade: {
+      from: { opacity: 0 },
+      to: { opacity: 1 },
+    },
+    "fade-up": {
+      from: { opacity: 0, transform: "translate3d(0, 100px, 0)" },
+      to: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+    },
+    "fade-down": {
+      from: { opacity: 0, transform: "translate3d(0, -100px, 0)" },
+      to: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+    },
+    "fade-left": {
+      from: { opacity: 0, transform: "translate3d(100px, 0, 0)" },
+      to: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+    },
+    "fade-right": {
+      from: { opacity: 0, transform: "translate3d(-100px, 0, 0)" },
+      to: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+    },
+    zoom: {
+      from: { opacity: 0, transform: "scale(0.9)" },
+      to: { opacity: 1, transform: "scale(1)" },
+    },
+    "zoom-out": {
+      from: { opacity: 0, transform: "scale(1.1)" },
+      to: { opacity: 1, transform: "scale(1)" },
+    },
+    rotate: {
+      from: { opacity: 0, transform: "rotate(-3deg) scale(0.97)" },
+      to: { opacity: 1, transform: "rotate(0deg) scale(1)" },
+    },
+    blur: {
+      from: { opacity: 0, filter: "blur(12px)" },
+      to: { opacity: 1, filter: "blur(0px)" },
+    },
+  };
 
 type RevealProps = {
   children: ReactNode;
   variant?: RevealVariant;
   /** Delay in milliseconds (good for staggering siblings). */
   delay?: number;
-  /** Duration in milliseconds. */
+  /** Duration in milliseconds. Default 1000 to match Comita/AOS. */
   duration?: number;
-  /** 0–1, how much of the element must be visible before animating. */
+  /**
+   * How much of the element must be visible before animating.
+   * Prefer 0 for tall sections — trigger via rootMargin instead.
+   */
   threshold?: number;
+  /**
+   * Shrinks the bottom of the viewport trigger zone (like AOS offset).
+   * Default 120px ≈ Comita/AOS.
+   */
+  offset?: number;
   /** Run animation only once (default true). When false, reverses when scrolling away. */
   once?: boolean;
   /** Underlying element tag. Defaults to `div`. */
@@ -71,15 +88,16 @@ type RevealProps = {
 };
 
 /**
- * Scroll-triggered reveal animation. Uses IntersectionObserver and pure CSS transitions —
- * no JS animation work per frame. Respects `prefers-reduced-motion`.
+ * Scroll-triggered reveal animation. Uses IntersectionObserver and CSS transitions.
+ * Respects `prefers-reduced-motion`. Timing/travel tuned to match Comita (AOS fade-up).
  */
 export function Reveal({
   children,
   variant = "fade-up",
   delay = 0,
-  duration = 800,
-  threshold = 0.12,
+  duration = 1000,
+  threshold = 0,
+  offset = 120,
   once = true,
   as: Tag = "div",
   className,
@@ -88,15 +106,14 @@ export function Reveal({
 }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [inView, setInView] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setReduceMotion(true);
       setInView(true);
       return;
     }
@@ -112,14 +129,18 @@ export function Reveal({
           setInView(false);
         }
       },
-      { threshold, rootMargin: "0px 0px -8% 0px" },
+      {
+        threshold,
+        rootMargin: `0px 0px -${offset}px 0px`,
+      },
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [threshold, once]);
+  }, [threshold, offset, once]);
 
   const v = VARIANTS[variant];
+  const motionStyle = reduceMotion || inView ? v.to : v.from;
 
   return (
     <Tag
@@ -127,14 +148,16 @@ export function Reveal({
       id={id}
       style={{
         ...style,
-        transitionDuration: `${duration}ms`,
-        transitionDelay: `${delay}ms`,
+        ...motionStyle,
+        transitionProperty: reduceMotion
+          ? undefined
+          : "opacity, transform, filter",
+        transitionDuration: reduceMotion ? "0ms" : `${duration}ms`,
+        transitionTimingFunction: "ease-out",
+        transitionDelay: inView && !reduceMotion ? `${delay}ms` : "0ms",
+        willChange: reduceMotion || inView ? undefined : "opacity, transform",
       }}
-      className={cn(
-        "transition-[transform,opacity,filter] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity] motion-reduce:transition-none",
-        inView ? v.to : v.from,
-        className,
-      )}
+      className={cn(className)}
     >
       {children}
     </Tag>

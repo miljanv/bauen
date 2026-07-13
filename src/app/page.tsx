@@ -89,22 +89,18 @@ export default function HomePage() {
         </SiteContainer>
       </section>
 
-      <section
+      <Reveal
+        as="section"
         id="godine"
+        variant="fade-up"
+        duration={1000}
         className="relative scroll-mt-24 overflow-hidden bg-background pt-2 pb-4 text-left md:py-32"
       >
         <SiteContainer className="relative z-[1]">
-          <Reveal variant="fade-up" duration={800}>
-            <h2 className="font-heading text-[clamp(2rem,6vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
-              30 uspešnih godina
-            </h2>
-          </Reveal>
-          <Reveal
-            variant="fade-up"
-            delay={120}
-            duration={800}
-            className="relative mt-6 flex w-full flex-col"
-          >
+          <h2 className="font-heading text-[clamp(2rem,6vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
+            30 uspešnih godina
+          </h2>
+          <div className="relative mt-6 flex w-full flex-col">
             <p className="w-full self-stretch font-sans text-2xl font-medium leading-[1.2] text-neutral-600">
               {FIGMA_VIDEO_COPY}
             </p>
@@ -129,21 +125,16 @@ export default function HomePage() {
                 />
               </div>
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal
-            variant="zoom"
-            delay={200}
-            duration={900}
-            className="relative z-0 mx-auto mt-8 max-w-[1312px] md:mt-10"
-          >
+          <div className="relative z-0 mx-auto mt-8 max-w-[1312px] md:mt-10">
             <HomePromoVideo
               posterSrc={siteImages.home.videoSection}
               posterSizes="(max-width:1024px) 100vw, 1312px"
             />
-          </Reveal>
+          </div>
         </SiteContainer>
-      </section>
+      </Reveal>
 
       <HomeServices />
 
@@ -152,12 +143,10 @@ export default function HomePage() {
         className="relative scroll-mt-24 overflow-x-hidden bg-background pb-24 md:pt-16 md:pb-32"
       >
         <SiteContainer className="relative z-[1]">
-          <Reveal variant="fade-up" duration={800}>
+          <Reveal variant="fade-up" duration={1000}>
             <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
               Naši Projekti
             </h2>
-          </Reveal>
-          <Reveal variant="fade-up" delay={120} duration={800}>
             <p className="mt-6 max-w-4xl font-sans text-xl font-medium leading-[1.2] text-muted-foreground md:text-2xl">
               Spisak projekata koje smo uradili je sve veći, a mi smo izdvojili
               samo neke od njih o kojima možete pročitati više informacija
@@ -166,21 +155,23 @@ export default function HomePage() {
 
           <div className="mt-20 flex flex-col gap-24 md:gap-32 lg:gap-40">
             {homeProjects.map((p) => (
-              <ProjectShowcaseCard
-                key={p.slug}
-                image={p.image}
-                alt={p.alt}
-                title={p.title}
-                description={p.description}
-                href={getProjectPath(p.slug)}
-                reverse={p.reverse}
-              />
+              <Reveal key={p.slug} variant="fade-up" duration={1000}>
+                <ProjectShowcaseCard
+                  image={p.image}
+                  alt={p.alt}
+                  title={p.title}
+                  description={p.description}
+                  href={getProjectPath(p.slug)}
+                  reverse={p.reverse}
+                  animate={false}
+                />
+              </Reveal>
             ))}
           </div>
 
           <Reveal
             variant="fade-up"
-            duration={700}
+            duration={1000}
             className="mt-24 flex justify-center md:mt-32"
           >
             <Link

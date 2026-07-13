@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { ProjectMetaRows } from "@/components/project-meta-rows";
+import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 import type { ProjectMetaRow } from "@/lib/projects";
 
@@ -28,42 +29,44 @@ export function ProjectDetailInfo({
   return (
     <section className="border-b border-white/10 bg-background py-12 md:py-16">
       <SiteContainer className="px-4 md:px-8">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-8">
-          <ProjectMetaRows rows={visibleMeta} />
-          <div className="min-w-0 flex-1 font-sans text-xl font-medium leading-[1.2] text-neutral-50 md:text-2xl">
-            {!expanded ? (
-              <p>
-                {summaryShort}{" "}
-                {hasMore ? (
-                  <button
-                    type="button"
-                    onClick={() => setExpanded(true)}
-                    className="inline cursor-pointer text-primary transition-colors hover:text-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                  >
-                    Vidi više &gt;
-                  </button>
-                ) : null}
-              </p>
-            ) : (
-              <div className="flex flex-col gap-4">
-                {summaryParagraphs.map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
-                {hasMore ? (
-                  <p>
+        <Reveal variant="fade-up" duration={1000}>
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-8">
+            <ProjectMetaRows rows={visibleMeta} />
+            <div className="min-w-0 flex-1 font-sans text-xl font-medium leading-[1.2] text-neutral-50 md:text-2xl">
+              {!expanded ? (
+                <p>
+                  {summaryShort}{" "}
+                  {hasMore ? (
                     <button
                       type="button"
-                      onClick={() => setExpanded(false)}
-                      className="cursor-pointer text-primary transition-colors hover:text-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      onClick={() => setExpanded(true)}
+                      className="inline cursor-pointer text-primary transition-colors hover:text-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     >
-                      Vidi manje &gt;
+                      Vidi više &gt;
                     </button>
-                  </p>
-                ) : null}
-              </div>
-            )}
+                  ) : null}
+                </p>
+              ) : (
+                <div className="flex flex-col gap-4">
+                  {summaryParagraphs.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                  {hasMore ? (
+                    <p>
+                      <button
+                        type="button"
+                        onClick={() => setExpanded(false)}
+                        className="cursor-pointer text-primary transition-colors hover:text-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      >
+                        Vidi manje &gt;
+                      </button>
+                    </p>
+                  ) : null}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        </Reveal>
       </SiteContainer>
     </section>
   );

@@ -6,6 +6,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
 import { iconActionButtonClass } from "@/components/bauen-cta-button";
+import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 import { cn } from "@/lib/utils";
 
@@ -72,22 +73,29 @@ export function ProjectDetailHero({
       <div className="absolute inset-0 bg-black/30" aria-hidden />
 
       <SiteContainer className="relative z-10 flex flex-col justify-start px-4 pb-16 pt-28 md:px-8 md:pb-20 md:pt-40 lg:pt-48">
-        <Link
-          href="/projekti"
-          className="mb-6 inline-flex min-h-[44px] w-fit items-center gap-2 bg-primary px-3 py-2 font-sans text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:min-h-[60px] md:px-4 md:text-base"
-        >
-          <ArrowLeft className="size-4 shrink-0" aria-hidden />
-          NAZAD
-        </Link>
-        <h1 className="max-w-[1036px] font-heading text-[clamp(2rem,5vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[62px]">
-          {title}
-        </h1>
-        <p className="mt-4 max-w-[591px] font-sans text-lg font-medium leading-[1.2] text-white md:text-xl">
-          {subtitle}
-        </p>
+        <Reveal variant="fade-up" duration={900}>
+          <Link
+            href="/projekti"
+            className="mb-6 inline-flex min-h-[44px] w-fit items-center gap-2 bg-primary px-3 py-2 font-sans text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:min-h-[60px] md:px-4 md:text-base"
+          >
+            <ArrowLeft className="size-4 shrink-0" aria-hidden />
+            NAZAD
+          </Link>
+          <h1 className="max-w-[1036px] font-heading text-[clamp(2rem,5vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[62px]">
+            {title}
+          </h1>
+          <p className="mt-4 max-w-[591px] font-sans text-lg font-medium leading-[1.2] text-white md:text-xl">
+            {subtitle}
+          </p>
+        </Reveal>
 
         {hasMultiple ? (
-          <div className="mt-8 flex items-center gap-4">
+          <Reveal
+            variant="fade-up"
+            delay={200}
+            duration={800}
+            className="mt-8 flex items-center gap-4"
+          >
             <button
               type="button"
               onClick={goPrev}
@@ -110,7 +118,7 @@ export function ProjectDetailHero({
             >
               <ChevronRight className="size-5 text-primary md:size-6" aria-hidden />
             </button>
-          </div>
+          </Reveal>
         ) : null}
       </SiteContainer>
     </section>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { BauenLogo } from "@/components/bauen-logo";
+import { Reveal } from "@/components/reveal";
 import { SocialIcons } from "@/components/social-icons";
 import { SiteContainer } from "@/components/site-container";
 import { navItemsAll, siteConfig } from "@/lib/site-config";
@@ -23,14 +24,18 @@ export function SiteFooter() {
       <section className="relative min-h-[280px] overflow-hidden bg-background py-6 md:min-h-[320px] md:py-14">
         <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background/95" />
         <SiteContainer className="relative z-[1] flex flex-col items-center gap-10 text-center">
-          <div className="max-w-[806px] font-nav text-balance">
+          <Reveal
+            variant="fade-up"
+            duration={1000}
+            className="max-w-[806px] font-nav text-balance"
+          >
             <p className="text-[clamp(2rem,5vw,3rem)] font-bold leading-[1.1] text-neutral-50">
               Gradimo pouzdane temelje
             </p>
             <p className="text-[clamp(2rem,5vw,3rem)] font-bold leading-[1.1] text-primary">
               za vaše ambicije
             </p>
-          </div>
+          </Reveal>
         </SiteContainer>
       </section>
 

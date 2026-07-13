@@ -115,53 +115,50 @@ export default function AboutPage() {
 
       <AboutMilestones milestones={milestones} />
 
-      <section className="relative overflow-x-hidden bg-background pb-12 md:pt-24 md:pb-20 lg:pt-32 lg:pb-24">
+      <Reveal
+        as="section"
+        variant="fade-up"
+        duration={1000}
+        className="relative overflow-x-hidden bg-background pb-12 md:pt-24 md:pb-20 lg:pt-32 lg:pb-24"
+      >
         <SiteContainer className="relative">
-          <Reveal variant="fade-up" duration={800}>
-            <h2 className="font-heading text-[clamp(2rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
-              Priznanja i nagrade
-            </h2>
-          </Reveal>
+          <h2 className="font-heading text-[clamp(2rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
+            Priznanja i nagrade
+          </h2>
           <div className="relative z-10 mt-4 flex w-full max-w-none flex-col gap-4 font-sans text-base font-medium leading-[1.25] text-neutral-50 sm:mt-6 sm:gap-6 md:text-xl lg:text-2xl lg:leading-[1.2]">
-            <Reveal variant="fade-up" delay={100} duration={800}>
-              <p>
-                Zahvaljujući predanom radu i vrhunskoj stručnosti svog kadra ali
-                i čestim društveno odgovornim aktivnostima, Bauen je dobitnik
-                velikog broja nagrada, priznanja i zahvalnica. Već nekoliko
-                godina za redom naša bonitetna ocena je A+, što nas svrstava u
-                grupu preduzeća sa najboljom bonitetnom ocenom u Srbiji.
+            <p>
+              Zahvaljujući predanom radu i vrhunskoj stručnosti svog kadra ali i
+              čestim društveno odgovornim aktivnostima, Bauen je dobitnik
+              velikog broja nagrada, priznanja i zahvalnica. Već nekoliko godina
+              za redom naša bonitetna ocena je A+, što nas svrstava u grupu
+              preduzeća sa najboljom bonitetnom ocenom u Srbiji.
+            </p>
+            <p>
+              Bauen se može pohvaliti i učestovanjem u dobrotvornim akcijama i
+              sponzorisanjem svih događaja humanitarnog karaktera na teritoriji
+              svog poslovanja jer smatramo da je to moralna obaveza svakoga ko
+              je u mogućnosti da to uradi.
+            </p>
+            <div className="relative pb-[72px] md:pb-[140px]">
+              <Image
+                src="/illustrations/a-plus.png"
+                alt=""
+                width={449}
+                height={201}
+                className="pointer-events-none absolute right-20 top-[30%] z-0 h-[100px] w-[224px] select-none md:top-[32%] md:h-[201px] md:w-[449px]"
+                aria-hidden
+              />
+              <p className="relative z-10">
+                Ponosni smo na činjenicu da je naš rad prepoznat od strane
+                renomiranih domaćih i stranih ustanova i sa tim na umu
+                nastavljamo da radimo naporno i gradimo kvalitetno kako bi
+                opravdali i negovali stečeno poverenje naših klijenata i
+                javnosti.
               </p>
-            </Reveal>
-            <Reveal variant="fade-up" delay={200} duration={800}>
-              <p>
-                Bauen se može pohvaliti i učestovanjem u dobrotvornim akcijama i
-                sponzorisanjem svih događaja humanitarnog karaktera na
-                teritoriji svog poslovanja jer smatramo da je to moralna obaveza
-                svakoga ko je u mogućnosti da to uradi.
-              </p>
-            </Reveal>
-            <Reveal variant="fade-up" delay={300} duration={800}>
-              <div className="relative pb-[72px] md:pb-[140px]">
-                <Image
-                  src="/illustrations/a-plus.png"
-                  alt=""
-                  width={449}
-                  height={201}
-                  className="pointer-events-none absolute right-20 top-[30%] z-0 h-[100px] w-[224px] select-none md:top-[32%] md:h-[201px] md:w-[449px]"
-                  aria-hidden
-                />
-                <p className="relative z-10">
-                  Ponosni smo na činjenicu da je naš rad prepoznat od strane
-                  renomiranih domaćih i stranih ustanova i sa tim na umu
-                  nastavljamo da radimo naporno i gradimo kvalitetno kako bi
-                  opravdali i negovali stečeno poverenje naših klijenata i
-                  javnosti.
-                </p>
-              </div>
-            </Reveal>
+            </div>
           </div>
         </SiteContainer>
-      </section>
+      </Reveal>
     </>
   );
 }

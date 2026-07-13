@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { ProjectShowcaseCard } from "@/components/project-showcase-card";
+import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 import { getProjectPath, projects } from "@/lib/projects";
 import { cn } from "@/lib/utils";
@@ -62,55 +63,59 @@ export function ProjektiPortfolio() {
   return (
     <section className="overflow-x-hidden bg-background py-20 md:py-28">
       <SiteContainer>
-        <div
-          className="-mx-4 flex flex-nowrap gap-0 overflow-x-auto border-b border-white/10 px-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:w-full lg:justify-between lg:overflow-visible lg:px-0"
-          role="tablist"
-          aria-label="Kategorije projekata"
-        >
-          {categories.map(([id, { label }]) => {
-            const selected = active === id;
-            return (
-              <button
-                key={id}
-                type="button"
-                role="tab"
-                aria-selected={selected}
-                id={`projekti-tab-${id}`}
-                aria-controls={`projekti-panel-${id}`}
-                onClick={() => setActive(id)}
-                className={cn(
-                  "relative shrink-0 cursor-pointer whitespace-nowrap border-b-2 border-transparent px-3 py-6 font-sans text-xl font-medium transition-colors md:px-5",
-                  selected
-                    ? "text-primary after:absolute after:-inset-x-1 after:bottom-0 after:z-1 after:border-b-2 after:border-primary md:after:-inset-x-2"
-                    : "text-neutral-600 hover:text-neutral-400",
-                )}
-              >
-                {label}
-              </button>
-            );
-          })}
-        </div>
+        <Reveal variant="fade-up" duration={1000}>
+          <div
+            className="-mx-4 flex flex-nowrap gap-0 overflow-x-auto border-b border-white/10 px-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:w-full lg:justify-between lg:overflow-visible lg:px-0"
+            role="tablist"
+            aria-label="Kategorije projekata"
+          >
+            {categories.map(([id, { label }]) => {
+              const selected = active === id;
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  id={`projekti-tab-${id}`}
+                  aria-controls={`projekti-panel-${id}`}
+                  onClick={() => setActive(id)}
+                  className={cn(
+                    "relative shrink-0 cursor-pointer whitespace-nowrap border-b-2 border-transparent px-3 py-6 font-sans text-xl font-medium transition-colors md:px-5",
+                    selected
+                      ? "text-primary after:absolute after:-inset-x-1 after:bottom-0 after:z-1 after:border-b-2 after:border-primary md:after:-inset-x-2"
+                      : "text-neutral-600 hover:text-neutral-400",
+                  )}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
 
-        <p
-          id={`projekti-panel-${active}`}
-          role="tabpanel"
-          aria-labelledby={`projekti-tab-${active}`}
-          className="font-nav mt-6 text-lg font-medium leading-[1.2]  md:mt-8 md:text-xl"
-        >
-          {activeCopy.description}
-        </p>
+          <p
+            id={`projekti-panel-${active}`}
+            role="tabpanel"
+            aria-labelledby={`projekti-tab-${active}`}
+            className="font-nav mt-6 text-lg font-medium leading-[1.2] md:mt-8 md:text-xl"
+          >
+            {activeCopy.description}
+          </p>
+        </Reveal>
 
         <div className="mt-16 flex flex-col gap-24 md:mt-24 md:gap-32 lg:gap-40">
           {showcaseProjects.map((p) => (
-            <ProjectShowcaseCard
-              key={p.slug}
-              image={p.image}
-              alt={p.alt}
-              title={p.title}
-              description={p.description}
-              href={getProjectPath(p.slug)}
-              reverse={p.reverse}
-            />
+            <Reveal key={p.slug} variant="fade-up" duration={1000}>
+              <ProjectShowcaseCard
+                image={p.image}
+                alt={p.alt}
+                title={p.title}
+                description={p.description}
+                href={getProjectPath(p.slug)}
+                reverse={p.reverse}
+                animate={false}
+              />
+            </Reveal>
           ))}
         </div>
       </SiteContainer>

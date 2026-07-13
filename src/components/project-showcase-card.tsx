@@ -22,6 +22,8 @@ type ProjectShowcaseCardProps = {
   href: string;
   reverse?: boolean;
   cta?: ReactNode;
+  /** When false, skips own scroll reveal (use when a parent section already reveals). */
+  animate?: boolean;
 };
 
 export function ProjectShowcaseCard({
@@ -32,7 +34,54 @@ export function ProjectShowcaseCard({
   href,
   reverse = false,
   cta,
+  animate = true,
 }: ProjectShowcaseCardProps) {
+  const imageClassName =
+    "relative w-full overflow-visible max-lg:h-[271px] lg:aspect-705/529 lg:w-[min(705px,48%)] lg:max-w-[705px] lg:shrink-0";
+  const bodyClassName =
+    "relative z-10 flex w-full flex-col items-start gap-4 rounded-[3px] border border-white/12 px-[33px] pb-[25px] pt-[37px] backdrop-blur-[10.45px] lg:w-[min(518px,42%)] lg:max-w-[518px] lg:shrink-0 lg:px-8 lg:pb-6 lg:pt-9";
+
+  const imageBlock = (
+    <Link href={href} className="corner-hover-zone relative block size-full">
+      <div className="absolute inset-0 overflow-hidden">
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          className="corner-hover-zoom-target object-cover"
+          sizes="(max-width:1024px) 100vw, 705px"
+        />
+      </div>
+      <ProjectSubtractCorners
+        variant={reverse ? "image-right" : "image-left"}
+        className="max-lg:size-4"
+        hoverFx
+      />
+    </Link>
+  );
+
+  const bodyBlock = (
+    <>
+      <h3 className="font-heading text-2xl font-normal leading-[1.2] text-primary">
+        <Link
+          href={href}
+          className="transition-colors hover:text-primary-300"
+        >
+          {title}
+        </Link>
+      </h3>
+      <p className="font-sans text-base leading-[22px] text-neutral-200">
+        {description}
+      </p>
+      {cta ?? (
+        <BauenCtaLink href={href} className="w-fit px-4">
+          DETALJNIJE
+          <ChevronRight className="size-4 shrink-0" aria-hidden />
+        </BauenCtaLink>
+      )}
+    </>
+  );
+
   return (
     <article className="mx-auto w-full max-w-[1280px]">
       <div
@@ -41,54 +90,33 @@ export function ProjectShowcaseCard({
           reverse && "lg:flex-row-reverse",
         )}
       >
-        <Reveal
-          variant={reverse ? "fade-left" : "fade-right"}
-          duration={900}
-          className="relative w-full overflow-visible max-lg:h-[271px] lg:aspect-705/529 lg:w-[min(705px,48%)] lg:max-w-[705px] lg:shrink-0"
-        >
-          <Link href={href} className="corner-hover-zone relative block size-full">
-            <div className="absolute inset-0 overflow-hidden">
-              <Image
-                src={image}
-                alt={alt}
-                fill
-                className="corner-hover-zoom-target object-cover"
-                sizes="(max-width:1024px) 100vw, 705px"
-              />
-            </div>
-            <ProjectSubtractCorners
-              variant={reverse ? "image-right" : "image-left"}
-              className="max-lg:size-4"
-              hoverFx
-            />
-          </Link>
-        </Reveal>
+        {animate ? (
+          <Reveal
+            variant={reverse ? "fade-left" : "fade-right"}
+            duration={900}
+            className={imageClassName}
+          >
+            {imageBlock}
+          </Reveal>
+        ) : (
+          <div className={imageClassName}>{imageBlock}</div>
+        )}
 
-        <Reveal
-          variant="fade-up"
-          delay={200}
-          duration={800}
-          style={projectCardGlassStyle}
-          className="relative z-10 flex w-full flex-col items-start gap-4 rounded-[3px] border border-white/12 px-[33px] pb-[25px] pt-[37px] backdrop-blur-[10.45px] lg:w-[min(518px,42%)] lg:max-w-[518px] lg:shrink-0 lg:px-8 lg:pb-6 lg:pt-9"
-        >
-          <h3 className="font-heading text-2xl font-normal leading-[1.2] text-primary">
-            <Link
-              href={href}
-              className="transition-colors hover:text-primary-300"
-            >
-              {title}
-            </Link>
-          </h3>
-          <p className="font-sans text-base leading-[22px] text-neutral-200">
-            {description}
-          </p>
-          {cta ?? (
-            <BauenCtaLink href={href} className="w-fit px-4">
-              DETALJNIJE
-              <ChevronRight className="size-4 shrink-0" aria-hidden />
-            </BauenCtaLink>
-          )}
-        </Reveal>
+        {animate ? (
+          <Reveal
+            variant="fade-up"
+            delay={200}
+            duration={800}
+            style={projectCardGlassStyle}
+            className={bodyClassName}
+          >
+            {bodyBlock}
+          </Reveal>
+        ) : (
+          <div style={projectCardGlassStyle} className={bodyClassName}>
+            {bodyBlock}
+          </div>
+        )}
       </div>
     </article>
   );

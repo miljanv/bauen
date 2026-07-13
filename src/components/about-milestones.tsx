@@ -12,6 +12,7 @@ import {
 
 import { MilestoneImageBrCorner } from "@/components/milestone-image-br-corner";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
+import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 import { cn } from "@/lib/utils";
 
@@ -232,85 +233,87 @@ export function AboutMilestones({
       id="istorija"
       className="relative scroll-mt-24 overflow-x-hidden overflow-y-visible bg-background py-16 md:py-24 lg:py-32"
     >
-      <SiteContainer className="relative z-1 max-lg:px-6 sm:max-lg:px-8">
-        <div ref={rowRef} className="flex gap-3 sm:gap-4 lg:gap-10">
-          <div className="relative flex w-10 shrink-0 flex-col items-center self-stretch pb-2 pt-1 sm:w-12 lg:w-[54px]">
-            <div
-              ref={railInnerRef}
-              className="relative mx-auto min-h-[120px] w-full flex-1 sm:min-h-[160px]"
-            >
+      <Reveal variant="fade-up" duration={1000}>
+        <SiteContainer className="relative z-1 max-lg:px-6 sm:max-lg:px-8">
+          <div ref={rowRef} className="flex gap-3 sm:gap-4 lg:gap-10">
+            <div className="relative flex w-10 shrink-0 flex-col items-center self-stretch pb-2 pt-1 sm:w-12 lg:w-[54px]">
               <div
-                className="pointer-events-none absolute left-1/2 top-5 bottom-0 z-0 w-px -translate-x-1/2 overflow-hidden bg-neutral-700 sm:top-6 sm:w-1 lg:top-7"
-                aria-hidden
+                ref={railInnerRef}
+                className="relative mx-auto min-h-[120px] w-full flex-1 sm:min-h-[160px]"
               >
                 <div
-                  className="absolute left-0 top-0 h-full w-full origin-top bg-primary will-change-transform"
-                  style={{ transform: `scaleY(${progress})` }}
-                />
-              </div>
-              {milestones.map((m, i) => (
-                <div
-                  key={m.year}
-                  className="absolute left-1/2 z-10 -translate-x-1/2"
-                  style={{ top: `${markerTopsForRender[i] ?? 0}%` }}
+                  className="pointer-events-none absolute left-1/2 top-5 bottom-0 z-0 w-px -translate-x-1/2 overflow-hidden bg-neutral-700 sm:top-6 sm:w-1 lg:top-7"
+                  aria-hidden
                 >
-                  <MilestoneRailMarker
-                    index={i}
-                    activation={getMilestoneActivation(
-                      i,
-                      progress,
-                      n,
-                      markerTopsForRender,
-                    )}
+                  <div
+                    className="absolute left-0 top-0 h-full w-full origin-top bg-primary will-change-transform"
+                    style={{ transform: `scaleY(${progress})` }}
                   />
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <ol className="flex min-w-0 flex-1 flex-col gap-24 md:gap-32 lg:gap-44">
-            {milestones.map((m, i) => (
-              <li key={m.year} className="relative">
-                <div className="corner-hover-row relative flex flex-col lg:grid lg:min-h-[579px] lg:grid-cols-12 lg:items-center">
+                {milestones.map((m, i) => (
                   <div
-                    ref={(el) => {
-                      contentAnchorRefs.current[i] = el;
-                    }}
-                    className="relative z-10 -mb-6 mx-auto flex w-[65%] max-w-[65%] flex-col items-start gap-3 overflow-visible bg-[rgba(20,11,42,0.6)] px-5 pb-5 pt-6 sm:gap-4 sm:px-6 sm:pb-6 sm:pt-7 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:mb-0 lg:mx-0 lg:w-[518px] lg:max-w-none lg:self-center lg:px-8 lg:pb-6 lg:pt-8"
+                    key={m.year}
+                    className="absolute left-1/2 z-10 -translate-x-1/2"
+                    style={{ top: `${markerTopsForRender[i] ?? 0}%` }}
                   >
-                    <ProjectSubtractCorners
-                      variant="milestone-overlay"
-                      className="max-lg:size-8"
-                      hoverFx
+                    <MilestoneRailMarker
+                      index={i}
+                      activation={getMilestoneActivation(
+                        i,
+                        progress,
+                        n,
+                        markerTopsForRender,
+                      )}
                     />
-                    <h2 className="relative z-10 font-heading text-[2.125rem] font-normal leading-[1.1] text-primary sm:text-[2.35rem] lg:text-[clamp(2.5rem,5vw,3.875rem)]">
-                      {m.year}
-                    </h2>
-                    <p className="relative z-10 font-sans text-[0.9375rem] leading-[21px] text-neutral-200 sm:text-base sm:leading-[22px]">
-                      {m.text}
-                    </p>
                   </div>
+                ))}
+              </div>
+            </div>
 
-                  <div className="corner-hover-zone relative h-[220px] w-full sm:h-[260px] lg:col-span-9 lg:col-start-4 lg:row-start-1 lg:aspect-auto lg:h-[579px]">
-                    <div className="relative h-full w-full">
-                      <div className="absolute inset-0 overflow-hidden">
-                        <Image
-                          src={m.image}
-                          alt={m.alt}
-                          fill
-                          className="corner-hover-zoom-target object-cover grayscale"
-                          sizes="(max-width:1024px) 100vw, 868px"
-                        />
+            <ol className="flex min-w-0 flex-1 flex-col gap-24 md:gap-32 lg:gap-44">
+              {milestones.map((m, i) => (
+                <li key={m.year} className="relative">
+                  <div className="corner-hover-row relative flex flex-col lg:grid lg:min-h-[579px] lg:grid-cols-12 lg:items-center">
+                    <div
+                      ref={(el) => {
+                        contentAnchorRefs.current[i] = el;
+                      }}
+                      className="relative z-10 -mb-6 mx-auto flex w-[65%] max-w-[65%] flex-col items-start gap-3 overflow-visible bg-[rgba(20,11,42,0.6)] px-5 pb-5 pt-6 sm:gap-4 sm:px-6 sm:pb-6 sm:pt-7 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:mb-0 lg:mx-0 lg:w-[518px] lg:max-w-none lg:self-center lg:px-8 lg:pb-6 lg:pt-8"
+                    >
+                      <ProjectSubtractCorners
+                        variant="milestone-overlay"
+                        className="max-lg:size-8"
+                        hoverFx
+                      />
+                      <h2 className="relative z-10 font-heading text-[2.125rem] font-normal leading-[1.1] text-primary sm:text-[2.35rem] lg:text-[clamp(2.5rem,5vw,3.875rem)]">
+                        {m.year}
+                      </h2>
+                      <p className="relative z-10 font-sans text-[0.9375rem] leading-[21px] text-neutral-200 sm:text-base sm:leading-[22px]">
+                        {m.text}
+                      </p>
+                    </div>
+
+                    <div className="corner-hover-zone relative h-[220px] w-full sm:h-[260px] lg:col-span-9 lg:col-start-4 lg:row-start-1 lg:aspect-auto lg:h-[579px]">
+                      <div className="relative h-full w-full">
+                        <div className="absolute inset-0 overflow-hidden">
+                          <Image
+                            src={m.image}
+                            alt={m.alt}
+                            fill
+                            className="corner-hover-zoom-target object-cover grayscale"
+                            sizes="(max-width:1024px) 100vw, 868px"
+                          />
+                        </div>
+                        <MilestoneImageBrCorner />
                       </div>
-                      <MilestoneImageBrCorner />
                     </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </SiteContainer>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </SiteContainer>
+      </Reveal>
     </section>
   );
 }
