@@ -78,7 +78,7 @@ type RevealProps = {
    * Default 120px ≈ Comita/AOS.
    */
   offset?: number;
-  /** Run animation only once (default true). When false, reverses when scrolling away. */
+  /** Run animation only once. Default false — replays when scrolling back (Comita/AOS). */
   once?: boolean;
   /** Underlying element tag. Defaults to `div`. */
   as?: ElementType;
@@ -98,7 +98,7 @@ export function Reveal({
   duration = 1000,
   threshold = 0,
   offset = 120,
-  once = true,
+  once = false,
   as: Tag = "div",
   className,
   id,

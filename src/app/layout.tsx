@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Serif_Display } from "next/font/google";
 
 import { OrganizationJsonLd } from "@/components/organization-json-ld";
+import { DisableScrollRestoration } from "@/components/disable-scroll-restoration";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site-config";
@@ -56,6 +57,7 @@ export default function RootLayout({
       className={`${dmSerifDisplay.variable} h-full scroll-smooth`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground antialiased">
+        <DisableScrollRestoration />
         <OrganizationJsonLd />
         <SiteHeader />
         <main className="flex-1 overflow-x-hidden">{children}</main>
