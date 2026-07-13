@@ -101,7 +101,7 @@ export default function HomePage() {
             30 uspešnih godina
           </h2>
           <div className="relative mt-6 flex w-full flex-col">
-            <p className="w-full self-stretch font-sans text-2xl font-medium leading-[1.2] text-neutral-600">
+            <p className="w-full self-stretch font-sans text-2xl font-normal leading-[1.2] text-neutral-600">
               {FIGMA_VIDEO_COPY}
             </p>
             <div
@@ -147,7 +147,7 @@ export default function HomePage() {
             <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
               Naši Projekti
             </h2>
-            <p className="mt-6 max-w-4xl font-sans text-xl font-medium leading-[1.2] text-muted-foreground md:text-2xl">
+            <p className="mt-6 max-w-4xl font-sans text-xl font-normal leading-[1.2] text-muted-foreground md:text-2xl">
               Spisak projekata koje smo uradili je sve veći, a mi smo izdvojili
               samo neke od njih o kojima možete pročitati više informacija
             </p>

@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 const fieldClass =
   "font-sans h-auto min-h-0 rounded-none border-0 border-b border-neutral-600 bg-transparent px-0 py-0 pb-1 text-sm leading-5 text-neutral-50 shadow-none placeholder:text-neutral-600 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-transparent";
 
-const labelClass = "font-sans text-xs font-bold leading-4 text-neutral-600";
+const labelClass = "font-sans text-xs font-normal leading-4 text-neutral-600";
 
 export function ContactForm() {
   const [sent, setSent] = useState(false);

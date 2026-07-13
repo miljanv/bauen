@@ -121,7 +121,7 @@ export function HomeServices() {
             <h2 className="font-heading text-[clamp(2.25rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary lg:text-[62px]">
               Naše Usluge
             </h2>
-            <p className="mt-4 w-full self-stretch font-sans text-xl font-medium leading-[1.2] text-neutral-600 md:text-2xl">
+            <p className="mt-4 w-full self-stretch font-sans text-xl font-normal leading-[1.2] text-neutral-600 md:text-2xl">
               Kompletna rešenja u oblasti visokogradnje, niskogradnje i
               specijalizovanih građevinskih radova.
             </p>
@@ -141,7 +141,7 @@ export function HomeServices() {
               aria-selected={active === tab.id}
               onClick={() => setActive(tab.id)}
               className={cn(
-                "relative shrink-0 cursor-pointer whitespace-nowrap border-b-2 border-transparent px-3 py-6 font-sans text-xl font-medium transition-colors md:px-5",
+                "relative shrink-0 cursor-pointer whitespace-nowrap border-b-2 border-transparent px-3 py-6 font-sans text-xl font-normal transition-colors md:px-5",
                 active === tab.id
                   ? "text-primary after:absolute after:-inset-x-1 after:bottom-0 after:z-1 after:border-b-2 after:border-primary md:after:-inset-x-2"
                   : "text-neutral-600 hover:text-neutral-400",

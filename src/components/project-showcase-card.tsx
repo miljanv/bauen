@@ -70,7 +70,7 @@ export function ProjectShowcaseCard({
           {title}
         </Link>
       </h3>
-      <p className="font-sans text-base leading-[22px] text-neutral-200">
+      <p className="font-sans text-base font-normal leading-[22px] text-neutral-200">
         {description}
       </p>
       {cta ?? (

@@ -50,7 +50,7 @@ export function SiteFooter() {
             </Link>
 
             <nav
-              className="font-nav flex flex-wrap justify-center gap-8 text-base font-bold tracking-[2px]"
+              className="font-nav flex flex-wrap justify-center gap-8 text-base font-normal tracking-[2px]"
               aria-label="Podnožje navigacija"
             >
               {navItemsAll.map((item) => (

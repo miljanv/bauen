@@ -32,7 +32,7 @@ export function ProjectDetailInfo({
         <Reveal variant="fade-up" duration={1000}>
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-8">
             <ProjectMetaRows rows={visibleMeta} />
-            <div className="min-w-0 flex-1 font-sans text-xl font-medium leading-[1.2] text-neutral-50 md:text-2xl">
+            <div className="min-w-0 flex-1 font-sans text-xl font-normal leading-[1.2] text-neutral-50 md:text-2xl">
               {!expanded ? (
                 <p>
                   {summaryShort}{" "}

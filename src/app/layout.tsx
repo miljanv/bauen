@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display } from "next/font/google";
+import { Manrope } from "next/font/google";
 
 import { OrganizationJsonLd } from "@/components/organization-json-ld";
 import { DisableScrollRestoration } from "@/components/disable-scroll-restoration";
@@ -10,11 +10,11 @@ import { getSiteUrl } from "@/lib/seo";
 
 import "./globals.css";
 
-const dmSerifDisplay = DM_Serif_Display({
-  variable: "--font-dm-serif-display",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin", "latin-ext"],
   display: "swap",
-  weight: "400",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -54,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="sr"
-      className={`${dmSerifDisplay.variable} h-full scroll-smooth`}
+      className={`${manrope.variable} h-full scroll-smooth`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground antialiased">
         <DisableScrollRestoration />

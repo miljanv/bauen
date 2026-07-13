@@ -82,7 +82,7 @@ export default function AboutPage() {
               duration={800}
               className="flex flex-col items-stretch gap-4 sm:gap-6 lg:col-span-5 lg:col-start-1 lg:row-start-2 lg:self-start xl:col-span-5"
             >
-              <p className="font-nav max-w-[591px] text-base font-medium leading-relaxed text-white md:text-xl">
+              <p className="font-sans max-w-[591px] text-base font-normal leading-relaxed text-white md:text-xl">
                 Od porodičnih početaka do savremene građevinske kompanije, naš
                 put obeležavaju posvećenost, stručnost i kontinuiran rast.
               </p>
@@ -125,7 +125,7 @@ export default function AboutPage() {
           <h2 className="font-heading text-[clamp(2rem,5vw,3.875rem)] font-normal leading-[1.1] text-primary">
             Priznanja i nagrade
           </h2>
-          <div className="relative z-10 mt-4 flex w-full max-w-none flex-col gap-4 font-sans text-base font-medium leading-[1.25] text-neutral-50 sm:mt-6 sm:gap-6 md:text-xl lg:text-2xl lg:leading-[1.2]">
+          <div className="relative z-10 mt-4 flex w-full max-w-none flex-col gap-4 font-sans text-base font-normal leading-[1.25] text-neutral-50 sm:mt-6 sm:gap-6 md:text-xl lg:text-2xl lg:leading-[1.2]">
             <p>
               Zahvaljujući predanom radu i vrhunskoj stručnosti svog kadra ali i
               čestim društveno odgovornim aktivnostima, Bauen je dobitnik

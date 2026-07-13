@@ -67,7 +67,7 @@ function ContactRow({
       <ContactIcon src={iconSrc} />
       <Link
         href={href}
-        className="font-sans text-base font-medium leading-6 text-white transition-colors hover:text-primary"
+        className="font-sans text-base font-normal leading-6 text-white transition-colors hover:text-primary"
       >
         {children}
       </Link>
@@ -159,7 +159,7 @@ export default function ContactPage() {
                     <h1 className="font-heading text-2xl font-normal leading-[1.2] text-primary lg:text-[32px] lg:leading-[1.1]">
                       Kontakt informacije
                     </h1>
-                    <p className="font-sans text-xs font-bold leading-4 text-[#c9c9c9] lg:text-base lg:leading-[22px]">
+                    <p className="font-sans text-xs font-normal leading-4 text-[#c9c9c9] lg:text-base lg:leading-[22px]">
                       Pišite nam ili nas pozovite!
                     </p>
                   </div>
@@ -179,7 +179,7 @@ export default function ContactPage() {
                     </ContactRow>
                     <div className="flex flex-col items-center gap-3 text-center lg:flex-row lg:items-start lg:gap-[49px] lg:text-left">
                       <ContactIcon src={icons.location} />
-                      <p className="font-sans text-base font-medium leading-6 text-white">
+                      <p className="font-sans text-base font-normal leading-6 text-white">
                         {addressLine}
                       </p>
                     </div>

@@ -34,7 +34,7 @@ function NavLink({
     <Link
       href={item.href}
       className={cn(
-        "font-nav shrink-0 text-base font-bold leading-[22px] tracking-[2px] transition-colors",
+        "font-nav shrink-0 text-base font-semibold leading-[22px] tracking-[2px] transition-colors",
         active ? "text-primary" : "text-neutral-500 hover:text-white",
       )}
     >
@@ -192,7 +192,7 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "font-nav text-lg font-bold tracking-[0.12em] transition-[transform,opacity,color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+                    "font-nav text-lg font-normal tracking-[0.12em] transition-[transform,opacity,color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
                     isActive(pathname, item.href, locationHash)
                       ? "text-primary"
                       : "text-white hover:text-primary",

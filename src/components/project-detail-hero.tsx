@@ -84,7 +84,7 @@ export function ProjectDetailHero({
           <h1 className="max-w-[1036px] font-heading text-[clamp(2rem,5vw,3.875rem)] font-normal leading-[1.1] text-white lg:text-[62px]">
             {title}
           </h1>
-          <p className="mt-4 max-w-[591px] font-sans text-lg font-medium leading-[1.2] text-white md:text-xl">
+          <p className="mt-4 max-w-[591px] font-sans text-lg font-normal leading-[1.2] text-white md:text-xl">
             {subtitle}
           </p>
         </Reveal>

@@ -33,7 +33,7 @@ export function AboutHeroGlass() {
       style={aboutHeroGlassStyle}
     >
       <ProjectSubtractCorners variant="glass-tl-br" hoverFx />
-      <div className="relative z-10 space-y-3 font-sans text-base font-medium leading-[1.25] text-neutral-50 sm:space-y-4 md:text-lg lg:text-xl xl:text-2xl xl:leading-[1.2]">
+      <div className="relative z-10 space-y-3 font-sans text-base font-normal leading-[1.25] text-neutral-50 sm:space-y-4 md:text-lg lg:text-xl xl:text-2xl xl:leading-[1.2]">
         {expanded ? (
           FULL_PARAGRAPHS.map((p, i) => <p key={i}>{p}</p>)
         ) : (
