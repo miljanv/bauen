@@ -3,13 +3,13 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 import { BauenCtaLink, outlineActionButtonClass } from "@/components/bauen-cta-button";
-import { HomeHeroCarousel } from "@/components/home-hero-carousel";
+import { HomeHeroVideo } from "@/components/home-hero-video";
 import { HomePromoVideo } from "@/components/home-promo-video";
 import { HomeServices } from "@/components/home-services";
-import { ProjectShowcaseCard } from "@/components/project-showcase-card";
+import { HomeProjectFeature } from "@/components/home-project-feature";
 import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
-import { getProjectPath } from "@/lib/projects";
+import { projects } from "@/lib/projects";
 import { siteImages } from "@/lib/site-images";
 import { createPageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
@@ -24,41 +24,11 @@ export const metadata = createPageMetadata({
 const FIGMA_VIDEO_COPY =
   "Pridružite nam se dok putujemo kroz vreme i proslavljamo 30 godina uspešnog poslovanja građevinske kompanije BAUEN! Ovaj uzbudljivi promo video predstavlja našu dugogodišnju posvećenost kvalitetu i izvrsnosti u građevinskoj industriji…";
 
-const PROJECT_BODY =
-  "Ovaj projekat je bio od presudnog značaja za našu firmu i sigurno možemo reći da je predstavljao prekretnicu u našem poslovanju i od nas načinio firmu koja smo danas. Bez ikakve sumnje to je bio naš najveći projekat do tada i zbog važnosti objekta koji smo sagradili svakako predstavlja naše nasleđe.";
-
-const homeProjects = [
-  {
-    slug: "radovi-auto-put-milos-veliki",
-    title: "Radovi na auto-putu „Miloš Veliki“",
-    description: PROJECT_BODY,
-    image: siteImages.home.project1,
-    alt: "Radovi na auto-putu",
-    reverse: false,
-  },
-  {
-    slug: "asfaltna-baza-extra-auto",
-    title: "Asfaltna baza za Extra Auto",
-    description: PROJECT_BODY,
-    image: siteImages.home.project2,
-    alt: "Asfaltna baza",
-    reverse: true,
-  },
-  {
-    slug: "sportski-centar-zmajevo",
-    title: "Sportski centar „Zmajevo“",
-    description: PROJECT_BODY,
-    image: siteImages.home.project3,
-    alt: "Sportski centar",
-    reverse: false,
-  },
-];
-
 export default function HomePage() {
   return (
     <>
       <section className="relative min-h-screen">
-        <HomeHeroCarousel />
+        <HomeHeroVideo />
         <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[rgba(18,17,32,0)] from-[20%] via-background/20 to-background" />
         <SiteContainer className="page-hero-offset relative z-[2] flex min-h-screen flex-col items-center px-4 pb-16 text-center md:px-6 md:pb-12">
           <div className="flex w-full flex-col items-center">
@@ -153,19 +123,17 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <div className="mt-20 flex flex-col gap-24 md:gap-32 lg:gap-40">
-            {homeProjects.map((p) => (
-              <Reveal key={p.slug} variant="fade-up" duration={1000}>
-                <ProjectShowcaseCard
-                  image={p.image}
-                  alt={p.alt}
-                  title={p.title}
-                  description={p.description}
-                  href={getProjectPath(p.slug)}
-                  reverse={p.reverse}
-                  animate={false}
-                />
-              </Reveal>
+          <div className="mt-16 flex flex-col md:mt-20">
+            {projects.map((project, i) => (
+              <div
+                key={project.slug}
+                className={cn(
+                  i > 0 &&
+                    "mt-20 border-t border-white/10 pt-20 md:mt-28 md:pt-28",
+                )}
+              >
+                <HomeProjectFeature project={project} index={i} />
+              </div>
             ))}
           </div>
 

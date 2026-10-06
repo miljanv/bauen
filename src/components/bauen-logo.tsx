@@ -17,10 +17,10 @@ const variantConfig = {
     sizes: "(max-width: 768px) 40px, 48px",
   },
   full: {
-    src: "/logo-with-title.png" as const,
+    src: "/logo-with-title-white.png" as const,
     width: 287,
     height: 100,
-    className: "h-9 w-auto sm:h-10 md:h-11",
+    className: "h-12 w-auto md:h-14",
     sizes: "(max-width: 768px) 220px, 280px",
   },
 } as const;

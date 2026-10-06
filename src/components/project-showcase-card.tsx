@@ -4,6 +4,10 @@ import { ChevronRight } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { BauenCtaLink } from "@/components/bauen-cta-button";
+import {
+  ImageSlideshow,
+  type SlideshowImage,
+} from "@/components/image-slideshow";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
 import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
@@ -17,6 +21,8 @@ const projectCardGlassStyle = {
 type ProjectShowcaseCardProps = {
   image: string;
   alt: string;
+  /** Kada je prosleđeno, umesto jedne slike sa zumom prikazuje se slideshow. */
+  images?: readonly SlideshowImage[];
   title: string;
   description: string;
   href: string;
@@ -29,6 +35,7 @@ type ProjectShowcaseCardProps = {
 export function ProjectShowcaseCard({
   image,
   alt,
+  images,
   title,
   description,
   href,
@@ -41,7 +48,26 @@ export function ProjectShowcaseCard({
   const bodyClassName =
     "relative z-10 flex w-full flex-col items-start gap-4 rounded-[3px] border border-white/12 px-[33px] pb-[25px] pt-[37px] backdrop-blur-[10.45px] lg:w-[min(518px,42%)] lg:max-w-[518px] lg:shrink-0 lg:px-8 lg:pb-6 lg:pt-9";
 
-  const imageBlock = (
+  const corners = (
+    <ProjectSubtractCorners
+      variant={reverse ? "image-right" : "image-left"}
+      className="max-lg:size-4"
+      hoverFx
+    />
+  );
+
+  const imageBlock = images?.length ? (
+    <div className="corner-hover-zone relative size-full">
+      <ImageSlideshow images={images} sizes="(max-width:1024px) 100vw, 705px">
+        <Link
+          href={href}
+          aria-label={title}
+          className="absolute inset-0 z-10"
+        />
+      </ImageSlideshow>
+      {corners}
+    </div>
+  ) : (
     <Link href={href} className="corner-hover-zone relative block size-full">
       <div className="absolute inset-0 overflow-hidden">
         <Image
@@ -52,11 +78,7 @@ export function ProjectShowcaseCard({
           sizes="(max-width:1024px) 100vw, 705px"
         />
       </div>
-      <ProjectSubtractCorners
-        variant={reverse ? "image-right" : "image-left"}
-        className="max-lg:size-4"
-        hoverFx
-      />
+      {corners}
     </Link>
   );
 

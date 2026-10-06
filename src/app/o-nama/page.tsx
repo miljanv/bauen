@@ -22,20 +22,38 @@ const milestones = [
   {
     year: "1984.",
     text: "Naši počeci su vezani za 1984. godinu i Građevinsku zanatasku zadrugu „Bačka“ iz Vrbasa čiji smo član bili ali pod imenom Samostalna građevinska radnja. Istrajnošću, upornošću, predanim i posvećenim radom postali smo ono što je GTP Bauen danas.",
-    image: siteImages.about.construction1,
-    alt: "Bauen tim na gradilištu osamdesetih godina",
+    images: [
+      {
+        src: siteImages.about.construction1,
+        alt: "Bauen tim na gradilištu osamdesetih godina",
+      },
+      { src: siteImages.projekti.balkanskiTok.gallery1, alt: "Gradilište" },
+      { src: siteImages.home.serviceRestauracija, alt: "Restauracija objekta" },
+    ],
   },
   {
     year: "1984. – 1993.",
     text: "Ovaj period tadašnje Jugoslavije odlikuju masovne gradnje infrastrukture pa otuda i velika tražnja za građevinskim uslugama. Naša firma je odgovorila i vrlo brzo se prilagodila zahtevima tržišta što je propraćeno ubrzanim rastom i proširenjem u vidu broja zaposlenih i sredstava za rad.",
-    image: siteImages.about.construction2,
-    alt: "Izgradnja stambenih blokova devedesetih",
+    images: [
+      {
+        src: siteImages.about.construction2,
+        alt: "Izgradnja stambenih blokova devedesetih",
+      },
+      { src: siteImages.projekti.balkanskiTok.gallery3, alt: "Gradilište" },
+      { src: siteImages.home.serviceNiskogradnja, alt: "Radovi niskogradnje" },
+    ],
   },
   {
     year: "2023.",
     text: "Bauen je danas jedna od najvećih građevinskih kompanija u Srbiji. Sa dugom tradicijom i velikim iskustvom konstantno beleži rast, napredak i u najkraćem roku odgovara na zahteve tržišta. Ponosni smo na našu veliku porodicu saradnika i klijenata i radujemo se njenom povećanju.",
-    image: siteImages.about.construction3,
-    alt: "Savremeno gradilište sa kranom",
+    images: [
+      {
+        src: siteImages.about.construction3,
+        alt: "Savremeno gradilište sa kranom",
+      },
+      { src: siteImages.projekti.balkanskiTok.gallery5, alt: "Gradilište" },
+      { src: siteImages.home.serviceConstruction, alt: "Visokogradnja" },
+    ],
   },
 ] as const;
 

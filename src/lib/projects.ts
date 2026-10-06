@@ -32,17 +32,25 @@ export type Project = {
 const PROJECT_BODY =
   "Ovaj projekat je bio od presudnog značaja za našu firmu i sigurno možemo reći da je predstavljao prekretnicu u našem poslovanju i od nas načinio firmu koja smo danas. Bez ikakve sumnje to je bio naš najveći projekat do tada i zbog važnosti objekta koji smo sagradili svakako predstavlja naše nasleđe. Kao porodični ljudi koji neguju tradiciju i porodične vrednosti, biti deo ovog projekta je za nas predstavljalo veliku čast ali i obavezu.";
 
-function buildGalleryFromHero(
+const GALLERY_LAYOUT: ProjectGalleryItem["layout"][] = [
+  "half",
+  "half",
+  "full",
+  "half",
+  "half",
+];
+
+/** Privremene fotografije dok ne stignu prave za svaki projekat. */
+function buildGallery(
   hero: string,
   alt: string,
+  extras: readonly string[],
 ): ProjectGalleryItem[] {
-  return [
-    { src: hero, alt, layout: "half" },
-    { src: hero, alt, layout: "half" },
-    { src: hero, alt, layout: "full" },
-    { src: hero, alt, layout: "half" },
-    { src: hero, alt, layout: "half" },
-  ];
+  return [hero, ...extras].map((src, i) => ({
+    src,
+    alt,
+    layout: GALLERY_LAYOUT[i % GALLERY_LAYOUT.length]!,
+  }));
 }
 
 const balkanskiBase = "/images/projekti/balkanski-tok";
@@ -106,9 +114,15 @@ export const projects: Project[] = [
     ],
     summaryShort: PROJECT_BODY,
     summaryParagraphs: [PROJECT_BODY],
-    gallery: buildGalleryFromHero(
+    gallery: buildGallery(
       siteImages.projekti.projectMilos,
       "Radovi na auto-putu Miloš Veliki",
+      [
+        siteImages.projekti.balkanskiTok.gallery1,
+        siteImages.home.serviceNiskogradnja,
+        siteImages.projekti.balkanskiTok.gallery2,
+        siteImages.about.construction3,
+      ],
     ),
   },
   {
@@ -129,9 +143,15 @@ export const projects: Project[] = [
     ],
     summaryShort: PROJECT_BODY,
     summaryParagraphs: [PROJECT_BODY],
-    gallery: buildGalleryFromHero(
+    gallery: buildGallery(
       siteImages.projekti.projectExtraAuto,
       "Asfaltna baza Extra Auto",
+      [
+        siteImages.projekti.balkanskiTok.gallery3,
+        siteImages.home.serviceConstruction,
+        siteImages.projekti.balkanskiTok.gallery4,
+        siteImages.about.construction2,
+      ],
     ),
   },
   {
@@ -152,9 +172,15 @@ export const projects: Project[] = [
     ],
     summaryShort: PROJECT_BODY,
     summaryParagraphs: [PROJECT_BODY],
-    gallery: buildGalleryFromHero(
+    gallery: buildGallery(
       siteImages.projekti.projectZmajevo,
       "Sportski centar Zmajevo",
+      [
+        siteImages.projekti.balkanskiTok.gallery5,
+        siteImages.home.serviceSpecijalni,
+        siteImages.home.serviceRestauracija,
+        siteImages.about.construction1,
+      ],
     ),
   },
 ];

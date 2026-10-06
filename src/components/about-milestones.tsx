@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import type { StaticImageData } from "next/image";
 import {
   useCallback,
   useEffect,
@@ -10,6 +9,10 @@ import {
   useState,
 } from "react";
 
+import {
+  ImageSlideshow,
+  type SlideshowImage,
+} from "@/components/image-slideshow";
 import { MilestoneImageBrCorner } from "@/components/milestone-image-br-corner";
 import { ProjectSubtractCorners } from "@/components/project-subtract-corners";
 import { Reveal } from "@/components/reveal";
@@ -144,8 +147,7 @@ function MilestoneRailMarker({
 export type AboutMilestone = {
   year: string;
   text: string;
-  image: string | StaticImageData;
-  alt: string;
+  images: readonly SlideshowImage[];
 };
 
 export function AboutMilestones({
@@ -295,15 +297,11 @@ export function AboutMilestones({
 
                     <div className="corner-hover-zone relative h-[220px] w-full sm:h-[260px] lg:col-span-9 lg:col-start-4 lg:row-start-1 lg:aspect-auto lg:h-[579px]">
                       <div className="relative h-full w-full">
-                        <div className="absolute inset-0 overflow-hidden">
-                          <Image
-                            src={m.image}
-                            alt={m.alt}
-                            fill
-                            className="corner-hover-zoom-target object-cover grayscale"
-                            sizes="(max-width:1024px) 100vw, 868px"
-                          />
-                        </div>
+                        <ImageSlideshow
+                          images={m.images}
+                          imageClassName="grayscale"
+                          sizes="(max-width:1024px) 100vw, 868px"
+                        />
                         <MilestoneImageBrCorner />
                       </div>
                     </div>

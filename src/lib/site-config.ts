@@ -11,6 +11,10 @@ export const siteConfig = {
     postal: "21460",
     country: "Srbija",
   },
+  workingHours: [
+    { days: "Ponedeljak – Petak", hours: "08:00 – 16:00" },
+    { days: "Subota – Nedelja", hours: "Zatvoreno" },
+  ],
   social: {
     twitter: "https://twitter.com",
     facebook: "https://www.facebook.com",
