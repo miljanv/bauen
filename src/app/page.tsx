@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
-import { BauenCtaLink, outlineActionButtonClass } from "@/components/bauen-cta-button";
+import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { HomeHeroVideo } from "@/components/home-hero-video";
 import { HomePromoVideo } from "@/components/home-promo-video";
 import { HomeServices } from "@/components/home-services";
@@ -48,7 +47,7 @@ export default function HomePage() {
               variant="fade-up"
               delay={250}
               duration={800}
-              className="mt-24 flex justify-center md:mt-32 lg:mt-16"
+              className="mt-40 flex justify-center md:mt-56 lg:mt-44"
             >
               <BauenCtaLink href="/o-nama">
                 O NAMA
@@ -142,16 +141,10 @@ export default function HomePage() {
             duration={1000}
             className="mt-24 flex justify-center md:mt-32"
           >
-            <Link
-              href="/projekti"
-              className={cn(
-                outlineActionButtonClass,
-                "border border-primary text-neutral-50 hover:bg-primary/10",
-              )}
-            >
+            <BauenCtaLink href="/projekti">
               SVI PROJEKTI
               <ChevronRight className="size-4 shrink-0" aria-hidden />
-            </Link>
+            </BauenCtaLink>
           </Reveal>
         </SiteContainer>
       </section>

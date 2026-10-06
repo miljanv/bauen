@@ -4,7 +4,7 @@ import type { FormEvent } from "react";
 import { useState } from "react";
 import Image from "next/image";
 
-import { Button } from "@/components/ui/button";
+import { BauenCtaButton } from "@/components/bauen-cta-button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -110,12 +110,12 @@ export function ContactForm() {
 
         <div className="relative w-full overflow-visible pb-12 max-lg:pb-14 lg:mt-0 lg:pb-0 lg:flex lg:justify-end">
           <div className="relative w-full lg:inline-block lg:w-auto">
-            <Button
+            <BauenCtaButton
               type="submit"
-              className="relative z-0 font-sans h-[44px] max-h-[44px] w-full rounded-none px-4 text-sm font-medium uppercase tracking-normal md:h-[60px] md:max-h-[60px] md:text-base lg:w-auto"
+              className="relative z-0 w-full uppercase lg:w-auto"
             >
               POŠALJITE PORUKU
-            </Button>
+            </BauenCtaButton>
             <Image
               src="/illustrations/letter_send.png"
               alt=""

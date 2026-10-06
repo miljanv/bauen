@@ -1,16 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 import { AboutHeroGlass } from "@/components/about-hero-glass";
 import { AboutMilestones } from "@/components/about-milestones";
-import { BauenCtaLink, outlineActionButtonClass } from "@/components/bauen-cta-button";
+import { BauenCtaLink } from "@/components/bauen-cta-button";
 import { Reveal } from "@/components/reveal";
 import { SiteContainer } from "@/components/site-container";
 import { siteImages } from "@/lib/site-images";
 import { createPageMetadata } from "@/lib/seo";
-import { cn } from "@/lib/utils";
-
 export const metadata = createPageMetadata({
   title: "O nama",
   description:
@@ -106,16 +103,10 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 md:gap-6 lg:flex-col lg:items-stretch">
                 <BauenCtaLink href="/projekti">PROJEKTI</BauenCtaLink>
-                <Link
-                  href="/kontakt"
-                  className={cn(
-                    outlineActionButtonClass,
-                    "border border-white/70 bg-white/15 text-neutral-50 backdrop-blur-md hover:bg-white/25",
-                  )}
-                >
+                <BauenCtaLink href="/kontakt">
                   KONTAKTIRAJTE NAS
                   <ChevronRight className="size-4 shrink-0" aria-hidden />
-                </Link>
+                </BauenCtaLink>
               </div>
             </Reveal>
 
