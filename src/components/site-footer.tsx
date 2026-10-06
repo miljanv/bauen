@@ -7,6 +7,7 @@ import { BauenLogo } from "@/components/bauen-logo";
 import { Reveal } from "@/components/reveal";
 import { SocialIcons } from "@/components/social-icons";
 import { SiteContainer } from "@/components/site-container";
+import { reloadOnSamePage } from "@/lib/reload-on-same-page";
 import { navItemsAll, siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -45,6 +46,7 @@ export function SiteFooter() {
             <Link
               href="/"
               className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              onClick={(e) => reloadOnSamePage(e, pathname, "/")}
             >
               <BauenLogo variant="full" />
             </Link>
@@ -63,6 +65,7 @@ export function SiteFooter() {
                       ? "text-primary"
                       : "text-neutral-500 hover:text-white",
                   )}
+                  onClick={(e) => reloadOnSamePage(e, pathname, item.href)}
                 >
                   {item.label}
                 </Link>

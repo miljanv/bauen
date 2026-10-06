@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { BauenLogo } from "@/components/bauen-logo";
+import { reloadOnSamePage } from "@/lib/reload-on-same-page";
 import { navItemsAll } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -37,6 +38,7 @@ function NavLink({
         "font-nav shrink-0 text-base font-semibold leading-[22px] tracking-[2px] transition-colors",
         active ? "text-primary" : "text-neutral-500 hover:text-white",
       )}
+      onClick={(e) => reloadOnSamePage(e, pathname, item.href)}
     >
       {item.label}
     </Link>
@@ -91,6 +93,7 @@ export function SiteHeader() {
             <Link
               href="/"
               className="flex h-11 shrink-0 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              onClick={(e) => reloadOnSamePage(e, pathname, "/")}
             >
               <BauenLogo variant="icon" />
             </Link>
@@ -206,7 +209,10 @@ export function SiteHeader() {
                       : `${(navItemsAll.length - 1 - index) * 30}ms`,
                   }}
                   tabIndex={open ? 0 : -1}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                    setOpen(false);
+                    reloadOnSamePage(e, pathname, item.href);
+                  }}
                 >
                   {item.label}
                 </Link>
