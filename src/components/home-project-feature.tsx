@@ -15,12 +15,9 @@ import { Reveal } from "@/components/reveal";
 import { getProjectPath, type Project } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
-type CarouselState = {
-  progress: number;
-  visibleRatio: number;
-  canPrev: boolean;
-  canNext: boolean;
-};
+const AUTO_SLIDE_MS = 3000;
+const SLIDE_TRANSITION_MS = 700;
+const SWIPE_THRESHOLD_PX = 40;
 
 function getCarouselImages(project: Project) {
   const seen = new Set<string>();
@@ -51,6 +48,10 @@ const carouselArrowClass = cn(
   "border border-white/15 text-primary hover:border-primary hover:bg-primary hover:text-primary-foreground disabled:pointer-events-none disabled:opacity-30",
 );
 
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function HomeProjectFeature({
   project,
   index,
@@ -60,53 +61,70 @@ export function HomeProjectFeature({
 }) {
   const href = getProjectPath(project.slug);
   const images = getCarouselImages(project);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [carousel, setCarousel] = useState<CarouselState>({
-    progress: 0,
-    visibleRatio: 1,
-    canPrev: false,
-    canNext: false,
-  });
+  const count = images.length;
+  const loops = count > 1;
+  /** Three copies of the images; `position` lives in the middle copy and is re-centred after each slide so the strip never runs out. */
+  const slides = loops ? [...images, ...images, ...images] : images;
 
-  const updateCarousel = useCallback(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    setCarousel({
-      progress: max > 0 ? el.scrollLeft / max : 0,
-      visibleRatio: el.scrollWidth > 0 ? el.clientWidth / el.scrollWidth : 1,
-      canPrev: el.scrollLeft > 4,
-      canNext: el.scrollLeft < max - 4,
+  const rootRef = useRef<HTMLDivElement>(null);
+  const swipeStartX = useRef<number | null>(null);
+  const [position, setPosition] = useState(loops ? count : 0);
+  const [animate, setAnimate] = useState(true);
+  const [paused, setPaused] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const realIndex = ((position % count) + count) % count;
+
+  const move = useCallback(
+    (direction: 1 | -1) => {
+      if (!loops) return;
+      setAnimate(true);
+      setPosition((p) => {
+        const next = p + direction;
+        if (prefersReducedMotion()) {
+          return count + (((next - count) % count) + count) % count;
+        }
+        return Math.min(Math.max(next, 1), count * 3 - 3);
+      });
+    },
+    [count, loops],
+  );
+
+  useEffect(() => {
+    if (!loops || (position >= count && position < count * 2)) return;
+    const timer = window.setTimeout(() => {
+      setAnimate(false);
+      setPosition((p) => count + ((p % count) + count) % count);
+    }, SLIDE_TRANSITION_MS + 50);
+    return () => window.clearTimeout(timer);
+  }, [position, count, loops]);
+
+  useEffect(() => {
+    if (animate) return;
+    let frame = requestAnimationFrame(() => {
+      frame = requestAnimationFrame(() => setAnimate(true));
     });
+    return () => cancelAnimationFrame(frame);
+  }, [animate]);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry?.isIntersecting ?? false),
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(updateCarousel);
-    ro.observe(el);
-    el.addEventListener("scroll", updateCarousel, { passive: true });
-    return () => {
-      ro.disconnect();
-      el.removeEventListener("scroll", updateCarousel);
-    };
-  }, [updateCarousel]);
-
-  const scrollBySlide = (direction: 1 | -1) => {
-    const el = trackRef.current;
-    if (!el) return;
-    const slide = el.firstElementChild as HTMLElement | null;
-    const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
-    const step = (slide?.offsetWidth ?? el.clientWidth) + gap;
-    el.scrollBy({ left: direction * step, behavior: "smooth" });
-  };
-
-  const thumbOffset =
-    carousel.visibleRatio > 0
-      ? (carousel.progress * (1 - carousel.visibleRatio)) /
-        carousel.visibleRatio
-      : 0;
+    if (!loops || paused || !inView || lightboxIndex !== null) return;
+    if (prefersReducedMotion()) return;
+    const timer = window.setTimeout(() => move(1), AUTO_SLIDE_MS);
+    return () => window.clearTimeout(timer);
+  }, [position, loops, paused, inView, lightboxIndex, move]);
 
   return (
     <article>
@@ -132,45 +150,82 @@ export function HomeProjectFeature({
         className="mt-8 md:mt-10"
       >
         <div
-          ref={trackRef}
+          ref={rootRef}
           role="region"
+          aria-roledescription="karusel"
           aria-label={`Galerija projekta: ${project.title}`}
           tabIndex={0}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain [scrollbar-width:none] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:gap-6 [&::-webkit-scrollbar]:hidden"
+          className="overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") move(-1);
+            if (e.key === "ArrowRight") move(1);
+          }}
+          onTouchStart={(e) => {
+            swipeStartX.current = e.touches[0]?.clientX ?? null;
+            setPaused(true);
+          }}
+          onTouchEnd={(e) => {
+            const start = swipeStartX.current;
+            const end = e.changedTouches[0]?.clientX;
+            swipeStartX.current = null;
+            setPaused(false);
+            if (start == null || end == null) return;
+            const delta = end - start;
+            if (Math.abs(delta) >= SWIPE_THRESHOLD_PX) move(delta < 0 ? 1 : -1);
+          }}
         >
-          {images.map((image, i) => (
-            <div
-              key={image.src}
-              className="relative aspect-4/5 w-[82%] shrink-0 snap-start overflow-hidden sm:w-[calc((100%-1rem)/2)] md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
-            >
-              <ProjectGalleryImageButton
-                src={image.src}
-                alt={image.alt}
-                sizes="(max-width:640px) 82vw, (max-width:1024px) 50vw, 400px"
-                index={i}
-                onOpen={setLightboxIndex}
-              />
-              <span
-                className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-linear-to-b from-black/45 to-transparent"
-                aria-hidden
-              />
-              <span
-                className="pointer-events-none absolute left-4 top-4 font-sans text-xs font-medium tabular-nums tracking-[0.2em] text-white"
-                aria-hidden
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-            </div>
-          ))}
+          <div
+            className={cn(
+              "flex touch-pan-y gap-(--gap) [--gap:1rem] [--slide:82%] sm:[--slide:calc((100%_-_var(--gap))_/_2)] md:[--gap:1.5rem] lg:[--slide:calc((100%_-_2_*_var(--gap))_/_3)]",
+              animate &&
+                "transition-transform ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+            )}
+            style={{
+              transform: `translateX(calc(${-position} * (var(--slide) + var(--gap))))`,
+              transitionDuration: `${SLIDE_TRANSITION_MS}ms`,
+            }}
+          >
+            {slides.map((image, i) => {
+              const imageIndex = i % count;
+              return (
+                <div
+                  key={`${i}-${image.src}`}
+                  className="relative aspect-4/5 w-(--slide) shrink-0 overflow-hidden"
+                >
+                  <ProjectGalleryImageButton
+                    src={image.src}
+                    alt={image.alt}
+                    sizes="(max-width:640px) 82vw, (max-width:1024px) 50vw, 400px"
+                    index={imageIndex}
+                    onOpen={setLightboxIndex}
+                  />
+                  <span
+                    className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-linear-to-b from-black/45 to-transparent"
+                    aria-hidden
+                  />
+                  <span
+                    className="pointer-events-none absolute left-4 top-4 font-sans text-xs font-medium tabular-nums tracking-[0.2em] text-white"
+                    aria-hidden
+                  >
+                    {String(imageIndex + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         <div className="mt-6 flex items-center gap-4 md:gap-6">
           <div className="relative h-0.5 flex-1 overflow-hidden bg-white/10">
             <div
-              className="absolute inset-y-0 left-0 bg-primary transition-transform duration-150 ease-out"
+              className="absolute inset-y-0 left-0 bg-primary transition-transform duration-500 ease-out motion-reduce:transition-none"
               style={{
-                width: `${carousel.visibleRatio * 100}%`,
-                transform: `translateX(${thumbOffset * 100}%)`,
+                width: `${100 / count}%`,
+                transform: `translateX(${realIndex * 100}%)`,
               }}
             />
           </div>
@@ -180,8 +235,8 @@ export function HomeProjectFeature({
           <div className="flex gap-2">
             <button
               type="button"
-              onClick={() => scrollBySlide(-1)}
-              disabled={!carousel.canPrev}
+              onClick={() => move(-1)}
+              disabled={!loops}
               className={carouselArrowClass}
               aria-label="Prethodne fotografije"
             >
@@ -189,8 +244,8 @@ export function HomeProjectFeature({
             </button>
             <button
               type="button"
-              onClick={() => scrollBySlide(1)}
-              disabled={!carousel.canNext}
+              onClick={() => move(1)}
+              disabled={!loops}
               className={carouselArrowClass}
               aria-label="Sledeće fotografije"
             >
